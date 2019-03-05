@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository // En Spring els DAOs van anotats amb @Repository
-public class NadadorDao {
+public class ActivityTypeDao {
 
     private JdbcTemplate jdbcTemplate;
 
