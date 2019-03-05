@@ -26,5 +26,11 @@ public class Interested {
 	public String getActivityTypeID() {
 		return activityTypeID;
 	}
+
+	@Override
+	public String toString() {
+		return "Interested [interestedID=" + interestedID + ", customerID=" + customerID + ", activityTypeID="
+				+ activityTypeID + "]";
+	}
 	
 }
