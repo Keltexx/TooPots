@@ -31,15 +31,14 @@ public class CustomerDao {
 	        jdbcTemplate.update("DELETE from Customer where name=?", customer.getName());
 	    }
 
-	    /* Actualitza els atributs del nadador
-	       (excepte el nom, que és la clau primària) */
+
 	    public void updateCustomer(Customer customer) {
 	        jdbcTemplate.update("UPDATE Customer SET nif=?, email=?, gender=?, birthDate=? where name=?",
 	                customer.getNif(), customer.getEmail(),
 	                customer.getGender(),       customer.getBirthDate(), customer.getName());
 	    }
 
-	    /* Obté el nadador amb el nom donat. Torna null si no existeix. */
+
 	    public Customer getCustomer(String customerName) {
 	        try {
 	            return jdbcTemplate.queryForObject("SELECT * from Customer WHERE name=?",

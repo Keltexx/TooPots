@@ -42,4 +42,9 @@ public class Customer {
 	public Date getBirthDate() {
 		return birthDate;
 	}
+	@Override
+	public String toString() {
+		return "Customer [name=" + name + ", nif=" + nif + ", email=" + email + ", gender=" + gender + ", birthDate="
+				+ birthDate + "]";
+	}
 }
