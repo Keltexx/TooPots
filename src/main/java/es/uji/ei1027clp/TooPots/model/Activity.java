@@ -2,6 +2,15 @@ package es.uji.ei1027clp.TooPots.model;
 
 public class Activity {
 	String id;
+	String place;
+	public String getPlace() {
+		return place;
+	}
+
+	public void setPlace(String place) {
+		this.place = place;
+	}
+
 	String name;
 	String schedule;
 	int duration;

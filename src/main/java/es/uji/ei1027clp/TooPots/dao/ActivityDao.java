@@ -22,12 +22,12 @@ public class ActivityDao {
     }
 
     /* Afegeix el nadador a la base de dades */
-    public void addActivity(Activity actividad) {
+    public void addActivity(Activity activity) {
         jdbcTemplate.update("INSERT INTO Activity VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                activity.getID(), activity.getPlace(), activity.getName(), activity.getSchedule(),activity.getDuracion(),
-activity.getDescripcion, activity.getPriceByPerson, 
-activity.getNumberOfPeople, activity.getInstructorID),
-activity.getActivityTypeID);
+                activity.getId(), activity.getPlace(), activity.getName(), activity.getSchedule(),activity.getDuration(),
+activity.getDescription(), activity.getPriceByPerson(), 
+activity.getNumberOfPeople(), activity.getInstructorId(),
+activity.getActivityTypeId());
     }
 
     /* Esborra el nadador de la base de dades */
@@ -37,18 +37,12 @@ activity.getActivityTypeID);
 
     /* Actualitza els atributs del nadador
        (excepte el nom, que és la clau primària) */
-    public void updateNadador(Nadador nadador) {
+    public void updateActivity(Activity activity) {
 jdbcTemplate.update("UPDATE activity  SET (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                activity.getID(), activity.getPlace(), activity.getName(), activity.getSchedule(),activity.getDuracion(),
-activity.getDescripcion, activity.getPriceByPerson, 
-activity.getNumberOfPeople, activity.getInstructorID),
-activity.getActivityTypeID);
-        
-//jdbcTemplate.update("UPDATE activity SET place=?, name=?, schedule=?, duracion=?, desccripcion=?, priceByPerson=?, numberOfPeople=?, instructorID=?, activityType=?,      where id=?",
-                activity.getPlace(), activity.getName(), activity.getSchedule(),activity.getDuracion(),
-activity.getDescripcion, activity.getPriceByPerson, 
-activity.getNumberOfPeople, activity.getInstructorID),
-activity.getActivityTypeID, activity.getID());
+                activity.getId(), activity.getPlace(), activity.getName(), activity.getSchedule(),activity.getDescription(),
+activity.getDescription(), activity.getPriceByPerson(), 
+activity.getNumberOfPeople(), activity.getInstructorId(),
+activity.getActivityTypeId());
     }
 
 

@@ -1,10 +1,12 @@
-package es.uji.ei1027.clubesportiu.dao;
+package es.uji.ei1027clp.TooPots.dao;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import es.uji.ei1027clp.TooPots.model.ActivityType;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
@@ -32,3 +34,4 @@ public class ActivityTypeDao {
     public void deleteActivityType(ActivityType activityType) {
         jdbcTemplate.update("DELETE from ActivityTypewhere id=?", activityType.getId());
     }
+}
