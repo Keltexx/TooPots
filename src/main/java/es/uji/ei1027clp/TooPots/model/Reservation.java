@@ -63,4 +63,13 @@ public class Reservation {
 	public String getCustomerID() {
 		return customerID;
 	}
+
+	@Override
+	public String toString() {
+		return "Reservation [reservationID=" + reservationID + ", bookingDate=" + bookingDate + ", activityDate="
+				+ activityDate + ", priceByPerson=" + priceByPerson + ", totalPrice=" + totalPrice
+				+ ", numberOfPersons=" + numberOfPersons + ", activityID=" + activityID + ", customerID=" + customerID
+				+ "]";
+	}
+	
 }
