@@ -32,18 +32,39 @@ activity.getActivityTypeId());
 
     /* Esborra el nadador de la base de dades */
     public void deleteActivity(Activity activity) {
-        jdbcTemplate.update("DELETE from Activity where nom=?", activity.getName());
+        jdbcTemplate.update("DELETE from Activity where id=?", activity.getId());
     }
 
     /* Actualitza els atributs del nadador
        (excepte el nom, que és la clau primària) */
     public void updateActivity(Activity activity) {
-jdbcTemplate.update("UPDATE activity  SET (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                activity.getId(), activity.getPlace(), activity.getName(), activity.getSchedule(),activity.getDescription(),
+jdbcTemplate.update("UPDATE activity  SET (place=?, name=?, schedule=?, duration=?, description=?, priceByPerson=?, numberOfPeople=?, instructorId=?, activityTypeId=?)",
+  activity.getPlace(), activity.getName(), activity.getSchedule(),activity.getDuration(),
 activity.getDescription(), activity.getPriceByPerson(), 
 activity.getNumberOfPeople(), activity.getInstructorId(),
 activity.getActivityTypeId());
     }
 
-
+    
+    /* Obté el nadador amb el nom donat. Torna null si no existeix. */
+    public Activity getActivity(String nameActivity) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT * from Activity WHERE name=?",
+                    new ActivityRowMapper(), nameActivity);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+    
+    /* Obté tots els nadadors. Torna una llista buida si no n'hi ha cap. */
+    public List<Activity> getActivities() {
+        try {
+            return jdbcTemplate.query("SELECT * from Nadador",
+                    new ActivityRowMapper());
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Activity>();
+        }
+    }
 }

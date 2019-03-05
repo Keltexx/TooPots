@@ -6,6 +6,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import es.uji.ei1027clp.TooPots.model.Activity;
 import es.uji.ei1027clp.TooPots.model.ActivityType;
 
 import javax.sql.DataSource;
@@ -34,4 +35,12 @@ public class ActivityTypeDao {
     public void deleteActivityType(ActivityType activityType) {
         jdbcTemplate.update("DELETE from ActivityTypewhere id=?", activityType.getId());
     }
+    
+    /* Actualitza els atributs del nadador
+    (excepte el nom, que és la clau primària) */
+	 public void updateActivityType(ActivityType activityType) {
+		jdbcTemplate.update("UPDATE activity  SET (nameType=?, riskLevel=?, description=?)",
+		activityType.getNameType(), activityType.getRiskLevel(),activityType.getDescription());
+	 }
+ 
 }
