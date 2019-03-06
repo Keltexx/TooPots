@@ -1,4 +1,4 @@
-package es.uji.ei1027clp.TooPots.main;
+package es.uji.ei102718cln.TooPots.main;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;

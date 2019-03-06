@@ -1,8 +1,9 @@
-package es.uji.ei1027clp.TooPots.dao;
+package es.uji.ei102718cln.TooPots.dao;
 
 import org.springframework.stereotype.Repository;
 
-import es.uji.ei1027clp.TooPots.model.*;
+import es.uji.ei102718cln.TooPots.model.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;

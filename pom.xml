@@ -6,7 +6,7 @@
 		<version>2.1.2.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-  <groupId>es.uji.ei1027clp</groupId>
+  <groupId>es.uji.ei102718cln</groupId>
   <artifactId>TooPots</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>TooPots</name>

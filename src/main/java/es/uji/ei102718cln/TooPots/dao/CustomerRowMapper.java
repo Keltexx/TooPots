@@ -1,9 +1,11 @@
-package es.uji.ei1027clp.TooPots.dao;
+package es.uji.ei102718cln.TooPots.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import es.uji.ei1027clp.TooPots.model.*;
+
 import org.springframework.jdbc.core.RowMapper;
+
+import es.uji.ei102718cln.TooPots.model.*;
 
 
 public final class CustomerRowMapper implements RowMapper<Customer> {

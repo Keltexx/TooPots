@@ -1,4 +1,4 @@
-package es.uji.ei1027clp.TooPots.dao;
+package es.uji.ei102718cln.TooPots.dao;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,8 +6,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import es.uji.ei1027clp.TooPots.model.Activity;
-import es.uji.ei1027clp.TooPots.model.ActivityType;
+import es.uji.ei102718cln.TooPots.model.ActivityType;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
@@ -24,20 +23,20 @@ public class ActivityTypeDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    /* Afegeix el nadador a la base de dades */
+    /* Afegeix el activityType a la base de dades */
     public void addActivityType(ActivityType activityType) {
         jdbcTemplate.update("INSERT INTO Nadador VALUES(?, ?, ?, ?)",
                 activityType.getId(), activityType.getNameType(), activityType.getRiskLevel(),
                 activityType.getDescription());
     }
 
-    /* Esborra el nadador de la base de dades */
+    /* Esborra el activityType de la base de dades */
     public void deleteActivityType(ActivityType activityType) {
-        jdbcTemplate.update("DELETE from ActivityTypewhere id=?", activityType.getId());
+        jdbcTemplate.update("DELETE from ActivityType where id=?", activityType.getId());
     }
     
-    /* Actualitza els atributs del nadador
-    (excepte el nom, que és la clau primària) */
+    /* Actualitza els atributs del activityType
+    (excepte el id, que és la clau primària) */
 	 public void updateActivityType(ActivityType activityType) {
 		jdbcTemplate.update("UPDATE activity  SET (nameType=?, riskLevel=?, description=?)",
 		activityType.getNameType(), activityType.getRiskLevel(),activityType.getDescription());

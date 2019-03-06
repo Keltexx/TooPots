@@ -1,4 +1,4 @@
-package es.uji.ei1027clp.TooPots.model;
+package es.uji.ei102718cln.TooPots.model;
 
 public class Interested {
 	String interestedID;
