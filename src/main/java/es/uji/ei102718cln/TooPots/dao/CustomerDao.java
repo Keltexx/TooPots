@@ -30,6 +30,10 @@ public class CustomerDao {
 	 public void deleteCustomer(Customer customer) {
 	        jdbcTemplate.update("DELETE from Customer where name=?", customer.getName());
 	    }
+	 
+	 public void deleteCustomer(String customer) {
+		 jdbcTemplate.update("DELETE from Customer where name=?", customer);
+	 }
 
 
 	    public void updateCustomer(Customer customer) {
@@ -47,5 +51,13 @@ public class CustomerDao {
 	        catch(EmptyResultDataAccessException e) {
 	            return null;
 	        }
+	    }
+	    public List<Customer> getCustomers() {
+	    	try {
+	    		return jdbcTemplate.query("Select * from Customer", new CustomerRowMapper());
+	    	}catch( EmptyResultDataAccessException e) {
+	    		return new ArrayList<Customer>();
+	    	}
+	    	
 	    }
 }
