@@ -34,6 +34,10 @@ public class ActivityDao {
 	public void deleteActivity(Activity activity) {
 		jdbcTemplate.update("DELETE from Activity where id=?", activity.getId());
 	}
+	
+	 public void deleteActivity(String activity) {
+		 jdbcTemplate.update("DELETE from Activity where name=?", activity);
+	 }
 
 	/*
 	 * Actualitza els atributs del activity (excepte la clau primària)

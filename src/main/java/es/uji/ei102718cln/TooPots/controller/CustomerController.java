@@ -45,7 +45,7 @@ public class CustomerController {
 	 }
 	@RequestMapping(value="/update/{nom}", method = RequestMethod.GET) 
 	public String editCustomer(Model model, @PathVariable String nom) { 
-		model.addAttribute("nadador", customerDao.getCustomer(nom));
+		model.addAttribute("activity", customerDao.getCustomer(nom));
 		return "customer/update"; 
 	}
 	
