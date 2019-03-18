@@ -1,8 +1,15 @@
 package es.uji.ei102718cln.TooPots.model;
 
 public class Request {
+	String requestID;
 	String state;
 	String certificateAttached;
+	public String getRequestID() {
+		return requestID;
+	}
+	public void setRequestID(String requestID) {
+		this.requestID = requestID;
+	}
 	public String getState() {
 		return state;
 	}
@@ -17,7 +24,8 @@ public class Request {
 	}
 	@Override
 	public String toString() {
-		return "Request [state=" + state + ", certificateAttached=" + certificateAttached + "]";
+		return "Request [requestID=" + requestID + ", state=" + state + ", certificateAttached=" + certificateAttached
+				+ "]";
 	}
 	
 }

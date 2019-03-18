@@ -22,19 +22,19 @@ public class InstructorDao {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
-	/* Afegeix l' activity a la base de dades */
+	/* Afegeix l'instructor a la base de dades */
 	public void addInstructor(Instructor instructor) {
 		jdbcTemplate.update("INSERT INTO Instructor VALUES(?, ?, ?, ?, ?, ?,)", 
 				instructor.getName(),instructor.getNif(),instructor.getEmail(),instructor.getAddress(),instructor.getCertificates(),instructor.getBankAccount());
 	}
 
-	/* Esborra el nadador de la base de dades */
+	/* Esborra el instructor de la base de dades */
 	public void deleteInstructor(Instructor instructor) {
 		jdbcTemplate.update("DELETE from instructor where name=?", instructor.getName());
 	}
 
 	/*
-	 * Actualitza els atributs del activity (excepte la clau primària)
+	 * Actualitza els atributs del instructor (excepte la clau primària)
 	 */
 	public void updateInstructor(Instructor instructor) {
 		jdbcTemplate.update(
@@ -42,7 +42,7 @@ public class InstructorDao {
 				instructor.getName(),instructor.getEmail(),instructor.getAddress(),instructor.getCertificates(),instructor.getBankAccount(),instructor.getNif());
 	}
 
-	/* Obté el nadador amb el nom donat. Torna null si no existeix. */
+	/* Obté el instructor amb el nom donat. Torna null si no existeix. */
 	public Instructor getInstructor(String nameInstructor) {
 		try {
 			return jdbcTemplate.queryForObject("SELECT * from instructor WHERE name=?", new InstructorRowMapper(),
@@ -52,7 +52,7 @@ public class InstructorDao {
 		}
 	}
 
-	/* Obté tots les activitats. Torna una llista buida si no n'hi ha cap. */
+	/* Obté tots els instructors. Torna una llista buida si no n'hi ha cap. */
 	public List<Instructor> getInstructors() {
 		try {
 			return jdbcTemplate.query("SELECT * from instructor", new InstructorRowMapper());

@@ -30,7 +30,7 @@ public class ActivityDao {
 				activity.getInstructorId(), activity.getActivityTypeId());
 	}
 
-	/* Esborra el nadador de la base de dades */
+	/* Esborra la activity de la base de dades */
 	public void deleteActivity(Activity activity) {
 		jdbcTemplate.update("DELETE from Activity where id=?", activity.getId());
 	}

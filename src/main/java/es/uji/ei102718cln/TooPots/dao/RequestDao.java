@@ -22,42 +22,41 @@ public class RequestDao {
 		jdbcTemplate=new JdbcTemplate(dataSource);
 	}
 	
-//	public void addCertificate(Customer customer) {
-//		jdbcTemplate.update("INSERT INTO Customer VALUES(?, ?, ?, ?, ?)",
-//                customer.getName(), customer.getNif(), customer.getEmail(),
-//                customer.getGender(),customer.getBirthDate());
-//	}
-//	 public void deleteCustomer(Customer customer) {
-//	        jdbcTemplate.update("DELETE from Customer where name=?", customer.getName());
-//	    }
-//	 
-//	 public void deleteCustomer(String customer) {
-//		 jdbcTemplate.update("DELETE from Customer where name=?", customer);
-//	 }
-//
-//
-//	    public void updateCustomer(Customer customer) {
-//	        jdbcTemplate.update("UPDATE Customer SET nif=?, email=?, gender=?, birthDate=? where name=?",
-//	                customer.getNif(), customer.getEmail(),
-//	                customer.getGender(),       customer.getBirthDate(), customer.getName());
-//	    }
-//
-//
-//	    public Customer getCustomer(String customerName) {
-//	        try {
-//	            return jdbcTemplate.queryForObject("SELECT * from Customer WHERE name=?",
-//	                    new CustomerRowMapper(), customerName);
-//	        }
-//	        catch(EmptyResultDataAccessException e) {
-//	            return null;
-//	        }
-//	    }
-//	    public List<Customer> getCustomers() {
-//	    	try {
-//	    		return jdbcTemplate.query("Select * from Customer", new CustomerRowMapper());
-//	    	}catch( EmptyResultDataAccessException e) {
-//	    		return new ArrayList<Customer>();
-//	    	}
-//	    	
-//	    }
+	public void addRequest(Request request) {
+		jdbcTemplate.update("INSERT INTO Request VALUES(?, ?)",
+                request.getState(),request.getState());
+	}
+	 public void deleteRequest(Request request) {
+	        jdbcTemplate.update("DELETE from Request where name=?", request.getRequestID());
+	    }
+	 
+	 public void deleteRequest(String request) {
+		 jdbcTemplate.update("DELETE from Request where name=?", request);
+	 }
+
+
+	    public void updateRequest(Request request) {
+	        jdbcTemplate.update("UPDATE Request SET state=?, certificateAtached=? where requestID=?",
+	        		request.getState(), request.getCertificateAttached(), request.getRequestID());
+	                
+	    }
+
+
+	    public Customer getRequest(String requestName) {
+	        try {
+	            return jdbcTemplate.queryForObject("SELECT * from Request WHERE requestID=?",
+	                    new RequestRowMapper(), requestName);
+	        }
+	        catch(EmptyResultDataAccessException e) {
+	            return null;
+	        }
+	    }
+	    public List<Request> getRequests() {
+	    	try {
+	    		return jdbcTemplate.query("Select * from Request", new RequestRowMapper());
+	    	}catch( EmptyResultDataAccessException e) {
+	    		return new ArrayList<Request>();
+	    	}
+	    	
+	    }
 }
