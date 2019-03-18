@@ -30,7 +30,7 @@ public class InstructorDao {
 
 	/* Esborra el instructor de la base de dades */
 	public void deleteInstructor(Instructor instructor) {
-		jdbcTemplate.update("DELETE from instructor where name=?", instructor.getName());
+		jdbcTemplate.update("DELETE from Instructor where name=?", instructor.getName());
 	}
 
 	/*
@@ -38,14 +38,14 @@ public class InstructorDao {
 	 */
 	public void updateInstructor(Instructor instructor) {
 		jdbcTemplate.update(
-				"UPDATE instructor  SET name=?,email=?,address=?,certificates=?,bankAccount=? where nif=?",
+				"UPDATE Instructor  SET name=?,email=?,address=?,certificates=?,bankAccount=? where nif=?",
 				instructor.getName(),instructor.getEmail(),instructor.getAddress(),instructor.getCertificates(),instructor.getBankAccount(),instructor.getNif());
 	}
 
 	/* Obté el instructor amb el nom donat. Torna null si no existeix. */
 	public Instructor getInstructor(String nameInstructor) {
 		try {
-			return jdbcTemplate.queryForObject("SELECT * from instructor WHERE name=?", new InstructorRowMapper(),
+			return jdbcTemplate.queryForObject("SELECT * from Instructor WHERE name=?", new InstructorRowMapper(),
 					nameInstructor);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
@@ -55,7 +55,7 @@ public class InstructorDao {
 	/* Obté tots els instructors. Torna una llista buida si no n'hi ha cap. */
 	public List<Instructor> getInstructors() {
 		try {
-			return jdbcTemplate.query("SELECT * from instructor", new InstructorRowMapper());
+			return jdbcTemplate.query("SELECT * from Instructor", new InstructorRowMapper());
 		} catch (EmptyResultDataAccessException e) {
 			return new ArrayList<Instructor>();
 		}

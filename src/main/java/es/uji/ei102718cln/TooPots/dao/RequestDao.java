@@ -42,7 +42,7 @@ public class RequestDao {
 	    }
 
 
-	    public Customer getRequest(String requestName) {
+	    public Request getRequest(String requestName) {
 	        try {
 	            return jdbcTemplate.queryForObject("SELECT * from Request WHERE requestID=?",
 	                    new RequestRowMapper(), requestName);
