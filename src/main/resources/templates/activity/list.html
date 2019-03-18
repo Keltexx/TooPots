@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Listar actividades</title>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+</head>
+<body>
+	<h1>Lista de actividades</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>Nombre</th>
+				<th>Horario</th>
+				<th>Duración</th>
+				<th>Descripción</th>
+				<th>Precio por persona</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="activity: ${activities}">
+				<td th:text="${activity.name}"></td>
+				<td th:text="${activity.schedule}"></td>
+				<td th:text="${activity.duration}"></td>
+				<td th:text="${activity.description}"></td>
+				<td th:text="${activity.priceByPerson}"></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

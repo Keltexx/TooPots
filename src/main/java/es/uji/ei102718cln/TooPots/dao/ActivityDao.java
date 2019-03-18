@@ -56,10 +56,10 @@ public class ActivityDao {
 		}
 	}
 
-	/* Obté tots els nadadors. Torna una llista buida si no n'hi ha cap. */
+	/* Obté tots les activitats. Torna una llista buida si no n'hi ha cap. */
 	public List<Activity> getActivities() {
 		try {
-			return jdbcTemplate.query("SELECT * from Nadador", new ActivityRowMapper());
+			return jdbcTemplate.query("SELECT * from Activity", new ActivityRowMapper());
 		} catch (EmptyResultDataAccessException e) {
 			return new ArrayList<Activity>();
 		}
