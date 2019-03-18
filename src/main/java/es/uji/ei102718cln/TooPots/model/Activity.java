@@ -1,11 +1,14 @@
 package es.uji.ei102718cln.TooPots.model;
 
+import java.sql.Date;
+import java.sql.Time;
+
 public class Activity {
 	String id;
 	String place;
 	String name;
-	String schedule;
-	int duration;
+	Date schedule;
+	Time duration;
 	String description;
 	float priceByPerson;
 	int numberOfPeople;
@@ -40,20 +43,20 @@ public class Activity {
 		this.name = name;
 	}
 
-	public String getSchedule() {
+	public Date getSchedule() {
 		return schedule;
 	}
 
-	public void setSchedule(String schedule) {
-		this.schedule = schedule;
+	public void setSchedule(Date date) {
+		this.schedule = date;
 	}
 
-	public int getDuration() {
+	public Time getDuration() {
 		return duration;
 	}
 
-	public void setDuration(int duration) {
-		this.duration = duration;
+	public void setDuration(Time time) {
+		this.duration = time;
 	}
 
 	public String getDescription() {

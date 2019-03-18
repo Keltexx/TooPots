@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.uji.ei102718cln.TooPots.dao.ActivityDao;
 import es.uji.ei102718cln.TooPots.model.Activity;
-import es.uji.ei102718cln.TooPots.model.Customer;
+
 
 
 

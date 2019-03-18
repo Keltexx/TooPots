@@ -50,7 +50,7 @@ public class ActivityDao {
 				activity.getInstructorId(), activity.getActivityTypeId());
 	}
 
-	/* Obté el nadador amb el nom donat. Torna null si no existeix. */
+	/* Obté l activitat amb el nom donat. Torna null si no existeix. */
 	public Activity getActivity(String nameActivity) {
 		try {
 			return jdbcTemplate.queryForObject("SELECT * from Activity WHERE name=?", new ActivityRowMapper(),
