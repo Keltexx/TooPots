@@ -37,7 +37,7 @@ public class ActivityController {
 		
 		@RequestMapping(value="/add") 
 	   public String addActivity(Model model) {
-	       model.addAttribute("activity", new Customer());
+	       model.addAttribute("activity", new Activity());
 	       return "activity/add";
 	   }
 		@RequestMapping(value="/add", method=RequestMethod.POST) 
