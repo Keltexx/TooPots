@@ -42,21 +42,21 @@ public class RequestDao {
 	    }
 
 
-	    public Request getRequest(String requestName) {
-	        try {
-	            return jdbcTemplate.queryForObject("SELECT * from Request WHERE requestID=?",
-	                    new RequestRowMapper(), requestName);
-	        }
-	        catch(EmptyResultDataAccessException e) {
-	            return null;
-	        }
-	    }
-	    public List<Request> getRequests() {
-	    	try {
-	    		return jdbcTemplate.query("Select * from Request", new RequestRowMapper());
-	    	}catch( EmptyResultDataAccessException e) {
-	    		return new ArrayList<Request>();
-	    	}
-	    	
-	    }
+//	    public Request getRequest(String requestName) {
+//	        try {
+//	            return jdbcTemplate.queryForObject("SELECT * from Request WHERE requestID=?",
+//	                    new RequestRowMapper(), requestName);
+//	        }
+//	        catch(EmptyResultDataAccessException e) {
+//	            return null;
+//	        }
+//	    }
+//	    public List<Request> getRequests() {
+//	    	try {
+//	    		return jdbcTemplate.query("Select * from Request", new RequestRowMapper());
+//	    	}catch( EmptyResultDataAccessException e) {
+//	    		return new ArrayList<Request>();
+//	    	}
+//	    	
+//	    }
 }

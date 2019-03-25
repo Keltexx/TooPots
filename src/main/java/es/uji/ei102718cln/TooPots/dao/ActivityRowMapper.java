@@ -10,7 +10,7 @@ import es.uji.ei102718cln.TooPots.model.Activity;
 public final class ActivityRowMapper implements RowMapper<Activity> {
 	public Activity mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Activity activity = new Activity();
-        activity.setId(rs.getString("id"));
+        activity.setId(rs.getString("activityid"));
         activity.setPlace(rs.getString("place"));
         activity.setName(rs.getString("name"));
         activity.setSchedule(rs.getDate("schedule"));

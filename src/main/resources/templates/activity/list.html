@@ -13,6 +13,7 @@
 			<thead>
 				<tr>
 					<th>Nombre</th>
+					<th>Lugar</th>
 					<th>Horario</th>
 					<th>Duración</th>
 					<th>Descripción</th>
@@ -22,17 +23,21 @@
 			<tbody>
 				<tr th:each="activity: ${activities}">
 					<td th:text="${activity.name}"></td>
+					<td th:text="${activity.place}"></td>
 					<td th:text="${activity.schedule}"></td>
 					<td th:text="${activity.duration}"></td>
 					<td th:text="${activity.description}"></td>
 					<td th:text="${activity.priceByPerson}"></td>
-					<td><a th:href="@{/activity/update/{name}(name=${activity.nom})}">Edita</a>
+					<td><a
+						th:href="@{/activity/update/{name}(name=${activity.name})}">Edita</a>
 					</td>
-					<td><a th:href="@{/activity/delete/{name}(name=${activity.nom})}">Borra</a>
+					<td><a
+						th:href="@{/activity/delete/{name}(name=${activity.name})}">Borra</a>
 				</tr>
 			</tbody>
 		</table>
-		<a href="add" class="btn btn-success" role="button">Añadir actividad</a>
+		<a href="add" class="btn btn-success" role="button">Añadir
+			actividad</a>
 	</div>
 </body>
 </html>

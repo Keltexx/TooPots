@@ -13,7 +13,7 @@ public final class InstructorRowMapper implements RowMapper<Instructor> {
     public Instructor mapRow(ResultSet rs, int rowNum) throws SQLException {
         Instructor instructor = new Instructor();
         instructor.setName(rs.getString("name"));
-        instructor.setCertificates(rs.getArray("certificates"));
+     //   instructor.setCertificates(rs.getArray("certificates"));
         instructor.setEmail(rs.getString("email"));
         instructor.setNif(rs.getString("nif"));
         instructor.setBankAccount(rs.getString("bankAccount"));

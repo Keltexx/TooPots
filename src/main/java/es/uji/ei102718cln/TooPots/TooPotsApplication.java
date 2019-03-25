@@ -1,4 +1,4 @@
-package es.uji.ei102718cln.TooPots.main;
+package es.uji.ei102718cln.TooPots;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

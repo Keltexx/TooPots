@@ -5,7 +5,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import es.uji.ei102718cln.TooPots.model.*;
+import es.uji.ei102718cln.TooPots.model.Activity;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
@@ -34,10 +34,10 @@ public class ActivityDao {
 	public void deleteActivity(Activity activity) {
 		jdbcTemplate.update("DELETE from Activity where id=?", activity.getId());
 	}
-	
-	 public void deleteActivity(String activity) {
-		 jdbcTemplate.update("DELETE from Activity where name=?", activity);
-	 }
+
+	public void deleteActivity(String activity) {
+		jdbcTemplate.update("DELETE from Activity where name=?", activity);
+	}
 
 	/*
 	 * Actualitza els atributs del activity (excepte la clau primària)
