@@ -43,6 +43,9 @@ public class Instructor {
 	public ArrayList<String> getCertificates() {
 		return certificates;
 	}
+	public int getSizeCertificates() {
+		return certificates.size();
+	}
 	public void setCertificates(ArrayList<String> certificates) {
 		this.certificates = certificates;
 	}
