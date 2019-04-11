@@ -1,14 +1,14 @@
 package es.uji.ei102718cln.TooPots.model;
 
 public class ActivityType {
-	String id;
+	int id;
 	String nameType;
 	String riskLevel;
 	String description;
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getNameType() {

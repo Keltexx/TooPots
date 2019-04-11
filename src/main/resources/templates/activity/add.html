@@ -1,41 +1,57 @@
 
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"> 
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-   <title>Crear nou nadador</title>
-   <meta charset="UTF-8" />
-   <link rel="stylesheet"       
-     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+<title>Inserta actividad</title>
+<meta charset="UTF-8" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
 </head>
 <body>
-    <h2>Nueva actividad</h2>
-    <form action="#" th:action="@{/activity/add}" 
-                     th:object="${activity}" method="post"> 
-      <table>
-        <tr>
-            <td><label>Nombre</label></td>
-            <td><input type="text" th:field="*{name}" /></td> 
-        </tr>
-        <tr>
-            <td><label>Horario</label></td>
-            <td><input type="text" th:field="*{schedule}" /></td>
-        </tr>
-        <tr>
-            <td><label>Duración</label></td>
-            <td><input type="text" th:field="*{duration}" /></td>
-        </tr>
-        <tr>
-            <td><label>Description</label></td>
-            <td><input type="text" th:field="*{description}" /></td>
-        </tr>
-        <tr>
-            <td><label>Precio por persona</label></td>
-            <td><input type="number" th:field="*{priceByPerson}" /></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Añadir actividad" /></td>
-        </tr>
-      </table>
-    </form>
+	<h2>Nueva actividad</h2>
+	<form action="#" th:action="@{/activity/add}" th:object="${activity}"
+		method="post">
+		<table>
+			<tr>
+				<td><label>Nombre</label></td>
+				<td><input type="text" th:field="*{name}" /></td>
+			</tr>
+			<tr>
+				<td><label>Lugar</label></td>
+				<td><input type="text" th:field="*{place}" /></td>
+			</tr>
+			<tr>
+				<td><label>Horario</label></td>
+				<td><input type="text" th:field="*{schedule}" /></td>
+			</tr>
+			<tr>
+				<td><label>Duración</label></td>
+				<td><input type="text" th:field="*{duration}" /></td>
+			</tr>
+			<tr>
+				<td><label>Descripción</label></td>
+				<td><input type="text" th:field="*{description}" /></td>
+			</tr>
+			<tr>
+				<td><label>Precio por persona</label></td>
+				<td><input type="number" th:field="*{priceByPerson}" /></td>
+			</tr>
+			<tr>
+				<td><label>Nº de personas</label></td>
+				<td><input type="number" th:field="*{numberOfPeople}" /></td>
+			</tr>
+			<tr>
+				<td><label>Monitor</label></td>
+				<td><input type="text" th:field="*{instructorId}" /></td>
+			</tr>
+			<tr>
+				<td><label>Tipo de actividad</label></td>
+				<td><input type="number" th:field="*{activityTypeId}" /></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" value="Añadir actividad" /></td>
+			</tr>
+		</table>
+	</form>
 </body>
 </html>

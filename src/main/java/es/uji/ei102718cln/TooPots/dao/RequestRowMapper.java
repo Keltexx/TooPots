@@ -12,7 +12,7 @@ import es.uji.ei102718cln.TooPots.model.*;
 public final class RequestRowMapper implements RowMapper<Request> {
     public Request mapRow(ResultSet rs, int rowNum) throws SQLException {
         Request request = new Request();
-        request.setRequestID(rs.getString("requestID"));
+        request.setRequestID(rs.getInt("requestID"));
         request.setCertificateAttached(rs.getString("certificateAtached"));
         request.setState(rs.getString("state"));
         

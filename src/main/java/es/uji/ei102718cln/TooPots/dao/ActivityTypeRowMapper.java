@@ -10,7 +10,7 @@ import es.uji.ei102718cln.TooPots.model.ActivityType;
 public final class ActivityTypeRowMapper implements RowMapper<ActivityType> {
 	public ActivityType mapRow(ResultSet rs, int rowNum) throws SQLException {
 		ActivityType activiyType = new ActivityType();
-		activiyType.setId(rs.getString("id"));
+		activiyType.setId(rs.getInt("id"));
 		activiyType.setNameType(rs.getString("nameType"));
 		activiyType.setRiskLevel(rs.getString("RiskLevel"));
 		activiyType.setDescription(rs.getString("description"));

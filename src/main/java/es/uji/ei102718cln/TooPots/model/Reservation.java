@@ -2,23 +2,23 @@ package es.uji.ei102718cln.TooPots.model;
 import java.util.Date;
 
 public class Reservation {
-	String reservationID;
+	int reservationID;
 	Date bookingDate;
 	Date activityDate;
 	int priceByPerson;
 	int totalPrice;
 	int numberOfPersons;
-	String activityID;
+	int activityID;
 	String customerID;
 	
 	public Reservation() {
 		
 	}
 	
-	public void setReservationID(String id) {
+	public void setReservationID(int id) {
 		this.reservationID=id;
 	}
-	public String getReservationID() {
+	public int getReservationID() {
 		return reservationID;
 	}
 	public void setBookingDate(Date bookingDate) {
@@ -51,10 +51,10 @@ public class Reservation {
 	public int getNumberOfPersons() {
 		return numberOfPersons;
 	}
-	public void setActivityID(String id) {
+	public void setActivityID(int id) {
 		this.activityID=id;
 	}
-	public String getActivityID() {
+	public int getActivityID() {
 		return activityID;
 	}
 	public void setCustomerID(String id) {

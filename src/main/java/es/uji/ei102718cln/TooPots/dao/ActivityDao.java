@@ -24,10 +24,11 @@ public class ActivityDao {
 
 	/* Afegeix l' activity a la base de dades */
 	public void addActivity(Activity activity) {
-		jdbcTemplate.update("INSERT INTO Activity VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", activity.getId(),
+		jdbcTemplate.update("INSERT INTO Activity(place, name, schedule, duration, description, pricebyperson, numberofpeople,instructorid, activitytypeid) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
 				activity.getPlace(), activity.getName(), activity.getSchedule(), activity.getDuration(),
 				activity.getDescription(), activity.getPriceByPerson(), activity.getNumberOfPeople(),
 				activity.getInstructorId(), activity.getActivityTypeId());
+
 	}
 
 	/* Esborra la activity de la base de dades */

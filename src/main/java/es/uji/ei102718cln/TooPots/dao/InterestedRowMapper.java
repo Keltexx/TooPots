@@ -12,9 +12,9 @@ import es.uji.ei102718cln.TooPots.model.*;
 public final class InterestedRowMapper implements RowMapper<Interested> {
     public Interested mapRow(ResultSet rs, int rowNum) throws SQLException {
         Interested interested = new Interested();
-        interested.setInterestedID(rs.getString("interestedID"));
+        interested.setInterestedID(rs.getInt("interestedID"));
         interested.setCustomerID(rs.getString("customerID"));
-        interested.setActivityTypeID(rs.getString("activityTypeID"));
+        interested.setActivityTypeID(rs.getInt("activityTypeID"));
         
         return interested;
     }

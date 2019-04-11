@@ -1,17 +1,17 @@
 package es.uji.ei102718cln.TooPots.model;
 
 public class Interested {
-	String interestedID;
+	int interestedID;
 	String customerID;
-	String activityTypeID;
+	int activityTypeID;
 	
 	public Interested() {
 	}
 	
-	public void setInterestedID(String id) {
+	public void setInterestedID(int id) {
 		this.interestedID=id;
 	}
-	public String getInterestedID() {
+	public int getInterestedID() {
 		return interestedID;
 	}
 	public void setCustomerID(String id) {
@@ -20,10 +20,10 @@ public class Interested {
 	public String getCustomerID() {
 		return customerID;
 	}
-	public void setActivityTypeID(String id) {
+	public void setActivityTypeID(int id) {
 		this.activityTypeID=id;
 	}
-	public String getActivityTypeID() {
+	public int getActivityTypeID() {
 		return activityTypeID;
 	}
 

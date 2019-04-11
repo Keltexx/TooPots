@@ -1,13 +1,13 @@
 package es.uji.ei102718cln.TooPots.model;
 
 public class Request {
-	String requestID;
+	int requestID;
 	String state;
 	String certificateAttached;
-	public String getRequestID() {
+	public int getRequestID() {
 		return requestID;
 	}
-	public void setRequestID(String requestID) {
+	public void setRequestID(int requestID) {
 		this.requestID = requestID;
 	}
 	public String getState() {

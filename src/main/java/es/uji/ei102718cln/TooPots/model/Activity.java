@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.sql.Time;
 
 public class Activity {
-	String id;
+	int id;
 	String place;
 	String name;
 	Date schedule;
@@ -13,17 +13,17 @@ public class Activity {
 	float priceByPerson;
 	int numberOfPeople;
 	String instructorId;
-	String activityTypeId;
+	int activityTypeId;
 	
 	public Activity() {
 		
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -91,11 +91,11 @@ public class Activity {
 		this.instructorId = instructorId;
 	}
 
-	public String getActivityTypeId() {
+	public int getActivityTypeId() {
 		return activityTypeId;
 	}
 
-	public void setActivityTypeId(String activityTypeId) {
+	public void setActivityTypeId(int activityTypeId) {
 		this.activityTypeId = activityTypeId;
 	}
 
