@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Listar tipos de actividades</title>
+<meta charset="UTF-8" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+</head>
+<body>
+	<div class="container">
+		<h1>Lista de tipos de actividades</h1>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Nivel</th>
+					<th>Descripción</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="activityType: ${activityTypes}">
+					<td th:text="${activityType.nameType}"></td>
+					<td th:text="${activityType.riskLevel}"></td>
+					<td th:text="${activityType.description}"></td>
+					<td><a
+						th:href="@{/activityType/update/{name}(name=${activity.name})}">Edita</a>
+					</td>
+					<td><a
+						th:href="@{/activityType/delete/{name}(name=${activity.name})}">Borra</a>
+				</tr>
+			</tbody>
+		</table>
+		<a href="add" class="btn btn-success" role="button">Añadir tipo de
+			actividad</a>
+	</div>
+</body>
+</html>

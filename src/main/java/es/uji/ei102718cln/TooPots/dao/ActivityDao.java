@@ -33,7 +33,7 @@ public class ActivityDao {
 
 	/* Esborra la activity de la base de dades */
 	public void deleteActivity(Activity activity) {
-		jdbcTemplate.update("DELETE from Activity where id=?", activity.getId());
+		jdbcTemplate.update("DELETE from Activity where activityid=?", activity.getId());
 	}
 
 	public void deleteActivity(String activity) {
@@ -45,7 +45,7 @@ public class ActivityDao {
 	 */
 	public void updateActivity(Activity activity) {
 		jdbcTemplate.update(
-				"UPDATE activity  SET (place=?, name=?, schedule=?, duration=?, description=?, priceByPerson=?, numberOfPeople=?, instructorId=?, activityTypeId=?)",
+				"UPDATE activity  SET place=?, name=?, schedule=?, duration=?, description=?, priceByPerson=?, numberOfPeople=?, instructorId=?, activityTypeId=?",
 				activity.getPlace(), activity.getName(), activity.getSchedule(), activity.getDuration(),
 				activity.getDescription(), activity.getPriceByPerson(), activity.getNumberOfPeople(),
 				activity.getInstructorId(), activity.getActivityTypeId());
