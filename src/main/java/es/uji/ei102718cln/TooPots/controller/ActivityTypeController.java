@@ -51,7 +51,7 @@ public class ActivityTypeController {
 			return "activityType/update"; 
 		}
 		
-		@RequestMapping(value="/update/{name}", method = RequestMethod.POST) 
+		@RequestMapping(value="/update/{nameType}", method = RequestMethod.POST) 
 		public String processUpdateSubmit(@PathVariable String nameType, 
 	                            @ModelAttribute("activityType") ActivityType activityType, 
 	                            BindingResult bindingResult) {
