@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Inserta actividad</title>
+<meta charset="UTF-8" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+</head>
+<body>
+	<h2>Nuevo cliente</h2>
+	<form action="#" th:action="@{/customer/add}" th:object="${customer}"
+		method="post">
+		<table>
+			<tr>
+				<td><label>Nombre</label></td>
+				<td><input type="text" th:field="*{name}" /></td>
+			</tr>
+			<tr>
+				<td><label>DNI</label></td>
+				<td><input type="text" th:field="*{nif}" /></td>
+			</tr>
+			<tr>
+				<td><label>Correo</label></td>
+				<td><input type="text" th:field="*{email}" /></td>
+			</tr>
+			<tr>
+				<td><label>Género</label></td>
+				<td><select class="form_control" th:field="*{gender}">
+						<option value="No seleccionado"></option>
+						<option value="male">Hombre</option>
+						<option value="female">Mujer</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td><label>Fecha de nacimiento</label></td>
+				<td><input type="text" th:field="*{birthDate}" /></td>
+			</tr>
+
+			<tr>
+				<td colspan="2"><input type="submit" value="Añadir cliente" /></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

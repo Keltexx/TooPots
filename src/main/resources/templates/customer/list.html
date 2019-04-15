@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Listar actividades</title>
+<meta charset="UTF-8" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+</head>
+<body>
+	<div class="container">
+		<h1>Lista de Clientes</h1>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>DNI</th>
+					<th>Correo</th>
+					<th>Género</th>
+					<th>Fecha de nacimiento</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="customer: ${customers}">
+					<td th:text="${customer.name}"></td>
+					<td th:text="${customer.nif}"></td>
+					<td th:text="${customer.email}"></td>
+					<td th:text="${customer.gender}"></td>
+					<td th:text="${customer.birthDate}"></td>
+					<td><a
+						th:href="@{/customer/update/{name}(name=${customer.name})}">Edita</a>
+					</td>
+					<td><a
+						th:href="@{/customer/delete/{name}(name=${customer.name})}">Borra</a>
+				</tr>
+			</tbody>
+		</table>
+		<a href="add" class="btn btn-success" role="button">Añadir
+			cliente</a>
+	</div>
+</body>
+</html>

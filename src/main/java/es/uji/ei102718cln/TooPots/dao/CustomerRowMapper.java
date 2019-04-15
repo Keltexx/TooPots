@@ -12,10 +12,10 @@ public final class CustomerRowMapper implements RowMapper<Customer> {
     public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
         Customer customer = new Customer();
         customer.setName(rs.getString("name"));
-        customer.setBirthDate(rs.getDate("birthDate"));
-        customer.setEmail(rs.getString("email"));
         customer.setNif(rs.getString("nif"));
+        customer.setEmail(rs.getString("email"));
         customer.setGender(rs.getString("gender"));
+        customer.setBirthDate(rs.getDate("birthDate"));
         return customer;
         
     }

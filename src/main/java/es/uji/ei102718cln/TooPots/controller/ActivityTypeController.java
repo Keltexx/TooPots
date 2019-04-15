@@ -61,7 +61,7 @@ public class ActivityTypeController {
 			 activityTypeDao.updateActivityType(activityType);
 			 return "redirect:../list"; 
 		}
-		@RequestMapping(value="/delete/{name}")
+		@RequestMapping(value="/delete/{nameType}")
 		public String processDelete(@PathVariable String nameType) {
 	           activityTypeDao.deleteActivityType(nameType);
 	           return "redirect:../list"; 
