@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.sql.Time;
 
 public class Activity {
-	int id;
+	int activityId;
 	String place;
 	String name;
 	Date schedule;
@@ -19,12 +19,12 @@ public class Activity {
 		
 	}
 
-	public int getId() {
-		return id;
+	public int getActivityId() {
+		return activityId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setActivityId(int id) {
+		this.activityId = id;
 	}
 
 	public String getPlace() {
@@ -101,7 +101,7 @@ public class Activity {
 
 	@Override
 	public String toString() {
-		return "Activity [id=" + id + ", name=" + name + ", schedule=" + schedule + ", duration=" + duration
+		return "Activity [id=" + activityId + ", name=" + name + ", schedule=" + schedule + ", duration=" + duration
 				+ ", description=" + description + ", priceByPerson=" + priceByPerson + ", numberOfPeople="
 				+ numberOfPeople + ", instructorId=" + instructorId + ", activityTypeId=" + activityTypeId + "]";
 	}

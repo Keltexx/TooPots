@@ -24,7 +24,8 @@ public class ActivityDao {
 
 	/* Afegeix l' activity a la base de dades */
 	public void addActivity(Activity activity) {
-		jdbcTemplate.update("INSERT INTO Activity(place, name, schedule, duration, description, pricebyperson, numberofpeople,instructorid, activitytypeid) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
+		jdbcTemplate.update(
+				"INSERT INTO Activity(place,name,schedule,duration,description,pricebyperson,numberofpeople,instructorid,activitytypeid) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
 				activity.getPlace(), activity.getName(), activity.getSchedule(), activity.getDuration(),
 				activity.getDescription(), activity.getPriceByPerson(), activity.getNumberOfPeople(),
 				activity.getInstructorId(), activity.getActivityTypeId());
@@ -33,11 +34,11 @@ public class ActivityDao {
 
 	/* Esborra la activity de la base de dades */
 	public void deleteActivity(Activity activity) {
-		jdbcTemplate.update("DELETE from Activity where activityid=?", activity.getId());
+		jdbcTemplate.update("DELETE from Activity where activityid=?", activity.getActivityId());
 	}
 
-	public void deleteActivity(String activity) {
-		jdbcTemplate.update("DELETE from Activity where name=?", activity);
+	public void deleteActivity(String activityid) {
+		jdbcTemplate.update("DELETE from Activity where activityid=?", Integer.valueOf(activityid));
 	}
 
 	/*
@@ -52,10 +53,10 @@ public class ActivityDao {
 	}
 
 	/* Obté l activitat amb el nom donat. Torna null si no existeix. */
-	public Activity getActivity(String nameActivity) {
+	public Activity getActivity(String activityid) {
 		try {
-			return jdbcTemplate.queryForObject("SELECT * from Activity WHERE name=?", new ActivityRowMapper(),
-					nameActivity);
+			return jdbcTemplate.queryForObject("SELECT * from Activity WHERE activityid=?", new ActivityRowMapper(),
+					Integer.valueOf(activityid));
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}

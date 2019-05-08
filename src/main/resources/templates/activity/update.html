@@ -9,7 +9,7 @@
 <body>
 	<h2>Nueva actividad</h2>
 	<form action="#"
-		th:action="@{/activity/update/{name}(name=${activity.name})}"
+		th:action="@{/activity/update/{activityid}(activityid=${activity.activityid})}"
 		th:object="${activity}" method="post">
 		<table>
 			<tr>
@@ -22,7 +22,7 @@
 			</tr>
 			<tr>
 				<td><label>Horario</label></td>
-				<td><input type="text" th:field="*{schedule}" /></td>
+				<td><input type="date" th:field="*{schedule}" /></td>
 			</tr>
 			<tr>
 				<td><label>Duración</label></td>

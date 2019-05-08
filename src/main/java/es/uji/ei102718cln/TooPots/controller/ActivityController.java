@@ -49,14 +49,14 @@ public class ActivityController {
 		     return "redirect:list"; 
 		     
 		 }
-		@RequestMapping(value="/update/{name}", method = RequestMethod.GET) 
-		public String editActivity(Model model, @PathVariable String name) { 
-			model.addAttribute("activity", activityDao.getActivity(name));
+		@RequestMapping(value="/update/{activityid}", method = RequestMethod.GET) 
+		public String editActivity(Model model, @PathVariable String activityid) { 
+			model.addAttribute("activity", activityDao.getActivity(activityid));
 			return "activity/update"; 
 		}
 		
-		@RequestMapping(value="/update/{name}", method = RequestMethod.POST) 
-		public String processUpdateSubmit(@PathVariable String name, 
+		@RequestMapping(value="/update/{activityid}", method = RequestMethod.POST) 
+		public String processUpdateSubmit(@PathVariable String activityid, 
 	                            @ModelAttribute("activity") Activity activity, 
 	                            BindingResult bindingResult) {
 			 if (bindingResult.hasErrors()) 
@@ -65,9 +65,9 @@ public class ActivityController {
 			 activityDao.updateActivity(activity);
 			 return "redirect:../list"; 
 		}
-		@RequestMapping(value="/delete/{name}")
-		public String processDelete(@PathVariable String name) {
-	           activityDao.deleteActivity(name);
+		@RequestMapping(value="/delete/{activityid}")
+		public String processDelete(@PathVariable String activityid) {
+	           activityDao.deleteActivity(activityid);
 	           return "redirect:../list"; 
 		}
 		

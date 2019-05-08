@@ -2,7 +2,7 @@ package es.uji.ei102718cln.TooPots.dao;
 
 import org.springframework.stereotype.Repository;
 
-import es.uji.ei102718cln.TooPots.model.*;
+import es.uji.ei102718cln.TooPots.model.Customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;

@@ -36,8 +36,8 @@ public class CustomerController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String processAddSubmit(@ModelAttribute("customer") Customer customer, BindingResult bindingResult) {
-		if (bindingResult.hasErrors())
-			return "customer/add";
+	//	if (bindingResult.hasErrors())
+	//		return "customer/add";
 		customerDao.addCustomer(customer);
 		return "redirect:list";
 
@@ -52,8 +52,8 @@ public class CustomerController {
 	@RequestMapping(value = "/update/{name}", method = RequestMethod.POST)
 	public String processUpdateSubmit(@PathVariable String name, @ModelAttribute("customer") Customer customer,
 			BindingResult bindingResult) {
-		if (bindingResult.hasErrors())
-			return "customer/update";
+		//if (bindingResult.hasErrors())
+			//return "customer/update";
 
 		customerDao.updateCustomer(customer);
 		return "redirect:../list";

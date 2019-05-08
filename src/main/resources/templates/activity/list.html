@@ -12,6 +12,7 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
+					<th>Id</th>
 					<th>Nombre</th>
 					<th>Lugar</th>
 					<th>Horario</th>
@@ -22,6 +23,7 @@
 			</thead>
 			<tbody>
 				<tr th:each="activity: ${activities}">
+					<td th:text="${activity.activityid}"></td>
 					<td th:text="${activity.name}"></td>
 					<td th:text="${activity.place}"></td>
 					<td th:text="${activity.schedule}"></td>
@@ -29,10 +31,11 @@
 					<td th:text="${activity.description}"></td>
 					<td th:text="${activity.priceByPerson}"></td>
 					<td><a
-						th:href="@{/activity/update/{name}(name=${activity.name})}">Edita</a>
+						th:href="@{/activity/update/{activityid}(activityid=${activity.activityid})}">Edita</a>
 					</td>
 					<td><a
-						th:href="@{/activity/delete/{name}(name=${activity.name})}">Borra</a>
+						th:href="@{/activity/delete/{activityid}(activityid=${activity.activityid})}">Borra</a>
+					</td>
 				</tr>
 			</tbody>
 		</table>
