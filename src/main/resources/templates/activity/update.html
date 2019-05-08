@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Edició de nadador</title>
+<title>Edita actividad</title>
 <meta charset="UTF-8" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
@@ -9,7 +9,7 @@
 <body>
 	<h2>Nueva actividad</h2>
 	<form action="#"
-		th:action="@{/activity/update/{activityid}(activityid=${activity.activityid})}"
+		th:action="@{/activity/update/{activityId}(activityId=${activity.activityId})}"
 		th:object="${activity}" method="post">
 		<table>
 			<tr>

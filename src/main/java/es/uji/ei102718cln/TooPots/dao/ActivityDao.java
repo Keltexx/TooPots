@@ -34,11 +34,11 @@ public class ActivityDao {
 
 	/* Esborra la activity de la base de dades */
 	public void deleteActivity(Activity activity) {
-		jdbcTemplate.update("DELETE from Activity where activityid=?", activity.getActivityId());
+		jdbcTemplate.update("DELETE from Activity where activityId=?", activity.getActivityId());
 	}
 
 	public void deleteActivity(String activityid) {
-		jdbcTemplate.update("DELETE from Activity where activityid=?", Integer.valueOf(activityid));
+		jdbcTemplate.update("DELETE from Activity where activityId=?", Integer.valueOf(activityid));
 	}
 
 	/*
@@ -55,7 +55,7 @@ public class ActivityDao {
 	/* Obté l activitat amb el nom donat. Torna null si no existeix. */
 	public Activity getActivity(String activityid) {
 		try {
-			return jdbcTemplate.queryForObject("SELECT * from Activity WHERE activityid=?", new ActivityRowMapper(),
+			return jdbcTemplate.queryForObject("SELECT * from Activity WHERE activityId=?", new ActivityRowMapper(),
 					Integer.valueOf(activityid));
 		} catch (EmptyResultDataAccessException e) {
 			return null;
