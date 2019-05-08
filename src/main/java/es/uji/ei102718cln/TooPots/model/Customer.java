@@ -36,8 +36,8 @@ public class Customer {
 	public String getGender() {
 		return this.gender;
 	}
-	public void setBirthDate(Date birth) {
-		this.birthDate=birth;
+	public void setBirthDate(Date birthDate) {
+		this.birthDate=birthDate;
 	}
 	public Date getBirthDate() {
 		return birthDate;

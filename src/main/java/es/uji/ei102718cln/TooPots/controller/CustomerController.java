@@ -43,14 +43,14 @@ public class CustomerController {
 
 	}
 
-	@RequestMapping(value = "/update/{name}", method = RequestMethod.GET)
-	public String editCustomer(Model model, @PathVariable String name) {
-		model.addAttribute("customer", customerDao.getCustomer(name));
+	@RequestMapping(value = "/update/{nif}", method = RequestMethod.GET)
+	public String editCustomer(Model model, @PathVariable String nif) {
+		model.addAttribute("customer", customerDao.getCustomer(nif));
 		return "customer/update";
 	}
 
-	@RequestMapping(value = "/update/{name}", method = RequestMethod.POST)
-	public String processUpdateSubmit(@PathVariable String name, @ModelAttribute("customer") Customer customer,
+	@RequestMapping(value = "/update/{nif}", method = RequestMethod.POST)
+	public String processUpdateSubmit(@PathVariable String nif, @ModelAttribute("customer") Customer customer,
 			BindingResult bindingResult) {
 		//if (bindingResult.hasErrors())
 			//return "customer/update";
@@ -59,9 +59,9 @@ public class CustomerController {
 		return "redirect:../list";
 	}
 
-	@RequestMapping(value = "/delete/{name}")
-	public String processDelete(@PathVariable String name) {
-		customerDao.deleteCustomer(name);
+	@RequestMapping(value = "/delete/{nif}")
+	public String processDelete(@PathVariable String nif) {
+		customerDao.deleteCustomer(nif);
 		return "redirect:../list";
 	}
 

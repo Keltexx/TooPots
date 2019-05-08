@@ -45,14 +45,14 @@ public class ActivityTypeController {
 		     return "redirect:list"; 
 		     
 		 }
-		@RequestMapping(value="/update/{nameType}", method = RequestMethod.GET) 
-		public String editActivityType(Model model, @PathVariable String nameType) { 
-			model.addAttribute("activityType", activityTypeDao.getActivityType(nameType));
+		@RequestMapping(value="/update/{activityTypeId}", method = RequestMethod.GET) 
+		public String editActivityType(Model model, @PathVariable String activityTypeId) { 
+			model.addAttribute("activityType", activityTypeDao.getActivityType(activityTypeId));
 			return "activityType/update"; 
 		}
 		
-		@RequestMapping(value="/update/{nameType}", method = RequestMethod.POST) 
-		public String processUpdateSubmit(@PathVariable String nameType, 
+		@RequestMapping(value="/update/{activityTypeId}", method = RequestMethod.POST) 
+		public String processUpdateSubmit(@PathVariable String activityTypeId, 
 	                            @ModelAttribute("activityType") ActivityType activityType, 
 	                            BindingResult bindingResult) {
 			 if (bindingResult.hasErrors()) 
@@ -61,9 +61,9 @@ public class ActivityTypeController {
 			 activityTypeDao.updateActivityType(activityType);
 			 return "redirect:../list"; 
 		}
-		@RequestMapping(value="/delete/{nameType}")
-		public String processDelete(@PathVariable String nameType) {
-	           activityTypeDao.deleteActivityType(nameType);
+		@RequestMapping(value="/delete/{activityTypeId}")
+		public String processDelete(@PathVariable String activityTypeId) {
+	           activityTypeDao.deleteActivityType(activityTypeId);
 	           return "redirect:../list"; 
 		}
 		

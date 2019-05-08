@@ -10,7 +10,7 @@
 <body>
 	<h2>Nuevo tipo de actividad</h2>
 	<form action="#"
-		th:action="@{/activityType/update/{nameType}(nameType=${activityType.nameType})}"
+		th:action="@{/activityType/update/{activityTypeId}(activityTypeId=${activityType.activityTypeId})}"
 		th:object="${activityType}" method="post">
 		<table>
 			<tr>

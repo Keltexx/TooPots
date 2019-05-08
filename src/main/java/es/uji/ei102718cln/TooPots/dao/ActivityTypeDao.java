@@ -26,17 +26,17 @@ public class ActivityTypeDao {
 
     /* Afegeix el activityType a la base de dades */
     public void addActivityType(ActivityType activityType) {
-        jdbcTemplate.update("INSERT INTO ActivityType VALUES(?, ?, ?, ?)",
-               activityType.getActivityTypeId(), activityType.getNameType(), activityType.getRiskLevel(),
+        jdbcTemplate.update("INSERT INTO ActivityType(nametype,risklevel,description) VALUES( ?, ?, ?)",
+                activityType.getNameType(), activityType.getRiskLevel(),
                 activityType.getDescription());
     }
 
     /* Esborra el activityType de la base de dades */
     public void deleteActivityType(ActivityType activityType) {
-        jdbcTemplate.update("DELETE from ActivityType where activitytypeid=?", activityType.getActivityTypeId());
+        jdbcTemplate.update("DELETE from ActivityType where activityTypeId=?", activityType.getActivityTypeId());
     }
-	public void deleteActivityType(String activityType) {
-		jdbcTemplate.update("DELETE from ActivityType where nametype=?", activityType);
+	public void deleteActivityType(String activityTypeId) {
+		jdbcTemplate.update("DELETE from ActivityType where activityTypeId=?", Integer.valueOf(activityTypeId));
 	}
     
     /* Actualitza els atributs del activityType
@@ -46,10 +46,10 @@ public class ActivityTypeDao {
 		activityType.getNameType(), activityType.getRiskLevel(),activityType.getDescription());
 	 }
 	 
-		public ActivityType getActivityType(String nameActivityType) {
+		public ActivityType getActivityType(String activityTypeId) {
 			try {
-				return jdbcTemplate.queryForObject("SELECT * from ActivityType WHERE nametype=?", new ActivityTypeRowMapper(),
-						nameActivityType);
+				return jdbcTemplate.queryForObject("SELECT * from ActivityType WHERE activityTypeId=?", new ActivityTypeRowMapper(),
+						Integer.valueOf(activityTypeId));
 			} catch (EmptyResultDataAccessException e) {
 				return null;
 			}

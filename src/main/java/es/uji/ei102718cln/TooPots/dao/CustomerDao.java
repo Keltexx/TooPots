@@ -29,20 +29,20 @@ public class CustomerDao {
 		jdbcTemplate.update("DELETE from Customer where nif=?", customer.getNif());
 	}
 
-	public void deleteCustomer(String name) {
-		jdbcTemplate.update("DELETE from Customer where name=?", name);
+	public void deleteCustomer(String nif) {
+		jdbcTemplate.update("DELETE from Customer where name=?", nif);
 	}
 
 	public void updateCustomer(Customer customer) {
-		jdbcTemplate.update("UPDATE Customer SET name=?, email=?, gender=?, birthDate=? where name=?",
-				customer.getName(), customer.getNif(), customer.getEmail(), customer.getGender(),
-				customer.getBirthDate());
+		jdbcTemplate.update("UPDATE Customer SET name=?, nif=?, email=?, gender=?, birthDate=? where nif=?",
+				customer.getName(),customer.getNif(),  customer.getEmail(), customer.getGender(),
+				customer.getBirthDate(), customer.getNif());
 	}
 
-	public Customer getCustomer(String customerName) {
+	public Customer getCustomer(String nif) {
 		try {
-			return jdbcTemplate.queryForObject("SELECT * from Customer WHERE name=?", new CustomerRowMapper(),
-					customerName);
+			return jdbcTemplate.queryForObject("SELECT * from Customer WHERE nif=?", new CustomerRowMapper(),
+					nif);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}

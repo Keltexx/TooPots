@@ -27,10 +27,10 @@
 					<td th:text="${customer.gender}"></td>
 					<td th:text="${customer.birthDate}"></td>
 					<td><a
-						th:href="@{/customer/update/{name}(name=${customer.name})}">Edita</a>
+						th:href="@{/customer/update/{nif}(nif=${customer.nif})}">Edita</a>
 					</td>
 					<td><a
-						th:href="@{/customer/delete/{name}(name=${customer.name})}">Borra</a>
+						th:href="@{/customer/delete/{nif}(nif=${customer.nif})}">Borra</a>
 				</tr>
 			</tbody>
 		</table>

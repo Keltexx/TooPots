@@ -23,10 +23,10 @@
 					<td th:text="${activityType.riskLevel}"></td>
 					<td th:text="${activityType.description}"></td>
 					<td><a
-						th:href="@{/activityType/update/{nameType}(nameType=${activityType.nameType})}">Edita</a>
+						th:href="@{/activityType/update/{activityTypeId}(activityTypeId=${activityType.activityTypeId})}">Edita</a>
 					</td>
 					<td><a
-						th:href="@{/activityType/delete/{nameType}(nameType=${activityType.nameType})}">Borra</a>
+						th:href="@{/activityType/delete/{activityTypeId}(activityTypeId=${activityType.activityTypeId})}">Borra</a>
 				</tr>
 			</tbody>
 		</table>
