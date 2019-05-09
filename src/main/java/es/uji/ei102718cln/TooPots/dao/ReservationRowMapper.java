@@ -16,9 +16,9 @@ public final class ReservationRowMapper implements RowMapper<Reservation> {
         reservation.setBookingDate(rs.getDate("bookingDate"));
         reservation.setCustomerID(rs.getString("customerID"));
         reservation.setNumberOfPersons(rs.getInt("numberOfPersons"));
-        reservation.setPriceByPerson(rs.getInt("priceByPerson"));
+        reservation.setPriceByPerson(rs.getFloat("priceByPerson"));
         reservation.setReservationID(rs.getInt("reservationID"));
-        reservation.setTotalPrice(rs.getInt("totalPrice"));
+        reservation.setTotalPrice(rs.getFloat("totalPrice"));
         return reservation;
     }
 }

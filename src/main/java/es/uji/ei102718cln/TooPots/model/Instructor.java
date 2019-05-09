@@ -1,6 +1,7 @@
 package es.uji.ei102718cln.TooPots.model;
 
-import java.util.ArrayList;
+
+//import java.util.ArrayList;
 
 public class Instructor {
 	String name;
@@ -8,7 +9,8 @@ public class Instructor {
 	String email;
 	String address;
 	String bankAccount;
-	ArrayList<String> certificates;
+	String photo;
+	//ArrayList<String> certificates;
 	
 	public String getName() {
 		return name;
@@ -40,18 +42,26 @@ public class Instructor {
 	public void setBankAccount(String bankAccount) {
 		this.bankAccount = bankAccount;
 	}
-	public ArrayList<String> getCertificates() {
-		return certificates;
+	
+	public String getPhoto() {
+		return photo;
 	}
-	public int getSizeCertificates() {
-		return certificates.size();
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
-	public void setCertificates(ArrayList<String> certificates) {
-		this.certificates = certificates;
-	}
+	
+//	public ArrayList<String> getCertificates() {
+//		return certificates;
+//	}
+//	public int getSizeCertificates() {
+//		return certificates.size();
+//	}
+//	public void setCertificates(ArrayList<String> certificates) {
+//		this.certificates = certificates;
+//	}
 	@Override
 	public String toString() {
 		return "Instructor [name=" + name + ", nif=" + nif + ", email=" + email + ", address=" + address
-				+ ", bankAccount=" + bankAccount + ", certificates=" + certificates + "]";
+				+ ", bankAccount=" + bankAccount + ", photo=" + photo + "]";
 	}
 }

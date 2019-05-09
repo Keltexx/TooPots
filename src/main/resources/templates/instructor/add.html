@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Inserta monitor</title>
+<meta charset="UTF-8" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+</head>
+<body>
+	<h2>Nuevo monitor</h2>
+	<form action="#" th:action="@{/instructor/add}"
+		th:object="${instructor}" method="post">
+		<table>
+			<tr>
+				<td><label>NIF</label></td>
+				<td><input type="text" th:field="*{nif}" /></td>
+			</tr>
+			<tr>
+				<td><label>Nombre</label></td>
+				<td><input type="text" th:field="*{name}" /></td>
+			</tr>
+			<tr>
+				<td><label>Correo</label></td>
+				<td><input type="text" th:field="*{email}" /></td>
+			</tr>
+			<tr>
+				<td><label>Dirección</label></td>
+				<td><input type="text" th:field="*{address}" /></td>
+			</tr>
+			<tr>
+				<td><label>Cuenta Bancaria</label></td>
+				<td><input type="text" th:field="*{bankAccount}" /></td>
+			</tr>
+			<tr>
+				<td><label>Foto</label></td>
+				<td><input type="file" th:field="*{photo}" /></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" value="Añadir monitor" /></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

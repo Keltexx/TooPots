@@ -5,8 +5,8 @@ public class Reservation {
 	int reservationID;
 	Date bookingDate;
 	Date activityDate;
-	int priceByPerson;
-	int totalPrice;
+	float priceByPerson;
+	float totalPrice;
 	int numberOfPersons;
 	int activityID;
 	String customerID;
@@ -33,16 +33,16 @@ public class Reservation {
 	public Date getActivityDate() {
 		return activityDate;
 	}
-	public void setPriceByPerson(int price) {
+	public void setPriceByPerson(float price) {
 		this.priceByPerson=price;
 	}
-	public int getPriceByPerson() {
+	public float getPriceByPerson() {
 		return priceByPerson;
 	}
-	public void setTotalPrice(int price) {
+	public void setTotalPrice(float price) {
 		this.totalPrice=price;
 	}
-	public int getTotalPrice() {
+	public float getTotalPrice() {
 		return totalPrice;
 	}
 	public void setNumberOfPersons(int num) {

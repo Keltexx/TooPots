@@ -24,29 +24,33 @@ public class InstructorDao {
 
 	/* Afegeix l'instructor a la base de dades */
 	public void addInstructor(Instructor instructor) {
-		jdbcTemplate.update("INSERT INTO Instructor VALUES(?, ?, ?, ?, ?, ?,)", 
-				instructor.getName(),instructor.getNif(),instructor.getEmail(),instructor.getAddress(),instructor.getCertificates(),instructor.getBankAccount());
+		jdbcTemplate.update("INSERT INTO Instructor VALUES(?, ?, ?, ?, ?, ?)", instructor.getNif(),
+				instructor.getName(), instructor.getEmail(), instructor.getAddress(), instructor.getBankAccount(),
+				instructor.getPhoto());
 	}
 
 	/* Esborra el instructor de la base de dades */
 	public void deleteInstructor(Instructor instructor) {
-		jdbcTemplate.update("DELETE from Instructor where name=?", instructor.getName());
+		jdbcTemplate.update("DELETE from Instructor where nif=?", instructor.getNif());
 	}
 
+	public void deleteInstructor(String nif) {
+		jdbcTemplate.update("DELETE from Instructor where nif=?", nif);
+	}
 	/*
 	 * Actualitza els atributs del instructor (excepte la clau primària)
 	 */
 	public void updateInstructor(Instructor instructor) {
-		jdbcTemplate.update(
-				"UPDATE Instructor  SET name=?,email=?,address=?,certificates=?,bankAccount=? where nif=?",
-				instructor.getName(),instructor.getEmail(),instructor.getAddress(),instructor.getCertificates(),instructor.getBankAccount(),instructor.getNif());
+		jdbcTemplate.update("UPDATE Instructor  SET name=?,email=?,address=?,bankAccount=?, photo=? where nif=?",
+				instructor.getName(), instructor.getEmail(), instructor.getAddress(),
+				instructor.getBankAccount(), instructor.getPhoto(),instructor.getNif());
 	}
 
 	/* Obté el instructor amb el nom donat. Torna null si no existeix. */
-	public Instructor getInstructor(String nameInstructor) {
+	public Instructor getInstructor(String nif) {
 		try {
-			return jdbcTemplate.queryForObject("SELECT * from Instructor WHERE name=?", new InstructorRowMapper(),
-					nameInstructor);
+			return jdbcTemplate.queryForObject("SELECT * from Instructor WHERE nif=?", new InstructorRowMapper(),
+					nif);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}

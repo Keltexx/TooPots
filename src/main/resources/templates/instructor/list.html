@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Lista de monitores</title>
+<meta charset="UTF-8" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+</head>
+<body>
+	<div class="container">
+		<h1>Lista de monitores</h1>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>NIF</th>
+					<th>Nombre</th>
+					<th>Correo</th>
+					<th>Dirección</th>
+					<th>Cuenta Bancaria</th>
+					<th>Foto</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="instructor: ${instructors}">
+					<td th:text="${instructor.nif}"></td>
+					<td th:text="${instructor.name}"></td>
+					<td th:text="${instructor.email}"></td>
+					<td th:text="${instructor.address}"></td>
+					<td th:text="${instructor.bankAccount}"></td>
+					<td th:text="${instructor.photo}"></td>
+					<td><a
+						th:href="@{/instructor/update/{nif}(nif=${instructor.nif})}">Edita</a>
+					</td>
+					<td><a
+						th:href="@{/instructor/delete/{nif}(nif=${instructor.nif})}">Borra</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<a href="add" class="btn btn-success" role="button">Añadir
+			Monitor</a>
+	</div>
+</body>
+</html>

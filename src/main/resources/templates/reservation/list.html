@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Listar actividades</title>
+<meta charset="UTF-8" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+</head>
+<body>
+	<div class="container">
+		<h1>Lista de actividades</h1>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Fecha de reserva</th>
+					<th>Fecha de la actividad</th>
+					<th>Precio por  persona</th>
+					<th>Precio total</th>
+					<th>Numero de personas</th>
+					<th>Actividad</th>
+					<th>NIF cliente</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="reservation: ${reservation}">
+					<td th:text="${reservation.reservationID}"></td>
+					<td th:text="${reservation.bookingDate}"></td>
+					<td th:text="${reservation.activityDate}"></td>
+					<td th:text="${reservation.priceByPerson}"></td>
+					<td th:text="${reservation.totalPrice}"></td>
+					<td th:text="${reservation.numberOfPersons}"></td>
+					<td th:text="${reservation.activityID}"></td>
+					<td th:text="${reservation.customerID}"></td>
+					<td><a
+						th:href="@{/reservation/update/{reservationID}(reservationID=${reservation.reservationID})}">Edita</a>
+					</td>
+					<td><a
+						th:href="@{/reservation/delete/{reservationID}(reservationID=${reservation.reservationID})}">Borra</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<a href="add" class="btn btn-success" role="button">Añadir
+			actividad</a>
+	</div>
+</body>
+</html>
