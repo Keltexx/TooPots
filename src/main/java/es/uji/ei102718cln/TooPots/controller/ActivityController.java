@@ -43,7 +43,9 @@ public class ActivityController {
 		@RequestMapping(value="/add", method=RequestMethod.POST) 
 		public String processAddSubmit(@ModelAttribute("activity") Activity activity,
 		                                BindingResult bindingResult) {  
-		     if (bindingResult.hasErrors()) 
+			ActivityValidator activityValidator = new ActivityValidator();
+			activityValidator.validate(activity, bindingResult); 
+			if (bindingResult.hasErrors()) 
 		            return "activity/add";
 		     activityDao.addActivity(activity);
 		     return "redirect:list"; 

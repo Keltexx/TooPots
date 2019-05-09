@@ -4,8 +4,10 @@
 <head>
 <title>Inserta actividad</title>
 <meta charset="UTF-8" />
-<link rel="stylesheet"
+<link rel="stylesheet" 
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css"
+	th:href="@{/css/style.css}" />
 </head>
 <body>
 	<h2>Nueva actividad</h2>
@@ -14,11 +16,13 @@
 		<table>
 			<tr>
 				<td><label>Nombre</label></td>
-				<td><input type="text" th:field="*{name}" /></td>
+				<td><input type="text" th:field="*{name}" placeholder="Nombre y apellidos"/></td>
+				<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error" ></td>
 			</tr>
 			<tr>
 				<td><label>Lugar</label></td>
 				<td><input type="text" th:field="*{place}" /></td>
+				<td th:if="${#fields.hasErrors('place')}" th:errors="*{place}"  class="error"></td>
 			</tr>
 			<tr>
 				<td><label>Horario</label></td>
@@ -26,27 +30,32 @@
 			</tr>
 			<tr>
 				<td><label>Duración</label></td>
-				<td><input type="text" th:field="*{duration}" /></td>
+				<td><input type="time" th:field="*{duration}" /></td>
 			</tr>
 			<tr>
 				<td><label>Descripción</label></td>
 				<td><input type="text" th:field="*{description}" /></td>
+				<td th:if="${#fields.hasErrors('description')}" th:errors="*{description}"  class="error"></td>
 			</tr>
 			<tr>
 				<td><label>Precio por persona</label></td>
 				<td><input type="number" th:field="*{priceByPerson}" /></td>
+				<td th:if="${#fields.hasErrors('priceByPerson')}" th:errors="*{priceByPerson}"  class="error"></td>
 			</tr>
 			<tr>
 				<td><label>Nº de personas</label></td>
 				<td><input type="number" th:field="*{numberOfPeople}" /></td>
+				<td th:if="${#fields.hasErrors('numberOfPeople')}" th:errors="*{numberOfPeople}"  class="error"></td>
 			</tr>
 			<tr>
 				<td><label>Monitor</label></td>
 				<td><input type="text" th:field="*{instructorId}" /></td>
+				<td th:if="${#fields.hasErrors('instructorId')}" th:errors="*{instructorId}"  class="error"></td>
 			</tr>
 			<tr>
 				<td><label>Tipo de actividad</label></td>
 				<td><input type="number" th:field="*{activityTypeId}" /></td>
+				<td th:if="${#fields.hasErrors('activityTypeId')}" th:errors="*{activityTypeId}"  class="error"></td>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit" value="Añadir actividad" /></td>
