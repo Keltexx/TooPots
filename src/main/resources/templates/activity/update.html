@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/base}">
 <head>
+<link rel="stylesheet" type="text/css" href="/css/style.css"
+	th:href="@{/css/style.css}" />
 <title>Edita actividad</title>
 <meta charset="UTF-8" />
 <link rel="stylesheet"
@@ -8,6 +11,7 @@
 </head>
 <body>
 	<h2>Nueva actividad</h2>
+	<div layout:fragment="content">
 	<form action="#"
 		th:action="@{/activity/update/{activityId}(activityId=${activity.activityId})}"
 		th:object="${activity}" method="post">
@@ -53,5 +57,6 @@
 			</tr>
 		</table>
 	</form>
+	</div>
 </body>
 </html>

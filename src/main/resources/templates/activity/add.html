@@ -1,7 +1,10 @@
 
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/base}">
 <head>
+<link rel="stylesheet" type="text/css" href="/css/style.css"
+	th:href="@{/css/style.css}" />
 <title>Inserta actividad</title>
 <meta charset="UTF-8" />
 <link rel="stylesheet" 
@@ -11,9 +14,10 @@
 </head>
 <body>
 	<h2>Nueva actividad</h2>
+	<div layout:fragment="content">
 	<form action="#" th:action="@{/activity/add}" th:object="${activity}"
 		method="post">
-		<table>
+		<table >
 			<tr>
 				<td><label>Nombre</label></td>
 				<td><input type="text" th:field="*{name}" placeholder="Nombre y apellidos"/></td>
@@ -58,9 +62,10 @@
 				<td th:if="${#fields.hasErrors('activityTypeId')}" th:errors="*{activityTypeId}"  class="error"></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="Añadir actividad" /></td>
+				<td colspan="2"><input type="submit" value="Añadir actividad"  class="btn btn-success" role="button"/></td>
 			</tr>
 		</table>
 	</form>
+	</div>
 </body>
 </html>

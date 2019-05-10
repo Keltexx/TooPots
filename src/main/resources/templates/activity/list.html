@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/base}">
 <head>
+<link rel="stylesheet" type="text/css" href="/css/style.css"
+	th:href="@{/css/style.css}" />
 <title>Listar actividades</title>
 <meta charset="UTF-8" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
 </head>
 <body>
-	<div class="container">
-		<h1>Lista de actividades</h1>
+	<div layout:fragment="content">
+		<h3>Lista de actividades</h3>
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -29,10 +32,10 @@
 					<td th:text="${activity.description}"></td>
 					<td th:text="${activity.priceByPerson}"></td>
 					<td><a
-						th:href="@{/activity/update/{activityId}(activityId=${activity.activityId})}">Edita</a>
+						th:href="@{/activity/update/{activityId}(activityId=${activity.activityId})}" class="btn btn-success" role="button">Edita</a>
 					</td>
 					<td><a
-						th:href="@{/activity/delete/{activityId}(activityId=${activity.activityId})}">Borra</a>
+						th:href="@{/activity/delete/{activityId}(activityId=${activity.activityId})}" class="btn btn-success" role="button">Borra</a>
 					</td>
 				</tr>
 			</tbody>
