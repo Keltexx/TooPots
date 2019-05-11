@@ -1,6 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<a class="navbar-brand" href="/">
+	
+	    <img src="/logo.png" width=95 height=70 alt="">
+  </a>
+  
 	<div class="navbar-collapse collapse">
 		<ul class="navbar-nav mr-auto">
+			
 			<li class="nav-item"><a class="nav-link" href="/"
 				th:href="@{/}">Home</a></li>
 				<li class="nav-item"><a class="nav-link" href="/activity/list"
@@ -12,11 +18,20 @@
 				<li class="nav-item"><a class="nav-link" href="/instructor/list"
 				th:href="@{/instructor/list}">Monitores</a></li>
 				<li class="nav-item"><a class="nav-link" href="/reservation/list"
-				th:href="@{/reservation/list}">Area privada</a></li>
+				th:href="@{/reservation/list}">Reservas</a></li>
 				<li class="nav-item"><a class="nav-link" href="/login"
 				th:href="@{/login}">Gestión de usuarios</a></li>
 				<li class="nav-item"><a class="nav-link" href="/user/list"
 				th:href="@{/user/list}">Area privada</a></li>
 		</ul>
 	</div>
+	<div class="loggeduser" th:object="${session}">
+	<p th:if="*{user == null}">
+		No autentificado <a href="/login" th:href="@{/login}">Entrar</a>
+	</p>
+	<p th:unless="*{user == null}">
+		Autenticado como <span th:text="*{user.username}"></span> <a
+			href="/logout" th:href="@{/logout}">Salir</a>
+	</p>
+</div>
 </nav>

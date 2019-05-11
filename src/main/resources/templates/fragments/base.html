@@ -16,15 +16,13 @@
 <link th:href="@{/css/style.css}" href="/css/style.css"
 	rel="stylesheet" />
 
-<title layout:title-pattern="$CONTENT_TITLE">Club de natació</title>
+<title layout:title-pattern="$CONTENT_TITLE"></title>
 </head>
 
-<body class="container">
+<body class="container-fluid">
 	<header class="page-header">
-		<h1>TooPots</h1>
 	</header>
-	<div th:replace="fragments/nav"></div>
-	<div th:replace="fragments/logininfo"></div>
+	<div th:replace="fragments/nav" ></div>
 	<div layout:fragment="content"></div>
 	<footer>
 		<hr>

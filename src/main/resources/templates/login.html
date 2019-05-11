@@ -17,18 +17,18 @@
 		<form action="#" th:action="@{/login}" th:object="${user}"
 			method="post">
 			<p>
-				<label>Nombre de usuario:</label> <input class="form_control" type="text"
+				<label>Nombre de usuario:</label> <input class="form-control" type="text"
 					th:field="*{username}" />
 			<div class="error" th:if="${#fields.hasErrors('username')}"
 				th:errors="*{username}"></div>
 			</p>
 			<p>
-				<label>Contraseña:</label> <input class="form_control"
+				<label>Contraseña:</label> <input class="form-control"
 					type="password" th:field="*{password}" />
 			<div class="error" th:if="${#fields.hasErrors('password')}"
 				th:errors="*{password}"></div>
 			</p>
-			<input type="submit" value="Acceder" />
+			<input type="submit" value="Acceder"   class="btn btn-primary"/>
 		</form>
 		</div>
 </body>
