@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/base}">
 <head>
+<link rel="stylesheet" type="text/css" href="/css/style.css"
+	th:href="@{/css/style.css}" />
 <title>Inserta monitor</title>
 <meta charset="UTF-8" />
 <link rel="stylesheet"
@@ -8,37 +11,39 @@
 </head>
 <body>
 	<h2>Nuevo monitor</h2>
+		<div layout:fragment="content">
 	<form action="#" th:action="@{/instructor/add}"
 		th:object="${instructor}" method="post">
 		<table>
 			<tr>
 				<td><label>NIF</label></td>
-				<td><input type="text" th:field="*{nif}" /></td>
+				<td><input type="text" th:field="*{nif}" class="form-control" /></td>
 			</tr>
 			<tr>
 				<td><label>Nombre</label></td>
-				<td><input type="text" th:field="*{name}" /></td>
+				<td><input type="text" th:field="*{name}" class="form-control"/></td>
 			</tr>
 			<tr>
 				<td><label>Correo</label></td>
-				<td><input type="text" th:field="*{email}" /></td>
+				<td><input type="text" th:field="*{email}" class="form-control"/></td>
 			</tr>
 			<tr>
 				<td><label>Dirección</label></td>
-				<td><input type="text" th:field="*{address}" /></td>
+				<td><input type="text" th:field="*{address}" class="form-control"/></td>
 			</tr>
 			<tr>
 				<td><label>Cuenta Bancaria</label></td>
-				<td><input type="text" th:field="*{bankAccount}" /></td>
+				<td><input type="text" th:field="*{bankAccount}" class="form-control"/></td>
 			</tr>
 			<tr>
 				<td><label>Foto</label></td>
 				<td><input type="file" th:field="*{photo}" /></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="Añadir monitor" /></td>
+				<td colspan="2"><input type="submit" value="Añadir monitor" class="btn btn-info" role="button" /></td>
 			</tr>
 		</table>
 	</form>
+	</div>
 </body>
 </html>

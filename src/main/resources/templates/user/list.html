@@ -1,23 +1,26 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/base}">
 <head>
+<link rel="stylesheet" type="text/css" href="/css/style.css"
+	th:href="@{/css/style.css}" />
 <title>Llista d'usuaris del sistema</title>
 <meta charset="UTF-8" />
 <!-- Afegim una fulla d'estil (Bootstrap) -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="/css/style.css"
-	th:href="@{/css/style.css}" />
+
 </head>
 
 <body>
-	<h1>Llista d'usuaris del sistema</h1>
-	<div th:if="${#lists.isEmpty(users)}">No hi ha usuaris</div>
+	<div layout:fragment="content">
+	<h1>Lista de usuarios del sistema</h1>
+	<div th:if="${#lists.isEmpty(users)}">No hay usuarios</div>
 	<table th:unless="${#lists.isEmpty(users)}"
-		class="table table-condensed">
+		class="table table-striped">
 		<thead>
 			<tr>
-				<th>Nom d'usuari</th>
+				<th>Nombre de usuario</th>
 			</tr>
 		</thead>
 
@@ -27,6 +30,7 @@
 			</tr>
 		</tbody>
 	</table>
-	<a href="/" class="btn btn-primary" role="button">Tornar</a>
+	<a href="/" class="btn btn-info" role="button">Volver</a>
+	</div>
 </body>
 </html>

@@ -1,13 +1,17 @@
 
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/base}">
 <head>
+<link rel="stylesheet" type="text/css" href="/css/style.css"
+	th:href="@{/css/style.css}" />
 <title>Inserta nuevo tipo de actividad</title>
 <meta charset="UTF-8" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
 </head>
 <body>
+	<div layout:fragment="content">
 	<h2>Nuevo tipo de actividad</h2>
 	<form action="#" th:action="@{/activityType/add}" th:object="${activityType}"
 		method="post">
@@ -30,5 +34,6 @@
 			</tr>
 		</table>
 	</form>
+		</div>
 </body>
 </html>
