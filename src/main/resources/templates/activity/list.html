@@ -32,15 +32,15 @@
 					<td th:text="${activity.description}"></td>
 					<td th:text="${activity.priceByPerson}"></td>
 					<td><a
-						th:href="@{/activity/update/{activityId}(activityId=${activity.activityId})}" class="btn btn-success" role="button">Edita</a>
+						th:href="@{/activity/update/{activityId}(activityId=${activity.activityId})}" class="btn btn-info" role="button">Edita</a>
 					</td>
 					<td><a
-						th:href="@{/activity/delete/{activityId}(activityId=${activity.activityId})}" class="btn btn-success" role="button">Borra</a>
+						th:href="@{/activity/delete/{activityId}(activityId=${activity.activityId})}" class="btn btn-info" role="button">Borra</a>
 					</td>
 				</tr>
 			</tbody>
 		</table>
-		<a href="add" class="btn btn-success" role="button">Añadir
+		<a href="add" class="btn btn-info" role="button">Añadir
 			actividad</a>
 	</div>
 </body>

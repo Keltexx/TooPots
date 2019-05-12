@@ -19,15 +19,15 @@
 <title layout:title-pattern="$CONTENT_TITLE"></title>
 </head>
 
-<body class="container-fluid">
+<body class="container-fluid" style="
+    padding-top: 96px;">
 	<header class="page-header">
 	</header>
-	<div th:replace="fragments/nav" ></div>
+	<div th:replace="fragments/nav"  ></div>
 	<div layout:fragment="content"></div>
 	<footer>
 		<hr>
-		<p class="text-muted">EI1027 - Disseny i Implementació de
-			Sistemes d'Informació</p>
+		<p class="text-muted">TooPots - EI102718cln</p>
 	</footer>
 </body>
 </html>
