@@ -30,7 +30,7 @@ public class CustomerDao {
 	}
 
 	public void deleteCustomer(String nif) {
-		jdbcTemplate.update("DELETE from Customer where name=?", nif);
+		jdbcTemplate.update("DELETE from Customer where nif=?", nif);
 	}
 
 	public void updateCustomer(Customer customer) {

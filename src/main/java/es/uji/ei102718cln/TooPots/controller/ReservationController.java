@@ -41,15 +41,15 @@ public class ReservationController {
 		@RequestMapping(value="/add", method=RequestMethod.POST) 
 		public String processAddSubmit(@ModelAttribute("reservation") Reservation reservation,
 		                                BindingResult bindingResult) {  
-		     if (bindingResult.hasErrors()) 
-		            return "reservation/add";
+//		     if (bindingResult.hasErrors()) 
+//		            return "reservation/add";
 		     reservationDao.addReservation(reservation);
 		     return "redirect:list"; 
 		     
 		 }
 		@RequestMapping(value="/update/{reservationID}", method = RequestMethod.GET) 
 		public String editReservation(Model model, @PathVariable String reservationid) { 
-			model.addAttribute("resevation", reservationDao.getReservation(reservationid));
+			model.addAttribute("reservation", reservationDao.getReservation(reservationid));
 			return "reservation/update"; 
 		}
 		

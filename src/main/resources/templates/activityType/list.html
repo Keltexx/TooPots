@@ -26,14 +26,14 @@
 					<td th:text="${activityType.riskLevel}"></td>
 					<td th:text="${activityType.description}"></td>
 					<td><a
-						th:href="@{/activityType/update/{activityTypeId}(activityTypeId=${activityType.activityTypeId})}">Edita</a>
+						th:href="@{/activityType/update/{activityTypeId}(activityTypeId=${activityType.activityTypeId})}" class="btn btn-info" role="button">Edita</a>
 					</td>
 					<td><a
-						th:href="@{/activityType/delete/{activityTypeId}(activityTypeId=${activityType.activityTypeId})}">Borra</a>
+						th:href="@{/activityType/delete/{activityTypeId}(activityTypeId=${activityType.activityTypeId})}" class="btn btn-info" role="button">Borra</a>
 				</tr>
 			</tbody>
 		</table>
-		<a href="add" class="btn btn-success" role="button">Añadir tipo de
+		<a href="add" class="btn btn-info" role="button">Añadir tipo de
 			actividad</a>
 	</div>
 </body>

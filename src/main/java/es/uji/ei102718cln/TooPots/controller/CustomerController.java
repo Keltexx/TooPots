@@ -36,8 +36,8 @@ public class CustomerController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String processAddSubmit(@ModelAttribute("customer") Customer customer, BindingResult bindingResult) {
-	//	if (bindingResult.hasErrors())
-	//		return "customer/add";
+//		if (bindingResult.hasErrors())
+//			return "customer/add";
 		customerDao.addCustomer(customer);
 		return "redirect:list";
 

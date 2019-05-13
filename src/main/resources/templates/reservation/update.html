@@ -17,38 +17,38 @@
 		<table>
 			<tr>
 				<td><label>ID</label></td>
-				<td><input type="text" th:field="*{reservationID}" /></td>
+				<td><input type="text" th:field="*{reservationID}" readonly /></td>
 			</tr>
 			<tr>
 				<td><label>Fecha de reserva</label></td>
-				<td><input type="date" th:field="*{bookingDate}" /></td>
+				<td><input type="date" th:field="*{bookingDate}" class="form-control"/></td>
 			</tr>
 			<tr>
 				<td><label>Fecha de actividad</label></td>
-				<td><input type="date" th:field="*{activityDate}" /></td>
+				<td><input type="date" th:field="*{activityDate}" class="form-control"/></td>
 			</tr>
 			<tr>
 				<td><label>Precio por persona</label></td>
-				<td><input type="number" th:field="*{priceByPerson}" /></td>
+				<td><input type="number" th:field="*{priceByPerson}" class="form-control"/></td>
 			</tr>
 			<tr>
 				<td><label>Precio total</label></td>
-				<td><input type="number" th:field="*{totalPrice}" /></td>
+				<td><input type="number" th:field="*{totalPrice}" class="form-control"/></td>
 			</tr>
 			<tr>
 				<td><label>Numero de personas</label></td>
-				<td><input type="number" th:field="*{numberOfPersons}" /></td>
+				<td><input type="number" th:field="*{numberOfPersons}" class="form-control" /></td>
 			</tr>
 			<tr>
 				<td><label>Actividad</label></td>
-				<td><input type="number" th:field="*{activityID}" /></td>
+				<td><input type="number" th:field="*{activityID}" class="form-control"/></td>
 			</tr>
 			<tr>
 				<td><label>NIF cliente</label></td>
-				<td><input type="text" th:field="*{customerID}" /></td>
+				<td><input type="text" th:field="*{customerID}" class="form-control"/></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="Editar reserva" /></td>
+				<td colspan="2"><input type="submit" value="Editar reserva" class="btn btn-info" role="button"/></td>
 			</tr>
 		</table>
 	</form>

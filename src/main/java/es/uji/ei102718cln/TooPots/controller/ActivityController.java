@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.uji.ei102718cln.TooPots.dao.ActivityDao;
+
 import es.uji.ei102718cln.TooPots.model.Activity;
+
 
 
 
@@ -22,10 +24,12 @@ public class ActivityController {
 	
 	   private ActivityDao activityDao;
 
+	   
 	   @Autowired
 	   public void setActivityDao(ActivityDao activityDao) { 
 	       this.activityDao=activityDao;
 	   }
+	   
 
 	   @RequestMapping("/list")
 	   public String listActivities(Model model) {
@@ -34,7 +38,16 @@ public class ActivityController {
 	   
 	   }
 	   
+	   @RequestMapping("/list_user")
+	   public String listUserActivities(Model model) {
+	      model.addAttribute("activities", activityDao.getActivities());
+	      return "activity/list_user";
+	   
+	   }
 		
+	   
+
+	   
 		@RequestMapping(value="/add") 
 	   public String addActivity(Model model) {
 	       model.addAttribute("activity", new Activity());

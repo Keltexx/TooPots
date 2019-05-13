@@ -4,14 +4,14 @@
 <head>
 <link rel="stylesheet" type="text/css" href="/css/style.css"
 	th:href="@{/css/style.css}" />
-<title>Listar actividades</title>
+<title>Lista de reservas</title>
 <meta charset="UTF-8" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
 </head>
 <body>
-	<div class="container">
-		<h1>Lista de actividades</h1>
+	<div layout:fragment="content">
+		<h1>Lista de reservas</h1>
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -41,11 +41,12 @@
 					<td><a
 						th:href="@{/reservation/delete/{reservationID}(reservationID=${reservation.reservationID})}">Borra</a>
 					</td>
+					<td><a href="https://www.paypal.com/es/home" class="btn btn-warning" role="button">Pagar</a></td>
 				</tr>
 			</tbody>
 		</table>
-		<a href="add" class="btn btn-success" role="button">Añadir
-			actividad</a>
+		<a href="add" class="btn btn-info" role="button">Añadir
+			reserva</a>
 	</div>
 </body>
 </html>

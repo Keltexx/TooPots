@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/base}">
 <head>
-<title>Listar clientes</title>
+<link rel="stylesheet" type="text/css" href="/css/style.css"
+	th:href="@{/css/style.css}" />
+<title>Lista clientes</title>
 <meta charset="UTF-8" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
 </head>
 <body>
-	<div class="container">
+	<div layout:fragment="content">
 		<h1>Lista de Clientes</h1>
 		<table class="table table-striped">
 			<thead>
@@ -27,14 +30,14 @@
 					<td th:text="${customer.gender}"></td>
 					<td th:text="${customer.birthDate}"></td>
 					<td><a
-						th:href="@{/customer/update/{nif}(nif=${customer.nif})}">Edita</a>
+						th:href="@{/customer/update/{nif}(nif=${customer.nif})}" class="btn btn-info" role="button">Edita</a>
 					</td>
 					<td><a
-						th:href="@{/customer/delete/{nif}(nif=${customer.nif})}">Borra</a>
+						th:href="@{/customer/delete/{nif}(nif=${customer.nif})}" class="btn btn-info" role="button">Borra</a>
 				</tr>
 			</tbody>
 		</table>
-		<a href="add" class="btn btn-success" role="button">Añadir
+		<a href="add" class="btn btn-info" role="button">Añadir
 			cliente</a>
 	</div>
 </body>

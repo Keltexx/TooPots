@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/base}">
 <head>
+<link rel="stylesheet" type="text/css" href="/css/style.css"
+	th:href="@{/css/style.css}" />
 <title>Edita cliente</title>
 <meta charset="UTF-8" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
 </head>
 <body>
+	<div layout:fragment="content">
 	<h2>Editar cliente</h2>
 	<form action="#"
 		th:action="@{/customer/update/{nif}(nif=${customer.nif})}"
@@ -14,15 +18,15 @@
 		<table>
 			<tr>
 				<td><label>Nombre</label></td>
-				<td><input type="text" th:field="*{name}" /></td>
+				<td><input type="text" th:field="*{name}" class="form-control"/></td>
 			</tr>
 			<tr>
 				<td><label>DNI</label></td>
-				<td><input type="text" th:field="*{nif}" readonly/></td>
+				<td><input type="text" th:field="*{nif}" readonly class="form-control"/></td>
 			</tr>
 			<tr>
 				<td><label>Correo</label></td>
-				<td><input type="text" th:field="*{email}" /></td>
+				<td><input type="text" th:field="*{email}" class="form-control"/></td>
 			</tr>
 			<tr>
 				<td><label>Género</label></td>
@@ -34,13 +38,14 @@
 			</tr>
 			<tr>
 				<td><label>Fecha de nacimiento</label></td>
-				<td><input type="text" th:field="*{birthDate}"/></td>
+				<td><input type="text" th:field="*{birthDate}" class="form-control"/></td>
 			</tr>
 
 			<tr>
-				<td colspan="2"><input type="submit" value="Editar cliente" /></td>
+				<td colspan="2"><input type="submit" value="Editar cliente" class="btn btn-info" role="button"/></td>
 			</tr>
 		</table>
 	</form>
+	</div>
 </body>
 </html>

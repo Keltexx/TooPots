@@ -8,43 +8,43 @@ public class Customer {
 	String gender;
 	Date birthDate;
 	
-	public Customer() {
-		
-	}
+	public Customer() {}
 	
-	public void setName(String name) {
-		this.name=name;
-	}
 	public String getName() {
 		return name;
 	}
-	public void setNif(String nif) {
-		this.nif=nif;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getNif() {
 		return nif;
 	}
-	public void setEmail(String email) {
-		this.email=email;
+	public void setNif(String nif) {
+		this.nif = nif;
 	}
 	public String getEmail() {
 		return email;
 	}
-	public void setGender(String gender) {
-		this.gender=gender;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public String getGender() {
-		return this.gender;
+		return gender;
 	}
-	public void setBirthDate(Date birthDate) {
-		this.birthDate=birthDate;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 	public Date getBirthDate() {
 		return birthDate;
+	}
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
 	}
 	@Override
 	public String toString() {
 		return "Customer [name=" + name + ", nif=" + nif + ", email=" + email + ", gender=" + gender + ", birthDate="
 				+ birthDate + "]";
 	}
+	
+
 }
