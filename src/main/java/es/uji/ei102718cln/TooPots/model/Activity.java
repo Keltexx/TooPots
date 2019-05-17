@@ -2,12 +2,16 @@ package es.uji.ei102718cln.TooPots.model;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class Activity {
 	int activityId;
 	String place;
 	String name;
-	Date schedule;
+	@DateTimeFormat(iso=DateTimeFormat.ISO.DATE) 
+	LocalDate schedule;
 	Time duration;
 	String description;
 	float priceByPerson;
@@ -43,11 +47,11 @@ public class Activity {
 		this.name = name;
 	}
 
-	public Date getSchedule() {
+	public LocalDate getSchedule() {
 		return schedule;
 	}
 
-	public void setSchedule(Date date) {
+	public void setSchedule(LocalDate date) {
 		this.schedule = date;
 	}
 

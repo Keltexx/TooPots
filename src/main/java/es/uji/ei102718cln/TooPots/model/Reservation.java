@@ -1,10 +1,15 @@
 package es.uji.ei102718cln.TooPots.model;
+import java.time.LocalDate;
 import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class Reservation {
 	int reservationID;
-	Date bookingDate;
-	Date activityDate;
+	@DateTimeFormat(iso=DateTimeFormat.ISO.DATE) 
+	LocalDate bookingDate;
+	@DateTimeFormat(iso=DateTimeFormat.ISO.DATE) 
+	LocalDate activityDate;
 	float priceByPerson;
 	float totalPrice;
 	int numberOfPersons;
@@ -21,16 +26,16 @@ public class Reservation {
 	public int getReservationID() {
 		return reservationID;
 	}
-	public void setBookingDate(Date bookingDate) {
+	public void setBookingDate(LocalDate bookingDate) {
 		this.bookingDate=bookingDate;
 	}
-	public Date getBookingDate() {
+	public LocalDate getBookingDate() {
 		return bookingDate;
 	}
-	public void setActivityDate(Date activityDate) {
+	public void setActivityDate(LocalDate activityDate) {
 		this.activityDate=activityDate;
 	}
-	public Date getActivityDate() {
+	public LocalDate getActivityDate() {
 		return activityDate;
 	}
 	public void setPriceByPerson(float price) {

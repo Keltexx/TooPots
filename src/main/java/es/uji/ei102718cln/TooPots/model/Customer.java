@@ -1,12 +1,16 @@
 package es.uji.ei102718cln.TooPots.model;
+import java.time.LocalDate;
 import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class Customer {
 	String name;
 	String nif;
 	String email;
 	String gender;
-	Date birthDate;
+	@DateTimeFormat(iso=DateTimeFormat.ISO.DATE) 
+	LocalDate birthDate;
 	
 	public Customer() {}
 	
@@ -34,10 +38,10 @@ public class Customer {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public Date getBirthDate() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
 	@Override

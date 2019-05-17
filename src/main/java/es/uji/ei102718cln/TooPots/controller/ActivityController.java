@@ -20,7 +20,7 @@ import es.uji.ei102718cln.TooPots.model.Activity;
 
 @Controller    
 @RequestMapping("/activity")
-public class ActivityController {
+public class ActivityController { 
 	
 	   private ActivityDao activityDao;
 

@@ -2,6 +2,7 @@ package es.uji.ei102718cln.TooPots.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 import org.springframework.jdbc.core.RowMapper;
 
@@ -13,7 +14,7 @@ public final class ActivityRowMapper implements RowMapper<Activity> {
         activity.setActivityId(rs.getInt("activityId"));
         activity.setPlace(rs.getString("place"));
         activity.setName(rs.getString("name"));
-        activity.setSchedule(rs.getDate("schedule"));
+        activity.setSchedule(rs.getObject("schedule", LocalDate.class));
         activity.setDuration(rs.getTime("duration"));
         activity.setDescription(rs.getString("description"));
         activity.setPriceByPerson(rs.getInt("priceByPerson"));
