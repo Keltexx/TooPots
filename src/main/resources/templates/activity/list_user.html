@@ -26,7 +26,6 @@
 			</thead>
 			<tbody>
 				<tr th:each="activity: ${activities}">
-					<td><img src="/media/rafting.png" style="max-width: 300px; max-height: 300px"/></td>
 					<td th:text="${activity.activityId}"></td>
 					<td th:text="${activity.name}"></td>
 					<td th:text="${activity.place}"></td>
@@ -34,8 +33,9 @@
 					<td th:text="${activity.duration}"></td>
 					<td th:text="${activity.description}"></td>
 					<td th:text="${activity.priceByPerson}"></td>
+					<td><img src="/media/rafting.png" style="max-width: 300px; max-height: 300px"/></td>
 					<td><a
-						href="/reservation/add" class="btn btn-info" role="button">Reserva</a>
+						th:href="@{/reservation/add/{activityId}(activityId=${activity.activityId})}" class="btn btn-info" role="button">Reserva</a>
 					</td>
 				</tr>
 			</tbody>

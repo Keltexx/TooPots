@@ -20,6 +20,12 @@ public class Reservation {
 		
 	}
 	
+	public Reservation(LocalDate activityDate, float priceByPerson,  int activityId) {
+		this.activityDate = activityDate;
+		this.priceByPerson = priceByPerson;
+		this.activityID = activityId;
+	}
+	
 	public void setReservationID(int id) {
 		this.reservationID=id;
 	}

@@ -9,58 +9,59 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute; 
 import org.springframework.web.bind.annotation.RequestMapping; 
 import org.springframework.web.bind.annotation.RequestMethod; 
-import org.springframework.web.servlet.ModelAndView;
 
-import es.uji.ei102718cln.TooPots.dao.UserDao;
-import es.uji.ei102718cln.TooPots.model.UserDetails;
+
+import es.uji.ei102718cln.TooPots.dao.LoginDao;
+import es.uji.ei102718cln.TooPots.model.Login;
+
 
 import org.springframework.validation.Errors; 
 import org.springframework.validation.Validator;
 
 
 
-class UserValidator implements Validator { 
+class LoginValidator implements Validator { 
 	@Override
 	public boolean supports(Class<?> cls) { 
-		return UserDetails.class.isAssignableFrom(cls);
+		return Login.class.isAssignableFrom(cls);
 	}
 	@Override 
 	public void validate(Object obj, Errors errors) {
 	  // Exercici: Afegeix codi per comprovar que 
          // l'usuari i la contrasenya no estiguen buits 
          // ...
-		UserDetails user = (UserDetails) obj;
-		if (user.getUsername().trim().equals(""))
-			errors.rejectValue("username", "obligatori", "cal introduir un valor");
+		Login user = (Login) obj;
+		if (user.getUsuario().trim().equals(""))
+			errors.rejectValue("usuario", "obligatorio", "se debe introducir un valor");
 		if (user.getPassword().trim().equals(""))
-			errors.rejectValue("password", "obligatori", "cal introduir un valor");
+			errors.rejectValue("password", "obligatorio", "se debe introducir un valor");
 	}
 }
 
 @Controller
 public class LoginController {
 	@Autowired
-	private UserDao userDao;
+	private LoginDao loginDao;
 
 	@RequestMapping("/login")
 	public String login(Model model) {
-		model.addAttribute("user", new UserDetails());
+		model.addAttribute("user", new Login());
 		return "login";
 	}
 
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String checkLogin(@ModelAttribute("user") UserDetails user,  		
+	public String checkLogin(@ModelAttribute("user") Login user,  		
 				BindingResult bindingResult, HttpSession session) {
-		UserValidator userValidator = new UserValidator(); 
-		userValidator.validate(user, bindingResult); 
+		LoginValidator loginValidator = new LoginValidator(); 
+		loginValidator.validate(user, bindingResult); 
 		if (bindingResult.hasErrors()) {
 			return "login";
 		}
 	       // Comprova que el login siga correcte 
 		// intentant carregar les dades de l'usuari 
-		user = userDao.loadUserByUsername(user.getUsername(),user.getPassword()); 
+		user = loginDao.getLogin(user.getUsuario(),user.getPassword()); 
 		if (user == null) {
-			bindingResult.rejectValue("password", "badpw", "Contrasenya incorrecta"); 
+			bindingResult.rejectValue("password", "badpw", "Contraseña incorrecta"); 
 			return "login";
 		}
 		// Autenticats correctament. 
@@ -73,7 +74,15 @@ public class LoginController {
 			return "redirect:"+url;
 			
 		}
-
+		
+		switch (user.getRol()) {
+		case "cliente":
+			return "redirect:/cliente/home";
+		case "administrador":
+			return "redirect:/administrador/home.html";
+		case "instructor":
+			return "redirect:/instructor/home.html";
+		}
 			
 		// Torna a la pàgina principal
 		return "redirect:/";

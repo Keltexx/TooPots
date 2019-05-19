@@ -16,11 +16,11 @@
 	<form action="#" th:action="@{/reservation/add}" th:object="${reservation}"
 		method="post">
 		<table>
-		<!-- 
+		
 			<tr>
 				<td><label>Fecha de reserva</label></td>
 				<td><input type="date" th:field="*{bookingDate}"  class="form-control" required/></td>
-				<td th:if="${#fields.hasErrors('nif')}" th:errors="*{nif}"  class="error"></td>
+				
 			</tr>
 			<tr>
 				<td><label>Fecha de actividad</label></td>
@@ -35,12 +35,12 @@
 				<td><input type="number" th:field="*{totalPrice}"  class="form-control" required/></td>
 			</tr>
 			<tr>
-			-->
+			
 				<td><label>Numero de personas</label></td>
 				<td><input type="number" th:field="*{numberOfPersons}"  class="form-control" required/></td>
-				<td th:if="${#fields.hasErrors('number')}" th:errors="*{number}"  class="error"></td>
+				
 			</tr>
-			<!-- 
+			
 			<tr>
 				<td><label>Actividad</label></td>
 				<td><input type="number" th:field="*{activityID}"  class="form-control" required/></td>
@@ -50,7 +50,7 @@
 				<td><input type="text" th:field="*{customerID}"  class="form-control" required/></td>
 			</tr>
 			<tr>
-			-->
+			
 				<td colspan="2"><input type="submit" value="Añadir reserva" class="btn btn-info" role="button" /></td>
 			</tr>
 		</table>

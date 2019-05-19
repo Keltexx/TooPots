@@ -1,15 +1,24 @@
 package es.uji.ei102718cln.TooPots.controller;
 
+import java.time.LocalDate;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import es.uji.ei102718cln.TooPots.dao.ActivityDao;
 import es.uji.ei102718cln.TooPots.dao.ReservationDao;
+import es.uji.ei102718cln.TooPots.model.Activity;
+import es.uji.ei102718cln.TooPots.model.Login;
 import es.uji.ei102718cln.TooPots.model.Reservation;
 
 
@@ -19,7 +28,7 @@ import es.uji.ei102718cln.TooPots.model.Reservation;
 public class ReservationController {
 	
 	   private ReservationDao reservationDao;
-
+	   private ActivityDao activityDao;
 	   @Autowired
 	   public void setReservationDao(ReservationDao reservationDao) { 
 	       this.reservationDao=reservationDao;
@@ -33,20 +42,20 @@ public class ReservationController {
 	   }
 	   
 		
-		@RequestMapping(value="/add") 
-	   public String addReservation(Model model) {
-	       model.addAttribute("reservation", new Reservation());
-	       return "reservation/add";
-	   }
-		@RequestMapping(value="/add", method=RequestMethod.POST) 
-		public String processAddSubmit(@ModelAttribute("reservation") Reservation reservation,
-		                                BindingResult bindingResult) {  
-//		     if (bindingResult.hasErrors()) 
-//		            return "reservation/add";
-		     reservationDao.addReservation(reservation);
-		     return "redirect:list"; 
-		     
-		 }
+//		@RequestMapping(value="/add") 
+//	   public String addReservation(Model model) {
+//	       model.addAttribute("reservation", new Reservation());
+//	       return "reservation/add";
+//	   }
+//		@RequestMapping(value="/add", method=RequestMethod.POST) 
+//		public String processAddSubmit(@ModelAttribute("reservation") Reservation reservation,
+//		                                BindingResult bindingResult) {  
+////		     if (bindingResult.hasErrors()) 
+////		            return "reservation/add";
+//		     reservationDao.addReservation(reservation);
+//		     return "redirect:list"; 
+//		     
+//		 }
 		@RequestMapping(value="/update/{reservationID}", method = RequestMethod.GET) 
 		public String editReservation(Model model, @PathVariable String reservationid) { 
 			model.addAttribute("reservation", reservationDao.getReservation(reservationid));
@@ -69,6 +78,28 @@ public class ReservationController {
 	           return "redirect:../list"; 
 		}
 		
+
+		@RequestMapping(value = "/add/{activityId}" )
+		public String addReservationActivity(Model model, @PathVariable String activityId) {
+			Activity activity = activityDao.getActivity(activityId);
+			model.addAttribute("reservation", new Reservation(activity.getSchedule(),activity.getPriceByPerson(), activity.getActivityId()));
+			return "/reservation/add";
+		}
+		
+		@RequestMapping(value = "/add", method = RequestMethod.POST)
+		public String processAddReservationActivitySubmit(HttpSession session, @ModelAttribute("reservation") Reservation reservation, @RequestParam(name = "numberOfPersons") int numberOfPersons,
+				BindingResult bindingResult) {
+			if (bindingResult.hasErrors())
+				return "reservation/add";
+			reservation.setBookingDate(LocalDate.now());
+			reservation.setNumberOfPersons(numberOfPersons);
+			reservation.setTotalPrice(numberOfPersons * reservation.getPriceByPerson());
+			Login usuario = (Login) session.getAttribute("user");
+			reservation.setCustomerID(usuario.getUsuario());
+			//reserva.setState("pendiente");
+			reservationDao.addReservation(reservation);
+			return "redirect:../reservation/list";
+		}
 		
 
 }
