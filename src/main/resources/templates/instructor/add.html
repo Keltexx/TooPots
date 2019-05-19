@@ -17,23 +17,27 @@
 		<table>
 			<tr>
 				<td><label>NIF</label></td>
-				<td><input type="text" th:field="*{nif}" class="form-control" /></td>
+				<td><input type="text" th:field="*{nif}" class="form-control"  /></td>
+				<td th:if="${#fields.hasErrors('nif')}" th:errors="*{nif}"  class="error"></td>
 			</tr>
 			<tr>
 				<td><label>Nombre</label></td>
-				<td><input type="text" th:field="*{name}" class="form-control"/></td>
+				<td><input type="text" th:field="*{name}" class="form-control" /></td>
+				<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"  class="error"></td>
 			</tr>
 			<tr>
 				<td><label>Correo</label></td>
-				<td><input type="text" th:field="*{email}" class="form-control"/></td>
+				<td><input type="text" th:field="*{email}" class="form-control" /></td>
+				<td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"  class="error"></td>
 			</tr>
 			<tr>
 				<td><label>Dirección</label></td>
-				<td><input type="text" th:field="*{address}" class="form-control"/></td>
+				<td><input type="text" th:field="*{address}" class="form-control" /></td>
 			</tr>
 			<tr>
 				<td><label>Cuenta Bancaria</label></td>
 				<td><input type="text" th:field="*{bankAccount}" class="form-control"/></td>
+				<td th:if="${#fields.hasErrors('bankAccount')}" th:errors="*{bankAccount}"  class="error"></td>
 			</tr>
 			<tr>
 				<td><label>Foto</label></td>

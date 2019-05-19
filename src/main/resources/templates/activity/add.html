@@ -18,17 +18,17 @@
 		<table >
 			<tr>
 				<td><label>Nombre</label></td>
-				<td><input type="text" th:field="*{name}" placeholder="Nombre y apellidos" class="form-control"/></td>
+				<td><input type="text" th:field="*{name}" placeholder="Nombre y apellidos" class="form-control" /></td>
 				<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error" ></td>
 			</tr>
 			<tr>
 				<td><label>Lugar</label></td>
-				<td><input type="text" th:field="*{place}" class="form-control"/></td>
+				<td><input type="text" th:field="*{place}" placeholder="Castellón" class="form-control"/></td>
 				<td th:if="${#fields.hasErrors('place')}" th:errors="*{place}"  class="error"></td>
 			</tr>
 			<tr>
 				<td><label>Horario</label></td>
-				<td><input type="date" th:field="*{schedule}" class="form-control"/></td>
+				<td><input type="date" th:field="*{schedule}"  class="form-control"/></td>
 			</tr>
 			<tr>
 				<td><label>Duración</label></td>
