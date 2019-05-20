@@ -26,7 +26,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="reservation: ${reservation}">
+				<tr th:each="reservation: ${reservations}">
 					<td th:text="${reservation.reservationID}"></td>
 					<td th:text="${reservation.bookingDate}"></td>
 					<td th:text="${reservation.activityDate}"></td>
@@ -36,10 +36,10 @@
 					<td th:text="${reservation.activityID}"></td>
 					<td th:text="${reservation.customerID}"></td>
 					<td><a
-						th:href="@{/reservation/update/{reservationID}(reservationID=${reservation.reservationID})}">Edita</a>
+						th:href="@{/reservation/update/{reservationID}(reservationID=${reservation.reservationID})}" class="btn btn-info" role="button">Editar</a>
 					</td>
 					<td><a
-						th:href="@{/reservation/delete/{reservationID}(reservationID=${reservation.reservationID})}">Borra</a>
+						th:href="@{/reservation/delete/{reservationID}(reservationID=${reservation.reservationID})}" class="btn btn-danger" role="button">Anular</a>
 					</td>
 					<td><a href="https://www.paypal.com/es/home" class="btn btn-warning" role="button">Pagar</a></td>
 				</tr>

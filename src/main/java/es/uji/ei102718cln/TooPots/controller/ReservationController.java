@@ -29,11 +29,17 @@ public class ReservationController {
 	
 	   private ReservationDao reservationDao;
 	   private ActivityDao activityDao;
+	   
 	   @Autowired
 	   public void setReservationDao(ReservationDao reservationDao) { 
 	       this.reservationDao=reservationDao;
 	   }
 
+		@Autowired
+		public void setActividadDao(ActivityDao activityDao) {
+			this.activityDao = activityDao;
+		}
+		
 	   @RequestMapping("/list")
 	   public String listReservation(Model model) {
 	      model.addAttribute("reservations", reservationDao.getReservations());
@@ -42,28 +48,14 @@ public class ReservationController {
 	   }
 	   
 		
-//		@RequestMapping(value="/add") 
-//	   public String addReservation(Model model) {
-//	       model.addAttribute("reservation", new Reservation());
-//	       return "reservation/add";
-//	   }
-//		@RequestMapping(value="/add", method=RequestMethod.POST) 
-//		public String processAddSubmit(@ModelAttribute("reservation") Reservation reservation,
-//		                                BindingResult bindingResult) {  
-////		     if (bindingResult.hasErrors()) 
-////		            return "reservation/add";
-//		     reservationDao.addReservation(reservation);
-//		     return "redirect:list"; 
-//		     
-//		 }
 		@RequestMapping(value="/update/{reservationID}", method = RequestMethod.GET) 
-		public String editReservation(Model model, @PathVariable String reservationid) { 
-			model.addAttribute("reservation", reservationDao.getReservation(reservationid));
+		public String editReservation(Model model, @PathVariable String reservationID) { 
+			model.addAttribute("reservation", reservationDao.getReservation(reservationID));
 			return "reservation/update"; 
 		}
 		
 		@RequestMapping(value="/update/{reservationID}", method = RequestMethod.POST) 
-		public String processUpdateSubmit(@PathVariable String reservationid, 
+		public String processUpdateSubmit(@PathVariable String reservationID, 
 	                            @ModelAttribute("reservation") Reservation reservation, 
 	                            BindingResult bindingResult) {
 			 if (bindingResult.hasErrors()) 
@@ -72,9 +64,10 @@ public class ReservationController {
 			 reservationDao.updateReservation(reservation);
 			 return "redirect:../list"; 
 		}
+		
 		@RequestMapping(value="/delete/{reservationID}")
-		public String processDelete(@PathVariable String reservationid) {
-	           reservationDao.deleteReservation(reservationid);
+		public String processDelete(@PathVariable String reservationID) {
+	           reservationDao.deleteReservation(reservationID);
 	           return "redirect:../list"; 
 		}
 		
@@ -94,8 +87,8 @@ public class ReservationController {
 			reservation.setBookingDate(LocalDate.now());
 			reservation.setNumberOfPersons(numberOfPersons);
 			reservation.setTotalPrice(numberOfPersons * reservation.getPriceByPerson());
-			Login usuario = (Login) session.getAttribute("user");
-			reservation.setCustomerID(usuario.getUsuario());
+//			Login usuario = (Login) session.getAttribute("user");
+//			reservation.setCustomerID(usuario.getUsuario());
 			//reserva.setState("pendiente");
 			reservationDao.addReservation(reservation);
 			return "redirect:../reservation/list";

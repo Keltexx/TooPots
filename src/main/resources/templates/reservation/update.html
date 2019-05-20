@@ -10,7 +10,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
 </head>
 <body>
-<div class="container">
+<div layout:fragment="content">
 	<h2>Editar reserva</h2>
 	<form action="#" th:action="@{/reservation/update/{reservationID}(reservationID=${reservation.reservationID})}" th:object="${reservation}"
 		method="post">
