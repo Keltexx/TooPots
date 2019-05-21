@@ -25,10 +25,10 @@ public class ActivityDao {
 	/* Afegeix l' activity a la base de dades */
 	public void addActivity(Activity activity) {
 		jdbcTemplate.update(
-				"INSERT INTO Activity(place,name,schedule,duration,description,pricebyperson,numberofpeople,instructorid,activitytypeid) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
+				"INSERT INTO Activity(place,name,schedule,duration,description,pricebyperson,numberofpeople,instructorid,activitytypeid, photo) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
 				activity.getPlace(), activity.getName(), activity.getSchedule(), activity.getDuration(),
 				activity.getDescription(), activity.getPriceByPerson(), activity.getNumberOfPeople(),
-				activity.getInstructorId(), activity.getActivityTypeId());
+				activity.getInstructorId(), activity.getActivityTypeId(), activity.getPhoto());
 
 	}
 
@@ -46,10 +46,10 @@ public class ActivityDao {
 	 */
 	public void updateActivity(Activity activity) {
 		jdbcTemplate.update(
-				"UPDATE activity  SET place=?, name=?, schedule=?, duration=?, description=?, priceByPerson=?, numberOfPeople=?, instructorId=?, activityTypeId=?",
+				"UPDATE activity  SET place=?, name=?, schedule=?, duration=?, description=?, priceByPerson=?, numberOfPeople=?, instructorId=?, activityTypeId=?, photo=?",
 				activity.getPlace(), activity.getName(), activity.getSchedule(), activity.getDuration(),
 				activity.getDescription(), activity.getPriceByPerson(), activity.getNumberOfPeople(),
-				activity.getInstructorId(), activity.getActivityTypeId());
+				activity.getInstructorId(), activity.getActivityTypeId(), activity.getPhoto());
 	}
 
 	/* Obté l activitat amb el nom donat. Torna null si no existeix. */

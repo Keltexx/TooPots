@@ -21,6 +21,7 @@ public final class ActivityRowMapper implements RowMapper<Activity> {
         activity.setNumberOfPeople(rs.getInt("numberOfPeople"));
         activity.setInstructorId(rs.getString("instructorId"));
         activity.setActivityTypeId(rs.getInt("activityTypeId"));
+        activity.setPhoto(rs.getString("photo"));
         return activity;
 	}
 

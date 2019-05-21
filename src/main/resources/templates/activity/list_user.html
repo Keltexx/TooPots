@@ -33,7 +33,7 @@
 					<td th:text="${activity.duration}"></td>
 					<td th:text="${activity.description}"></td>
 					<td th:text="${activity.priceByPerson}"></td>
-					<td><img src="/media/rafting.png" style="max-width: 300px; max-height: 300px"/></td>
+					<td><img th:src="${activity.photo}" style="max-width: 300px; max-height: 300px"/></td>
 					<td><a
 						th:href="@{/reservation/add/{activityId}(activityId=${activity.activityId})}" class="btn btn-info" role="button">Reserva</a>
 					</td>
