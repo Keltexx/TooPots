@@ -1,13 +1,21 @@
 package es.uji.ei102718cln.TooPots.controller;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller; 
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import es.uji.ei102718cln.TooPots.dao.ActivityDao;
 
@@ -85,6 +93,29 @@ public class ActivityController {
 	           activityDao.deleteActivity(activityid);
 	           return "redirect:../list"; 
 		}
+		
+		@Autowired
+	    private UploadFileService uploadFileService;
+
+//	    @GetMapping("/")
+//	    public String index(){
+//	        return "upluadFileView";
+//	    }
+
+	    @PostMapping("upload")
+	    public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file) {
+	        if (file.isEmpty()) {
+	            return new ResponseEntity<Object>("Seleccionar un archivo", HttpStatus.OK);
+	        }
+
+	        try {
+	            uploadFileService.saveFile(file);
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+
+	        return new ResponseEntity<Object>("Archivo subido correctamente", HttpStatus.OK);
+	    }
 		
 		
 

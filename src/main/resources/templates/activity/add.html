@@ -3,6 +3,10 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{fragments/base}">
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="/css/style.css"
 	th:href="@{/css/style.css}" />
 <title>Inserta actividad</title>
@@ -10,10 +14,12 @@
 <link rel="stylesheet" 
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
 </head>
+
+
 <body>
 	<h2>Nueva actividad</h2>
 	<div layout:fragment="content">
-	<form action="#" th:action="@{/activity/add}" th:object="${activity}"
+	<form action="#" th:action="@{/activity/add}" th:object="${activity}" enctype="multipart/form-data"
 		method="post">
 		<table >
 			<tr>
@@ -60,10 +66,19 @@
 				<td th:if="${#fields.hasErrors('activityTypeId')}" th:errors="*{activityTypeId}"  class="error"></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="Añadir actividad"  class="btn btn-info" role="button"/></td>
+				<td><label>Seleccione imagen: </label></td>
+				<td><input type="file"  name="file" aria-describedby="fileHelp"></td>
 			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" value="Añadir actividad"  class="btn btn-info" role="button"/></td>
+1
 		</table>
 	</form>
 	</div>
 </body>
+<script>
+    $('.custom-file-input').on('change',function(){
+        $(this).next('.form-control-file').addClass("selected").html($(this).val());
+    })
+</script>
 </html>

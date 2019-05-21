@@ -18,7 +18,10 @@ public class Activity {
 	int numberOfPeople;
 	String instructorId;
 	int activityTypeId;
+	String photo;
 	
+	
+
 	public Activity() {
 		
 	}
@@ -102,13 +105,22 @@ public class Activity {
 	public void setActivityTypeId(int activityTypeId) {
 		this.activityTypeId = activityTypeId;
 	}
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 
 	@Override
 	public String toString() {
-		return "Activity [id=" + activityId + ", name=" + name + ", schedule=" + schedule + ", duration=" + duration
-				+ ", description=" + description + ", priceByPerson=" + priceByPerson + ", numberOfPeople="
-				+ numberOfPeople + ", instructorId=" + instructorId + ", activityTypeId=" + activityTypeId + "]";
+		return "Activity [activityId=" + activityId + ", place=" + place + ", name=" + name + ", schedule=" + schedule
+				+ ", duration=" + duration + ", description=" + description + ", priceByPerson=" + priceByPerson
+				+ ", numberOfPeople=" + numberOfPeople + ", instructorId=" + instructorId + ", activityTypeId="
+				+ activityTypeId + ", photo=" + photo + "]";
 	}
+	
 	
 	
 }
