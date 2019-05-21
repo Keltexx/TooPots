@@ -67,18 +67,14 @@
 			</tr>
 			<tr>
 				<td><label>Seleccione imagen: </label></td>
-				<td><input type="file"  name="file" aria-describedby="fileHelp"></td>
+				<td><input type="file" id="avatar" name="file" accept="image/png, image/jpeg"></td>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit" value="Añadir actividad"  class="btn btn-info" role="button"/></td>
-1
+
 		</table>
 	</form>
 	</div>
 </body>
-<script>
-    $('.custom-file-input').on('change',function(){
-        $(this).next('.form-control-file').addClass("selected").html($(this).val());
-    })
-</script>
+
 </html>

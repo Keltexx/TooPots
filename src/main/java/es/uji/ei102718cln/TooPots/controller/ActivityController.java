@@ -1,7 +1,9 @@
 package es.uji.ei102718cln.TooPots.controller;
 
+import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -68,6 +70,33 @@ public class ActivityController {
 			activityValidator.validate(activity, bindingResult); 
 			if (bindingResult.hasErrors()) 
 		            return "activity/add";
+			/*
+			 * Se convierte el MultipartFile a File, se escribe el archivo en su ruta
+			 * automática, se toma la ruta absoluta del archivo, se corta el nombre del
+			 * archivo para conseguir la ruta absoluta del directorio, se crea un File en el
+			 * directorio media
+			 */
+//			File archivo = convert(file);
+//			archivo.createNewFile();
+//			String directorio = archivo.getAbsolutePath();
+//			directorio = directorio.substring(0, directorio.length() - archivo.getPath().length() - 1);
+//			String nombre = archivo.getName();
+//
+//			File destination = new File(directorio + "/src/main/resources/static/media/" + nombre);
+//
+//			/* Copiar fichero a directorio destino */
+//			try {
+//				FileUtils.copyFile(archivo, destination);
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//
+//			/*
+//			 * Se escribe el fichero en el directorio media se borra el archivo del
+//			 * directorio por defecto
+//			 */
+//			destination.createNewFile();
+//			archivo.delete();
 		     activityDao.addActivity(activity);
 		     return "redirect:list"; 
 		     
@@ -94,28 +123,12 @@ public class ActivityController {
 	           return "redirect:../list"; 
 		}
 		
-		@Autowired
-	    private UploadFileService uploadFileService;
+		
 
-//	    @GetMapping("/")
-//	    public String index(){
-//	        return "upluadFileView";
-//	    }
 
-	    @PostMapping("upload")
-	    public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file) {
-	        if (file.isEmpty()) {
-	            return new ResponseEntity<Object>("Seleccionar un archivo", HttpStatus.OK);
-	        }
 
-	        try {
-	            uploadFileService.saveFile(file);
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
 
-	        return new ResponseEntity<Object>("Archivo subido correctamente", HttpStatus.OK);
-	    }
+	   
 		
 		
 
