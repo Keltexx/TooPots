@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/base}">
+<head>
+<link rel="stylesheet" type="text/css" href="/css/galeria.css"
+	th:href="@{/css/galeria.css}" />
+<title>Listar actividades</title>
+<meta charset="UTF-8" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+</head>
+<body>
+	<div layout:fragment="content">
+		<h3>Lista de actividades</h3>
+		<table class="table table-striped">
+			
+			<tbody>
+				<ul th:each="activity: ${activities}" class="galeria">
+
+					<li><a th:href="@{/activity/{activityId}(activityId=${activity.activityId})}" > 
+					<div class='img'><img th:src="${activity.photo}" ><span> <th:text="${activity.name}"> </div>
+					</td>
+				</ul>
+			</tbody>
+		</table>
+
+	</div>
+</body>
+</html>

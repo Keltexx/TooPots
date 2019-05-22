@@ -34,11 +34,22 @@ public class ActivityController {
 	public void setActivityDao(ActivityDao activityDao) {
 		this.activityDao = activityDao;
 	}
+	@RequestMapping("/activity")
+	public String listActivity(Model model) {
+		model.addAttribute("activities", activityDao.getActivities());
+		return "activity/activity";
 
+	}
 	@RequestMapping("/list")
 	public String listActivities(Model model) {
 		model.addAttribute("activities", activityDao.getActivities());
 		return "activity/list";
+
+	}
+	@RequestMapping("/gallery")
+	public String gallery(Model model) {
+		model.addAttribute("activities", activityDao.getActivities());
+		return "activity/gallery";
 
 	}
 
@@ -143,6 +154,13 @@ public class ActivityController {
 		activity.setPhoto("/media/" + nombre);
 		activityDao.updateActivity(activity);
 		return "redirect:../list";
+	}
+	
+	//MIRA ESTO A VERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+	@RequestMapping(value = "/activity/{activityid}", method = RequestMethod.GET)
+	public String listActivity(Model model, @PathVariable String activityid) {
+		model.addAttribute("activity", activityDao.getActivity(activityid));
+		return "activity/";
 	}
 
 	@RequestMapping(value = "/delete/{activityid}")

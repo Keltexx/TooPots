@@ -10,5 +10,30 @@
 }
 
 h3{
-	    color: blue;
+	color: blue;
+}
+#galeria {
+    margin: 1rem auto;
+    width:100%;
+    max-width:960px;
+    column-count: 3;
+	text-align: center;
+}
+div.img{
+  display:table;
+}
+div.img img{
+ margin:0;
+ padding:0;
+}
+div.img span{
+ line-height:normal;
+ font-size:11px;
+ display:table-caption;
+ margin:0;
+ background:#646464;
+ color:white;
+ font-style:italic;
+ padding:5px;
+ text-align:center;
 }

@@ -1,0 +1,25 @@
+body{
+	background: #4444;
+	margin:0;
+	font-family monospace;
+}
+h1{
+	color:#fff;
+	text-align:center;
+}
+.galeria{
+	width:90%;
+	margin:auto;
+	list-style:none;
+	padding:20px;
+	box-sizing: border-box;
+	display: flex;
+	flex-wrap:wrap;
+	justify-content:space-around;
+}
+
+.galeria img{
+	width:150px;
+	heigth:100px;
+	
+}
