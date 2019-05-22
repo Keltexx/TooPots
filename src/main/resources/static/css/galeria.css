@@ -1,25 +1,29 @@
-body{
-	background: #4444;
+.cuerpoG{
+	background: #445;
 	margin:0;
 	font-family monospace;
+	
 }
-h1{
-	color:#fff;
+.titulo{
+	color: #fff;
 	text-align:center;
 }
 .galeria{
 	width:90%;
 	margin:auto;
-	list-style:none;
+	
 	padding:20px;
 	box-sizing: border-box;
+	
 	display: flex;
 	flex-wrap:wrap;
 	justify-content:space-around;
-}
-
-.galeria img{
-	width:150px;
-	heigth:100px;
 	
+}
+.galeria li{
+	margin:0px;
+}
+.galeria img{
+	width:250px;
+	heigth:200px;
 }

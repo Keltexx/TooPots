@@ -160,7 +160,7 @@ public class ActivityController {
 	@RequestMapping(value = "/activity/{activityid}", method = RequestMethod.GET)
 	public String listActivity(Model model, @PathVariable String activityid) {
 		model.addAttribute("activity", activityDao.getActivity(activityid));
-		return "activity/";
+		return "activity/activity";
 	}
 
 	@RequestMapping(value = "/delete/{activityid}")

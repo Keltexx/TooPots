@@ -12,13 +12,7 @@
 h3{
 	color: blue;
 }
-#galeria {
-    margin: 1rem auto;
-    width:100%;
-    max-width:960px;
-    column-count: 3;
-	text-align: center;
-}
+
 div.img{
   display:table;
 }
@@ -36,4 +30,27 @@ div.img span{
  font-style:italic;
  padding:5px;
  text-align:center;
+}
+body{
+	background: #4444;
+	margin:0;
+	font-family monospace;
+}
+h1{
+	color:#fff;
+	text-align:center;
+}
+.galeria {
+	width:90%;
+	margin:auto;
+	list-style:none;
+	padding:20px;
+	box-sizing: border-box;
+	display: flex;
+	flex-wrap:wrap;
+	justify-content:space-around;
+}
+.galeria img{
+	width:250px;
+	heigth:200px;
 }

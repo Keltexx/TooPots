@@ -9,20 +9,13 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
 </head>
-<body>
+<body class="cuerpoG">
 	<div layout:fragment="content">
-		<h3>Lista de actividades</h3>
-		<table class="table table-striped">
-			
-			<tbody>
-				<ul th:each="activity: ${activities}" class="galeria">
-
-					<li><a th:href="@{/activity/{activityId}(activityId=${activity.activityId})}" > 
-					<div class='img'><img th:src="${activity.photo}" ><span> <th:text="${activity.name}"> </div>
-					</td>
-				</ul>
-			</tbody>
-		</table>
+		<h3 class="titulo"> Galería</h3>
+			<ul class="galeria" th:each="activity: ${activities}" >
+				<li><a class="galeria" th:href="@{/activity/{activityId}(activityId=${activity.activityId})}" > 
+				<div><img th:src="${activity.photo}" ><span> <th:text="${activity.name}"> </div>		
+		</ul>
 
 	</div>
 </body>
