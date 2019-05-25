@@ -43,7 +43,7 @@ h1 {
 	text-align: center;
 }
 
-.galeria {
+.galeria ul{
 	width: 90%;
 	margin: auto;
 	list-style: none;
@@ -66,7 +66,7 @@ h1 {
 	text-align: left;
 }
 
-.cuerpoG {
+.galeria {
 	background: #445;
 
 }
@@ -81,9 +81,13 @@ h1 {
 	margin: 0px;
 }
 
-.galeria img {
-	width: 500px;
-	heigth: 400px;
+.im a img{
+	width: 277px;
+	height: 220px;
+
+}
+.im a p{
+	text-align:center;
 }
 
 .galeria p {

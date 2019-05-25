@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{fragments/base}">
+	layout:decorate="~{fragments/base}" >
 <head>
 <link rel="stylesheet" type="text/css" href="/css/style.css"
 	th:href="@{/css/style.css}" />
@@ -10,18 +10,18 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
 </head>
-<body class="cuerpoG">
+<body class="galeria">
 	<div layout:fragment="content">
-		<h3 class="titulo">Actividades</h3>
-		<ul class="galeria" th:each="activity: ${activities}">
-			<li><a class="galeria"
-				th:href="@{/activity/{activityId}(activityId=${activity.activityId})}">
-			</a>
-				<div>
-					<p th:text="${activity.name}"></p>
-					<img th:src="${activity.photo}">
-						
-				</div>
+		<h3 class="titulo">Galería</h3>
+		<ul >
+			<li class="im" th:each="activity: ${activities}">
+                
+                <a th:href="@{/activity/{activityId}(activityId=${activity.activityId})}">
+                    <p th:text="${activity.name}"></p>
+                    <img th:src="${activity.photo}" />
+                    
+                </a>
+            </li>
 		</ul>
 
 	</div>
