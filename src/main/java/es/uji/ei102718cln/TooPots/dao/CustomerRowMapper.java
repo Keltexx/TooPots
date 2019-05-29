@@ -17,6 +17,7 @@ public final class CustomerRowMapper implements RowMapper<Customer> {
         customer.setEmail(rs.getString("email"));
         customer.setGender(rs.getString("gender"));
         customer.setBirthDate(rs.getObject("birthDate", LocalDate.class));
+        customer.setPassword(rs.getString("password"));
         return customer;
         
     }

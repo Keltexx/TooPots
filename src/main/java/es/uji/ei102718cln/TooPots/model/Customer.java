@@ -11,6 +11,7 @@ public class Customer {
 	String gender;
 	@DateTimeFormat(iso=DateTimeFormat.ISO.DATE) 
 	LocalDate birthDate;
+	String password;
 	
 	public Customer() {}
 	
@@ -43,6 +44,13 @@ public class Customer {
 	}
 	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	@Override
 	public String toString() {

@@ -14,10 +14,10 @@
 <body>
 	<div layout:fragment="content">
 		<h2>Acceso</h2>
-		<form action="#" th:action="@{/login}" th:object="${user}"
+		<form action="#" th:action="@{/login}" th:object="${usuario}"
 			method="post">
 			<p>
-				<label>Nombre de usuario:</label> <input class="form-control" type="text"
+				<label>DNI:</label> <input class="form-control" type="text"
 					th:field="*{usuario}" />
 			<div class="error" th:if="${#fields.hasErrors('usuario')}"
 				th:errors="*{usuario}"></div>
@@ -29,7 +29,7 @@
 				th:errors="*{password}"></div>
 			</p>
 			<input type="submit" value="Acceder"   class="btn btn-info"/>
-			<a href="/registro" class="btn btn-info" role="button">Registrarse</a>
+			<a href="/register/register" th:href="@{/register/register}" class="btn btn-info" role="button">Registrarse</a>
 		</form>
 		</div>
 </body>

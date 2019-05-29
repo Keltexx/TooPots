@@ -7,6 +7,12 @@ public class Login {
 	
 	public Login() {}
 	
+	public Login(String usuario, String password, String rol) {
+		this.usuario = usuario;
+		this.password = password;
+		this.rol = rol;
+	}
+	
 	public String getUsuario() {
 		return usuario;
 	}

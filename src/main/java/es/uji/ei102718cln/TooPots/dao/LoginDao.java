@@ -18,10 +18,15 @@ public class LoginDao {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
-	public Login getLogin(String usuario, String contraseña) {
+	public void addLogin(Login login) {
+		jdbcTemplate.update("INSERT INTO Login VALUES(?, ?, ?)", login.getUsuario(), login.getPassword(),
+				login.getRol());
+	}
+	
+	public Login getLogin(String usuario, String password) {
 		try {
-			return jdbcTemplate.queryForObject("SELECT * from Login WHERE usuario=? AND contraseña=?",
-					new LoginRowMapper(), usuario, contraseña);
+			return jdbcTemplate.queryForObject("SELECT * from Login WHERE usuario=? AND password=?",
+					new LoginRowMapper(), usuario, password);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}

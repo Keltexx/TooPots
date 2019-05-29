@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/base}">
+<head>
+<link rel="stylesheet" type="text/css" href="/css/style.css"
+	th:href="@{/css/style.css}" />
+<title>TooPots</title>
+<meta charset="UTF-8" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+</head>
+<body>
+	<div layout:fragment="content">
+		<h1>Registrarse</h1>
+		<table class="table table-borderless" >
+			<thead>
+				<tr>
+					<th>Como Cliente</th>
+					<th>Como Monitor</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<th><img src="/media/customer_register.jpg" height="500" width="620"></th>
+					<th><img src="/media/monitor_register.jpg" height="500" width="620"></th>
+				</tr>
+				<tr>
+					<th><a
+						th:href="@{/customer/add}" class="btn btn-info" role="button">Registrarse</a></th>
+					<th><a
+						th:href="@{/register/register_instructor}" class="btn btn-info" role="button">Registrarse</a></th>
+				</tr>
+			</tbody>
+			</table>
+	</div>
+</body>
+</html>

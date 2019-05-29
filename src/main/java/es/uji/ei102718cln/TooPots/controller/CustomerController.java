@@ -10,18 +10,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.uji.ei102718cln.TooPots.dao.CustomerDao;
+import es.uji.ei102718cln.TooPots.dao.LoginDao;
 import es.uji.ei102718cln.TooPots.model.Customer;
+import es.uji.ei102718cln.TooPots.model.Login;
 
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
 	private CustomerDao customerDao;
+	
+	private LoginDao loginDao;
 
 	@Autowired
 	public void setCustomerDao(CustomerDao customerDao) {
 		this.customerDao = customerDao;
 	}
 
+	@Autowired
+	public void setLoginDao(LoginDao loginDao) {
+		this.loginDao = loginDao;
+	}
+	
 	@RequestMapping("/list")
 	public String listCustomers(Model model) {
 		model.addAttribute("customers", customerDao.getCustomers());
@@ -36,9 +45,11 @@ public class CustomerController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String processAddSubmit(@ModelAttribute("customer") Customer customer, BindingResult bindingResult) {
-//		if (bindingResult.hasErrors())
-//			return "customer/add";
+		if (bindingResult.hasErrors())
+			return "customer/add";
 		customerDao.addCustomer(customer);
+		Login login = new Login(customer.getNif(), customer.getPassword(), "customer");
+		loginDao.addLogin(login);
 		return "redirect:list";
 
 	}
@@ -52,10 +63,11 @@ public class CustomerController {
 	@RequestMapping(value = "/update/{nif}", method = RequestMethod.POST)
 	public String processUpdateSubmit(@PathVariable String nif, @ModelAttribute("customer") Customer customer,
 			BindingResult bindingResult) {
-		//if (bindingResult.hasErrors())
-			//return "customer/update";
+		if (bindingResult.hasErrors())
+			return "customer/update";
 
 		customerDao.updateCustomer(customer);
+
 		return "redirect:../list";
 	}
 

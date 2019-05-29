@@ -21,8 +21,8 @@ public class CustomerDao {
 	}
 
 	public void addCustomer(Customer customer) {
-		jdbcTemplate.update("INSERT INTO Customer VALUES(?, ?, ?, ?, ?)", customer.getName(), customer.getNif(),
-				customer.getEmail(), customer.getGender(), customer.getBirthDate());
+		jdbcTemplate.update("INSERT INTO Customer VALUES(?, ?, ?, ?, ?, ?)", customer.getName(), customer.getNif(),
+				customer.getEmail(), customer.getGender(), customer.getBirthDate(), customer.getPassword());
 	}
 
 	public void deleteCustomer(Customer customer) {

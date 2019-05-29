@@ -45,43 +45,43 @@ public class LoginController {
 
 	@RequestMapping("/login")
 	public String login(Model model) {
-		model.addAttribute("user", new Login());
+		model.addAttribute("usuario", new Login());
 		return "login";
 	}
 
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String checkLogin(@ModelAttribute("user") Login user,  		
+	public String checkLogin(@ModelAttribute("usuario") Login usuario,  		
 				BindingResult bindingResult, HttpSession session) {
 		LoginValidator loginValidator = new LoginValidator(); 
-		loginValidator.validate(user, bindingResult); 
+		loginValidator.validate(usuario, bindingResult); 
 		if (bindingResult.hasErrors()) {
 			return "login";
 		}
 	       // Comprova que el login siga correcte 
 		// intentant carregar les dades de l'usuari 
-		user = loginDao.getLogin(user.getUsuario(),user.getPassword()); 
-		if (user == null) {
+		usuario = loginDao.getLogin(usuario.getUsuario(),usuario.getPassword()); 
+		if (usuario == null) {
 			bindingResult.rejectValue("password", "badpw", "Contraseña incorrecta"); 
 			return "login";
 		}
 		// Autenticats correctament. 
 		// Guardem les dades de l'usuari autenticat a la sessió
-		session.setAttribute("user", user); 
+		session.setAttribute("usuario", usuario); 
 		
-		if(!session.getAttribute("nextUrl").equals(null)) {
-			String url = (String) session.getAttribute("nextUrl");
-			session.removeAttribute("nextUrl");
-			return "redirect:"+url;
-			
-		}
-		
-		switch (user.getRol()) {
-		case "cliente":
-			return "redirect:/cliente/home";
-		case "administrador":
-			return "redirect:/administrador/home.html";
+//		if(!session.getAttribute("nextUrl").equals(null)) {
+//			String url = (String) session.getAttribute("nextUrl");
+//			session.removeAttribute("nextUrl");
+//			return "redirect:"+url;
+//			
+//		}
+//		
+		switch (usuario.getRol()) {
+		case "customer":
+			return "redirect:/customer/home";
+		case "admin":
+			return "redirect:/admin/home.html";
 		case "instructor":
-			return "redirect:/instructor/home.html";
+			return "redirect:/instructor/home";
 		}
 			
 		// Torna a la pàgina principal

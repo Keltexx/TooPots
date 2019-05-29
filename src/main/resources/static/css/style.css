@@ -43,7 +43,7 @@ h1 {
 	text-align: center;
 }
 
-.galeria ul{
+.galeria .uls{
 	width: 90%;
 	margin: auto;
 	list-style: none;
@@ -82,8 +82,8 @@ h1 {
 }
 
 .im a img{
-	width: 277px;
-	height: 220px;
+	width: 377px;
+	height: 320px;
 
 }
 .im a p{
@@ -92,4 +92,9 @@ h1 {
 
 .galeria p {
 	color: white;
+}
+
+.table.table-borderless{
+	text-align:center;
+	
 }
