@@ -52,6 +52,13 @@ public class ActivityController {
 		return "activity/gallery";
 
 	}
+	
+	@RequestMapping("/gallery_global")
+	public String galleryGlobal(Model model) {
+		model.addAttribute("activities", activityDao.getActivities());
+		return "activity/gallery_global";
+
+	}
 
 	@RequestMapping("/list_user")
 	public String listUserActivities(Model model) {

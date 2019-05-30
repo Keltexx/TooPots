@@ -68,18 +68,18 @@ public class LoginController {
 		// Guardem les dades de l'usuari autenticat a la sessió
 		session.setAttribute("usuario", usuario); 
 		
-//		if(!session.getAttribute("nextUrl").equals(null)) {
-//			String url = (String) session.getAttribute("nextUrl");
-//			session.removeAttribute("nextUrl");
-//			return "redirect:"+url;
-//			
-//		}
-//		
+		if(!session.getAttribute("nextUrl").equals(null)) {
+			String url = (String) session.getAttribute("nextUrl");
+			session.removeAttribute("nextUrl");
+			return "redirect:"+url;
+			
+		}
+		
 		switch (usuario.getRol()) {
 		case "customer":
 			return "redirect:/customer/home";
 		case "admin":
-			return "redirect:/admin/home.html";
+			return "redirect:/admin/home";
 		case "instructor":
 			return "redirect:/instructor/home";
 		}

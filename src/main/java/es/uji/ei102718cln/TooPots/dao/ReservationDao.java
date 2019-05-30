@@ -61,4 +61,12 @@ public class ReservationDao {
 			return new ArrayList<Reservation>();
 		}
 	}
+	
+	public List<Reservation> getReservationsCustomer(String customerid) {
+		try {
+			return jdbcTemplate.query("SELECT * from Reservation where customerid=?", new ReservationRowMapper(), customerid);
+		} catch (EmptyResultDataAccessException e) {
+			return new ArrayList<Reservation>();
+		}
+	}
 }

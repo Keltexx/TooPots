@@ -1,0 +1,29 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+	<a class="navbar-brand" href="/customer/home">
+	
+	    <img src="/logo.png" width=95 height=70 alt="">
+  </a>
+  
+	<div class="navbar-collapse collapse">
+		<ul class="navbar-nav mr-auto">
+			
+				<li class="nav-item"><a class="nav-link" href="/"
+				th:href="@{/customer/home}">Página Principal</a></li>
+				<li class="nav-item"><a class="nav-link" href="/activity/gallery"
+				th:href="@{/activity/gallery}">Actividades</a></li>
+				<li class="nav-item"><a class="nav-link" href="/reservation/listCustomer"
+				th:href="@{/reservation/listCustomer}">Reservas</a></li>
+		</ul>
+	</div>
+	<div class="loggeduser" th:object="${session}">
+	<p th:if="*{usuario == null}">
+		No autentificado <a href="/login" th:href="@{/login}">Entrar</a>
+		
+		/ <a href="/register/register" th:href="@{/register/register}">Registrarse</a>
+	</p>
+	<p th:unless="*{usuario == null}">
+		Autenticado como <span th:text="*{usuario.usuario}"></span> <a
+			href="/logout" th:href="@{/logout}">Salir</a>
+	</p>
+</div>
+</nav>

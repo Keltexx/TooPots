@@ -9,4 +9,15 @@ public class IndexController {
 	public String index() {
 		return "index";
 	}
+	
+	@RequestMapping("/customer/home")
+	public String index_customer() {
+		return "customer/home";
+	}
+	
+	@RequestMapping("/instructor/home")
+	public String index_instructor() {
+		return "instructor/home";
+	}
+	
 }

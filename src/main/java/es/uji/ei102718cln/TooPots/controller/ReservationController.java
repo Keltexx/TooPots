@@ -47,6 +47,14 @@ public class ReservationController {
 	   
 	   }
 	   
+	   @RequestMapping("/listCustomer")
+	   public String listReservationCustomer(HttpSession session, Model model) {
+		   Login usuario = (Login)session.getAttribute("usuario");
+	      model.addAttribute("reservationsCustomer", reservationDao.getReservationsCustomer(usuario.getUsuario()));
+	      return "reservation/listCustomer";
+	   
+	   }
+	   
 		
 		@RequestMapping(value="/update/{reservationID}", method = RequestMethod.GET) 
 		public String editReservation(Model model, @PathVariable String reservationID) { 
@@ -80,15 +88,21 @@ public class ReservationController {
 		}
 		
 		@RequestMapping(value = "/add", method = RequestMethod.POST)
-		public String processAddReservationActivitySubmit(HttpSession session, @ModelAttribute("reservation") Reservation reservation, @RequestParam(name = "numberOfPersons") int numberOfPersons,
+		public String processAddReservationActivitySubmit(Model model,HttpSession session, @ModelAttribute("reservation") Reservation reservation, @RequestParam(name = "numberOfPersons") int numberOfPersons,
 				BindingResult bindingResult) {
+			if (session.getAttribute("usuario") == null) {
+				model.addAttribute("usuario", new Login());
+				session.setAttribute("nextUrl", "activity/gallery");
+				return "login";
+			}
 			if (bindingResult.hasErrors())
 				return "reservation/add";
+			
 			reservation.setBookingDate(LocalDate.now());
 			reservation.setNumberOfPersons(numberOfPersons);
 			reservation.setTotalPrice(numberOfPersons * reservation.getPriceByPerson());
-//			Login usuario = (Login) session.getAttribute("user");
-//			reservation.setCustomerID(usuario.getUsuario());
+			Login usuario = (Login) session.getAttribute("usuario");
+			reservation.setCustomerID(usuario.getUsuario());
 			//reserva.setState("pendiente");
 			reservationDao.addReservation(reservation);
 			return "redirect:../reservation/list";

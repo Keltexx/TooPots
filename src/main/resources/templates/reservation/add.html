@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{fragments/base}">
+	layout:decorate="~{fragments/base_customer}">
 <head>
 <link rel="stylesheet" type="text/css" href="/css/style.css"
 	th:href="@{/css/style.css}" />
@@ -18,21 +18,21 @@
 		<table>
 		
 			<tr>
-				<td><label>Fecha de reserva</label></td>
-				<td><input type="date" th:field="*{bookingDate}"  class="form-control" required/></td>
+				
+				<td><input type="hidden" th:field="*{bookingDate}"  class="form-control"  /></td>
 				
 			</tr>
 			<tr>
-				<td><label>Fecha de actividad</label></td>
-				<td><input type="date" th:field="*{activityDate}"  class="form-control" required/></td>
+				
+				<td><input type="hidden" th:field="*{activityDate}"  class="form-control"  /></td>
 			</tr>
 			<tr>
-				<td><label>Precio por persona</label></td>
-				<td><input type="number" th:field="*{priceByPerson}"  class="form-control" required/></td>
+				
+				<td><input type="hidden" th:field="*{priceByPerson}"  class="form-control"  /></td>
 			</tr>
 			<tr>
-				<td><label>Precio total</label></td>
-				<td><input type="number" th:field="*{totalPrice}"  class="form-control" required/></td>
+				
+				<td><input type="hidden" th:field="*{totalPrice}"  class="form-control"  /></td>
 			</tr>
 			<tr>
 			
@@ -42,13 +42,10 @@
 			</tr>
 			
 			<tr>
-				<td><label>Actividad</label></td>
-				<td><input type="number" th:field="*{activityID}"  class="form-control" required/></td>
+				
+				<td><input type="hidden" th:field="*{activityID}"  class="form-control"  /></td>
 			</tr>
-			<tr>
-				<td><label>NIF cliente</label></td>
-				<td><input type="text" th:field="*{customerID}"  class="form-control" required/></td>
-			</tr>
+
 			<tr>
 			
 				<td colspan="2"><input type="submit" value="Añadir reserva" class="btn btn-info" role="button" /></td>
