@@ -98,3 +98,17 @@ h1 {
 	text-align:center;
 	
 }
+.actividad tr{
+	
+	text-align: center;
+	
+}
+.actividad h3{
+	text-align: center;
+}
+.actIm{
+	max-width: 600px;
+	max-height: 450px;
+	margin:10px auto;
+	display:block;
+}

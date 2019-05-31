@@ -9,37 +9,34 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
 </head>
-<body>
+<body class="actividad">
 	<div layout:fragment="content">
 		<h3 th:text="${activity.name}"></h3>
+		<img class="actIm"th:src="${activity.photo}"/>
 		<table class="table table-striped">
-			<thead>
 				<tr>
-					
-					<th>Nombre</th>
-					<th>Lugar</th>
-					<th>Horario</th>
-					<th>Duración</th>
-					<th>Descripción</th>
-					<th>Precio por persona</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td th:text="${activity.name}"></td>
+					<th>Lugar: </th>
 					<td th:text="${activity.place}"></td>
-					<td th:text="${activity.schedule}"></td>
-					<td th:text="${activity.duration}"></td>
-					<td th:text="${activity.description}"></td>
-					<td th:text="${activity.priceByPerson}"></td>
-					<td><img th:src="${activity.photo}" style="max-width: 300px; max-height: 300px"/></td>
-					<td><a
-						th:href="@{/reservation/add/{activityId}(activityId=${activity.activityId})}" class="btn btn-info" role="button">Reserva</a>
-					</td>
 				</tr>
-			</tbody>
+				<tr>
+					<th>Horario: </th>
+					<td th:text="${activity.schedule}"></td>
+				</tr>
+				<tr>
+					<th>Duración: </th>
+					<td th:text="${activity.duration}"></td>
+				</tr>
+				<tr>
+					<th>Descripción: </th>
+					<td th:text="${activity.description}"></td>
+				</tr>
+				<tr>
+					<th>Precio por persona: </th>
+					<td th:text="${activity.priceByPerson}"></td>
+				</tr>
+				
 		</table>
-
+		<center><a th:href="@{/reservation/add/{activityId}(activityId=${activity.activityId})}" class="btn btn-info" role="button">Reserva</a></center>
 	</div>
 </body>
 </html>
