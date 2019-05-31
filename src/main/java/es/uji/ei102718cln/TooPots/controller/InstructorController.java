@@ -10,19 +10,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.uji.ei102718cln.TooPots.dao.InstructorDao;
+import es.uji.ei102718cln.TooPots.dao.LoginDao;
 import es.uji.ei102718cln.TooPots.model.Instructor;
+import es.uji.ei102718cln.TooPots.model.Login;
 
 @Controller
 @RequestMapping("/instructor")
 public class InstructorController {
 
 	private InstructorDao instructorDao;
-
+	private LoginDao loginDao;
+	
 	@Autowired
 	public void setInstructorDao(InstructorDao instructorDao) {
 		this.instructorDao = instructorDao;
 	}
 
+	@Autowired
+	public void setLoginDao(LoginDao loginDao) {
+		this.loginDao = loginDao;
+	}
+	
 	@RequestMapping("/list")
 	public String listInstructors(Model model) {
 		model.addAttribute("instructors", instructorDao.getInstructors());
@@ -40,7 +48,10 @@ public class InstructorController {
 	public String processAddSubmit(@ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult) {
 		if (bindingResult.hasErrors())
 			return "instructor/add";
+		instructor.setState("pending");
 		instructorDao.addInstructor(instructor);
+		Login login = new Login(instructor.getNif(), instructor.getPassword(), "instructor");
+		loginDao.addLogin(login);
 		return "redirect:list";
 
 	}

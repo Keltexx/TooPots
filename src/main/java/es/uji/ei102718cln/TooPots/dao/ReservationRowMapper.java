@@ -12,7 +12,7 @@ import es.uji.ei102718cln.TooPots.model.*;
 public final class ReservationRowMapper implements RowMapper<Reservation> {
     public Reservation mapRow(ResultSet rs, int rowNum) throws SQLException {
         Reservation reservation = new Reservation();
-        reservation.setActivityID(rs.getInt("activityID"));
+        reservation.setActivityID(rs.getInt("activityId"));
         reservation.setActivityDate(rs.getObject("activityDate", LocalDate.class));
         reservation.setBookingDate(rs.getObject("bookingDate", LocalDate.class));
         reservation.setCustomerID(rs.getString("customerID"));

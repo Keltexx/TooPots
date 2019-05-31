@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import es.uji.ei102718cln.TooPots.dao.ActivityDao;
 
 import es.uji.ei102718cln.TooPots.model.Activity;
+import es.uji.ei102718cln.TooPots.model.Login;
 
 @Controller
 @RequestMapping("/activity")
@@ -68,7 +71,20 @@ public class ActivityController {
 	}
 
 	@RequestMapping(value = "/add")
-	public String addActivity(Model model) {
+	public String addActivity(HttpSession session, Model model) {
+		Login login = (Login) session.getAttribute("usuario");
+		
+		if (login == null) {
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "activity/gallery");
+			return "login";
+		}
+		
+		if(!login.getRol().equals("instructor")) {
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "activity/gallery");
+			return "login";
+		}
 		model.addAttribute("activity", new Activity());
 		return "activity/add";
 	}
@@ -83,8 +99,23 @@ public class ActivityController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String processAddSubmit(@ModelAttribute("activity") Activity activity,
+	public String processAddSubmit(HttpSession session, Model model, @ModelAttribute("activity") Activity activity,
 			@RequestParam(name = "file") MultipartFile file, BindingResult bindingResult) throws IOException {
+		
+		Login login = (Login) session.getAttribute("usuario");
+		
+		if (login == null) {
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "activity/gallery");
+			return "login";
+		}
+		
+		if(!login.getRol().equals("instructor")) {
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "activity/gallery");
+			return "login";
+		}
+		
 		ActivityValidator activityValidator = new ActivityValidator();
 		activityValidator.validate(activity, bindingResult);
 
@@ -123,7 +154,20 @@ public class ActivityController {
 	}
 
 	@RequestMapping(value = "/update/{activityid}", method = RequestMethod.GET)
-	public String editActivity(Model model, @PathVariable String activityid) {
+	public String editActivity(HttpSession session,Model model, @PathVariable String activityid) {
+		Login login = (Login) session.getAttribute("usuario");
+		
+		if (login == null) {
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "activity/gallery");
+			return "login";
+		}
+		
+		if(!login.getRol().equals("instructor")) {
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "activity/gallery");
+			return "login";
+		}
 		model.addAttribute("activity", activityDao.getActivity(activityid));
 		return "activity/update";
 	}

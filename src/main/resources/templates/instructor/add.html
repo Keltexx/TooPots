@@ -10,8 +10,9 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
 </head>
 <body>
+<div layout:fragment="content">
 	<h2>Nuevo monitor</h2>
-		<div layout:fragment="content">
+		
 	<form action="#" th:action="@{/instructor/add}"
 		th:object="${instructor}" method="post">
 		<table>
@@ -19,6 +20,11 @@
 				<td><label>NIF</label></td>
 				<td><input type="text" th:field="*{nif}" class="form-control"  /></td>
 				<td th:if="${#fields.hasErrors('nif')}" th:errors="*{nif}"  class="error"></td>
+			</tr>
+			<tr>
+				<td><label>Contraseña</label></td>
+				<td><input type="password" th:field="*{password}"  class="form-control" /></td>
+								
 			</tr>
 			<tr>
 				<td><label>Nombre</label></td>

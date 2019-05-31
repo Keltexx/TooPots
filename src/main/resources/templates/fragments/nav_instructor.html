@@ -8,15 +8,14 @@
 		<ul class="navbar-nav mr-auto">
 			
 				<li class="nav-item"><a class="nav-link" href="/instructor/home"
-				th:href="@{/}">Página Principal</a></li>
+				th:href="@{/instructor/home}">Página Principal</a></li>
 				<li class="nav-item"><a class="nav-link" href="/activity/gallery"
 				th:href="@{/activity/gallery}">Actividades</a></li>
-				<li class="nav-item"><a class="nav-link" href="/customer/list"
-				th:href="@{/customer/list}">Clientes</a></li>
-				<li class="nav-item"><a class="nav-link" href="/instructor/list"
-				th:href="@{/instructor/list}">Monitores</a></li>
 				<li class="nav-item"><a class="nav-link" href="/activity/list"
 				th:href="@{/activity/list}">Gestión de actividades</a></li>
+				<li class="nav-item"><a class="nav-link" href="/instructor/requests"
+				th:href="@{/instructor/requests}">Peticiones</a></li>
+				
 		</ul>
 	</div>
 	<div class="loggeduser" th:object="${session}">

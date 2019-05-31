@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<!-- Required meta tags -->
+<meta charset="UTF-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+
+<!-- app css  -->
+<link th:href="@{/css/style.css}" href="/css/style.css"
+	rel="stylesheet" />
+
+<title layout:title-pattern="$CONTENT_TITLE"></title>
+</head>
+
+<body class="container-fluid" style="
+    padding-top: 100px;">
+	<header class="page-header">
+	</header>
+	<div th:replace="fragments/nav_instructor"  ></div>
+	
+	<div layout:fragment="content"></div>
+	
+	<footer class="footer">
+		<hr>
+		<p class="text-muted">TooPots - EI102718cln</p>
+	</footer>
+</body>
+</html>

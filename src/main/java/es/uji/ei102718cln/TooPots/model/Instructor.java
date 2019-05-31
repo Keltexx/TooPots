@@ -10,6 +10,8 @@ public class Instructor {
 	String address;
 	String bankAccount;
 	String photo;
+	String password;
+	String state;
 	//ArrayList<String> certificates;
 	
 	public String getName() {
@@ -17,6 +19,13 @@ public class Instructor {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public String getNif() {
 		return nif;
@@ -48,6 +57,13 @@ public class Instructor {
 	}
 	public void setPhoto(String photo) {
 		this.photo = photo;
+	}
+	
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
 	}
 	
 //	public ArrayList<String> getCertificates() {
