@@ -4,12 +4,22 @@ public class Request {
 	int requestID;
 	String state;
 	String certificateAttached;
+	String instructorID;
+	
 	public int getRequestID() {
 		return requestID;
 	}
 	public void setRequestID(int requestID) {
 		this.requestID = requestID;
 	}
+	
+	public String getInstructorID() {
+		return instructorID;
+	}
+	public void setInstructorID(String instructorID) {
+		this.instructorID = instructorID;
+	}
+	
 	public String getState() {
 		return state;
 	}

@@ -1,5 +1,7 @@
 package es.uji.ei102718cln.TooPots.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.uji.ei102718cln.TooPots.dao.InstructorDao;
 import es.uji.ei102718cln.TooPots.dao.LoginDao;
+import es.uji.ei102718cln.TooPots.dao.RequestDao;
 import es.uji.ei102718cln.TooPots.model.Instructor;
 import es.uji.ei102718cln.TooPots.model.Login;
 
@@ -20,7 +23,8 @@ public class InstructorController {
 
 	private InstructorDao instructorDao;
 	private LoginDao loginDao;
-	
+	private RequestDao requestDao;
+
 	@Autowired
 	public void setInstructorDao(InstructorDao instructorDao) {
 		this.instructorDao = instructorDao;
@@ -30,11 +34,24 @@ public class InstructorController {
 	public void setLoginDao(LoginDao loginDao) {
 		this.loginDao = loginDao;
 	}
-	
+
+	@Autowired
+	public void setRequestDao(RequestDao requestDao) {
+		this.requestDao = requestDao;
+	}
+
 	@RequestMapping("/list")
 	public String listInstructors(Model model) {
 		model.addAttribute("instructors", instructorDao.getInstructors());
 		return "instructor/list";
+
+	}
+
+	@RequestMapping("/requests")
+	public String listRequestsInstructor(HttpSession session, Model model) {
+		Login usuario = (Login) session.getAttribute("usuario");
+		model.addAttribute("requestsInstructor", requestDao.getRequestsInstructor(usuario.getUsuario()));
+		return "instructor/requests";
 
 	}
 

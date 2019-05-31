@@ -81,7 +81,21 @@ public class ReservationController {
 		
 
 		@RequestMapping(value = "/add/{activityId}" )
-		public String addReservationActivity(Model model, @PathVariable String activityId) {
+		public String addReservationActivity(HttpSession session,Model model, @PathVariable String activityId) {
+			Login login = (Login) session.getAttribute("usuario");
+			
+			if (login == null) {
+				model.addAttribute("usuario", new Login());
+				session.setAttribute("nextUrl", "activity/gallery_instructor");
+				return "login";
+			}
+			
+			if(!login.getRol().equals("customer")) {
+				model.addAttribute("usuario", new Login());
+				session.setAttribute("nextUrl", "activity/gallery_instructor");
+				return "login";
+			}
+			
 			Activity activity = activityDao.getActivity(activityId);
 			model.addAttribute("reservation", new Reservation(activity.getSchedule(),activity.getPriceByPerson(), activity.getActivityId()));
 			return "/reservation/add";
