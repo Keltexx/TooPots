@@ -15,6 +15,7 @@ public class Reservation {
 	int numberOfPersons;
 	int activityID;
 	String customerID;
+	String state;
 	
 	public Reservation() {
 		
@@ -74,13 +75,20 @@ public class Reservation {
 	public String getCustomerID() {
 		return customerID;
 	}
+	
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
 
 	@Override
 	public String toString() {
 		return "Reservation [reservationID=" + reservationID + ", bookingDate=" + bookingDate + ", activityDate="
 				+ activityDate + ", priceByPerson=" + priceByPerson + ", totalPrice=" + totalPrice
 				+ ", numberOfPersons=" + numberOfPersons + ", activityID=" + activityID + ", customerID=" + customerID
-				+ "]";
+				+ ", state=" + state + "]";
 	}
 	
 }

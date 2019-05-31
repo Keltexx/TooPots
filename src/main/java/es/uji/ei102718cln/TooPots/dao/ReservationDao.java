@@ -23,10 +23,10 @@ public class ReservationDao {
 
 	public void addReservation(Reservation reservation) {
 		jdbcTemplate.update(
-				"INSERT INTO Reservation(bookingdate, activitydate, pricebyperson, totalprice, numberofpersons, activityid, customerid) VALUES(?, ?, ?, ?, ?, ? , ?  )",
+				"INSERT INTO Reservation(bookingdate, activitydate, pricebyperson, totalprice, numberofpersons, activityid, customerid, state) VALUES(?, ?, ?, ?, ?, ? , ? , ? )",
 				reservation.getBookingDate(), reservation.getActivityDate(), reservation.getPriceByPerson(),
 				reservation.getTotalPrice(), reservation.getNumberOfPersons(), reservation.getActivityID(),
-				reservation.getCustomerID());
+				reservation.getCustomerID(), reservation.getState());
 	}
 
 	public void deleteReservation(Reservation reservation) {
@@ -68,5 +68,10 @@ public class ReservationDao {
 		} catch (EmptyResultDataAccessException e) {
 			return new ArrayList<Reservation>();
 		}
+	}
+	
+	public void updateState(String reservationID) {
+		jdbcTemplate.update("UPDATE Reservation SET state=? where reservationID=?",
+				"payed", Integer.valueOf(reservationID));
 	}
 }
