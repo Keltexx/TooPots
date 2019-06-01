@@ -23,7 +23,7 @@ public class InstructorController {
 
 	private InstructorDao instructorDao;
 	private LoginDao loginDao;
-	private RequestDao requestDao;
+
 
 	@Autowired
 	public void setInstructorDao(InstructorDao instructorDao) {
@@ -35,10 +35,6 @@ public class InstructorController {
 		this.loginDao = loginDao;
 	}
 
-	@Autowired
-	public void setRequestDao(RequestDao requestDao) {
-		this.requestDao = requestDao;
-	}
 
 	@RequestMapping("/list")
 	public String listInstructors(Model model) {
@@ -47,13 +43,7 @@ public class InstructorController {
 
 	}
 
-	@RequestMapping("/requests")
-	public String listRequestsInstructor(HttpSession session, Model model) {
-		Login usuario = (Login) session.getAttribute("usuario");
-		model.addAttribute("requestsInstructor", requestDao.getRequestsInstructor(usuario.getUsuario()));
-		return "instructor/requests";
 
-	}
 
 	@RequestMapping(value = "/add")
 	public String addInstructor(Model model) {

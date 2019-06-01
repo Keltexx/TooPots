@@ -1,3 +1,9 @@
+div.content {
+	
+	margin-left:100px;
+	margin-right: 100px;
+}
+
 .error {
 	color: red;
 	font-size: 80%
@@ -58,12 +64,17 @@ h1 {
 
 .footer {
 	position: absolute;
-	left: 1;
+	left: 0;
 	bottom: 1;
 	width: 100%;
-	background-color: white;
+	background-color: #b5d1e6;
 	color: white;
 	text-align: left;
+ 
+}
+
+.footer .text-muted {
+	margin-left:50px;
 }
 
 .galeria {
@@ -90,7 +101,7 @@ h1 {
 	text-align:center;
 }
 
-.galeria p {
+.galeria .titulos   {
 	color: white;
 }
 

@@ -23,8 +23,8 @@ public class RequestDao {
 	}
 	
 	public void addRequest(Request request) {
-		jdbcTemplate.update("INSERT INTO Request VALUES(?, ?)",
-                request.getState(),request.getState());
+		jdbcTemplate.update("INSERT INTO Request(state,certificateatached,instructorid) VALUES(?, ?,?)",
+                request.getState(),request.getCertificateAttached(), request.getInstructorID());
 	}
 	 public void deleteRequest(Request request) {
 	        jdbcTemplate.update("DELETE from Request where name=?", request.getRequestID());
