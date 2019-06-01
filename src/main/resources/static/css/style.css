@@ -1,7 +1,16 @@
+h1 { font-family: monospace; font-size: 33px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 36.3px; } 
+h3 { font-family: monospace; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 15.4px; } 
+p { font-family: monospace; font-size: 25px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px; } 
+a{font-family: monospace; font-size: 20px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px;}
+blockquote { font-family: monospace; font-size: 21px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 30px; } 
+pre { font-family: monospace; font-size: 13px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 18.5714px; }
 div.content {
 	
 	margin-left:100px;
 	margin-right: 100px;
+}
+font-family{
+	font-family:
 }
 
 .error {
@@ -118,8 +127,8 @@ h1 {
 	text-align: center;
 }
 .actIm{
-	max-width: 600px;
-	max-height: 450px;
+	width: 600px;
+	height: 450px;
 	margin:10px auto;
 	display:block;
 }
@@ -133,28 +142,32 @@ h1 {
 
 }
 .carousel{
-	max-height: 80%;
+	height: 600px;
 	max-width:	80%;
 	
+}
+.carousel img{
+	height:600px
 }
 .indexList img{
 	width: 50px;
 	height: 50px;
 }
 .indexList ul{
+	margin-top: 100px;
 	list-style: none;
 	text-align: center;
-	 width: 250px;
-  height: 350px;
-  padding: 35px;
-  border: 1px solid grey;
-	background-color: solid grey;
-	color:#FFFFFF;
-	background-color:#356AA0;
+	width: 250px;
+	height: 350px;
+	padding: 30px;
 	
+	
+	color:#FFFFFF;
+	background-color:#DAEEF2;
+
 }
 .indexList ul a{
-	color:	#FFFFFF;
+	color:	#054C60;
 }
 
 
