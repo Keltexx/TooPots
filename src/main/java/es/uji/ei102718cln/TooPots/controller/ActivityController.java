@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import es.uji.ei102718cln.TooPots.dao.ActivityDao;
-
+import es.uji.ei102718cln.TooPots.dao.InstructorDao;
 import es.uji.ei102718cln.TooPots.model.Activity;
 import es.uji.ei102718cln.TooPots.model.Login;
 
@@ -32,11 +32,19 @@ import es.uji.ei102718cln.TooPots.model.Login;
 public class ActivityController {
 
 	private ActivityDao activityDao;
+	
+	private InstructorDao instructorDao;
 
 	@Autowired
 	public void setActivityDao(ActivityDao activityDao) {
 		this.activityDao = activityDao;
 	}
+	
+	@Autowired
+	public void setInstructorDao(InstructorDao instructorDao) {
+		this.instructorDao = instructorDao;
+	}
+	
 	@RequestMapping("/activity")
 	public String listActivity(Model model) {
 		model.addAttribute("activities", activityDao.getActivities());
@@ -44,7 +52,24 @@ public class ActivityController {
 
 	}
 	@RequestMapping("/list")
-	public String listActivities(Model model) {
+	public String listActivities(HttpSession session, Model model) {
+		Login login = (Login) session.getAttribute("usuario");
+		
+		if (login == null) {
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "activity/gallery");
+			return "login";
+		}
+		
+		if(!login.getRol().equals("instructor")) {
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "activity/gallery");
+			return "login";
+		}
+		if(instructorDao.getInstructor(login.getUsuario()).getState().equals("pending"))
+			return "redirect:/request/requests";
+		
+		
 		model.addAttribute("activities", activityDao.getActivities());
 		return "activity/list";
 

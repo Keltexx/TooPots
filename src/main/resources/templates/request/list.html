@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{fragments/base_instructor}">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/base_admin}">
 <head>
 <link rel="stylesheet" type="text/css" href="/css/style.css"
 	th:href="@{/css/style.css}" />
@@ -12,20 +13,24 @@
 <body>
 	<div layout:fragment="content">
 		<h1>Lista de peticiones</h1>
-		<a href="add" class="btn btn-info" role="button">Añadir
-			petición</a>
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>ID</th>
+					<th>Monitor</th>
 					<th>Estado</th>
 
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="request: ${requestsInstructor}">
-					<td th:text="${request.requestID}"></td>
+				<tr th:each="request: ${requests}">
+					<td th:text="${request.instructorID}"></td>
 					<td th:text="${request.state}"></td>
+					<td><a
+						th:href="@{/request/accept/{requestID}(requestID=${request.requestID})}"
+						class="btn btn-info" role="button">Aceptar</a></td>
+					<td><a
+						th:href="@{/request/reject/{requestID}(requestID=${request.requestID})}"
+						class="btn btn-info" role="button">Rechazar</a>
 				</tr>
 			</tbody>
 		</table>

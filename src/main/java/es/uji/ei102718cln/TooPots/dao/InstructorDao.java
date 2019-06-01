@@ -64,4 +64,14 @@ public class InstructorDao {
 			return new ArrayList<Instructor>();
 		}
 	}
+	
+	public void updateInstructorStateAccept(String nif) {
+		jdbcTemplate.update("UPDATE instructor SET state=? where nif=?",
+				"accepted", nif);
+	}
+	
+	public void updateInstructorStateReject(String nif) {
+		jdbcTemplate.update("UPDATE instructor SET state=? where nif=?",
+				"rejected", nif);
+	}
 }

@@ -20,4 +20,9 @@ public class IndexController {
 		return "instructor/home";
 	}
 	
+	@RequestMapping("/admin/home")
+	public String index_admin() {
+		return "admin/home";
+	}
+	
 }

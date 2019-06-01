@@ -85,4 +85,15 @@ public class InstructorController {
 		return "redirect:../list";
 	}
 
+	@RequestMapping(value="/accept/{nif}")
+	public String processAccept(@PathVariable String nif) {
+           instructorDao.updateInstructorStateAccept(nif);
+           return "redirect:../list"; 
+	}
+	
+	@RequestMapping(value="/reject/{nif}")
+	public String processReject(@PathVariable String nif) {
+           instructorDao.updateInstructorStateReject(nif);
+           return "redirect:../list"; 
+	}
 }

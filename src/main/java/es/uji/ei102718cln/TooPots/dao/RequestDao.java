@@ -68,4 +68,14 @@ public class RequestDao {
 	    	}
 	    	
 	    }
+	    
+		public void updateRequestStateAccept(String requestID) {
+			jdbcTemplate.update("UPDATE request SET state=? where requestid=?",
+					"accepted", Integer.valueOf(requestID));
+		}
+		
+		public void updateRequestStateReject(String requestID) {
+			jdbcTemplate.update("UPDATE request SET state=? where requestid=?",
+					"rejected", Integer.valueOf(requestID));
+		}
 }

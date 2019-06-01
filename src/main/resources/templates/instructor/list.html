@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{fragments/base}">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/base_admin}">
 <head>
 <link rel="stylesheet" type="text/css" href="/css/style.css"
 	th:href="@{/css/style.css}" />
@@ -10,7 +11,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
 </head>
 <body>
-		<div layout:fragment="content">
+	<div layout:fragment="content">
 		<h1>Lista de monitores</h1>
 		<table class="table table-striped">
 			<thead>
@@ -20,6 +21,8 @@
 					<th>Correo</th>
 					<th>Dirección</th>
 					<th>Cuenta Bancaria</th>
+					
+					<th>Estado</th>
 					<th>Foto</th>
 				</tr>
 			</thead>
@@ -30,18 +33,25 @@
 					<td th:text="${instructor.email}"></td>
 					<td th:text="${instructor.address}"></td>
 					<td th:text="${instructor.bankAccount}"></td>
+					<td th:text="${instructor.state}"></td>
 					<td></td>
+					
 					<td><a
-						th:href="@{/instructor/update/{nif}(nif=${instructor.nif})}" class="btn btn-info" role="button">Edita</a>
-					</td>
+						th:href="@{/instructor/update/{nif}(nif=${instructor.nif})}"
+						class="btn btn-info" role="button">Edita</a></td>
 					<td><a
-						th:href="@{/instructor/delete/{nif}(nif=${instructor.nif})}" class="btn btn-info" role="button">Borra</a>
-					</td>
+						th:href="@{/instructor/delete/{nif}(nif=${instructor.nif})}"
+						class="btn btn-info" role="button">Borra</a></td>
+ 					<td><a
+						th:href="@{/instructor/accept/{nif}(nif=${instructor.nif})}"
+						class="btn btn-info" role="button">Aceptar</a></td>
+					<td><a
+						th:href="@{/instructor/reject/{nif}(nif=${instructor.nif})}"
+						class="btn btn-info" role="button">Rechazar</a></td>
 				</tr>
 			</tbody>
 		</table>
-		<a href="add" class="btn btn-info" role="button">Añadir
-			Monitor</a>
+		<a href="add" class="btn btn-info" role="button">Añadir Monitor</a>
 	</div>
 </body>
 </html>

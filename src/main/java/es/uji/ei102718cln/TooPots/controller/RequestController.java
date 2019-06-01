@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,10 +34,28 @@ public class RequestController {
 		this.requestDao = requestDao;
 	}
 
+	@RequestMapping("/list")
+	public String listRequests(Model model) {
+		model.addAttribute("requests", requestDao.getRequests());
+		return "request/list";
+
+	}
+	
 	@RequestMapping("/requests")
 	public String listRequestsInstructor(HttpSession session, Model model) {
-		Login usuario = (Login) session.getAttribute("usuario");
-		model.addAttribute("requestsInstructor", requestDao.getRequestsInstructor(usuario.getUsuario()));
+		Login login = (Login) session.getAttribute("usuario");
+		if (login == null) {
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "request/requests");
+			return "login";
+		}
+		
+		if(!login.getRol().equals("instructor")) {
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "request/requests");
+			return "login";
+		}
+		model.addAttribute("requestsInstructor", requestDao.getRequestsInstructor(login.getUsuario()));
 		return "request/requests";
 
 	}
@@ -115,10 +134,25 @@ public class RequestController {
 
 		request.setCertificateAttached("/media/" + nombre);
 		if (bindingResult.hasErrors())
-			return "activity/add";
+			return "request/add";
+		
+		request.setInstructorID(login.getUsuario());
+		request.setState("pending");
 
 		requestDao.addRequest(request);
-		return "redirect:list";
+		return "redirect:requests";
 
+	}
+	
+	@RequestMapping(value="/accept/{requestID}")
+	public String processAccept(@PathVariable String requestID) {
+		requestDao.updateRequestStateAccept(requestID);
+		return "redirect:../list"; 
+	}
+	
+	@RequestMapping(value="/reject/{requestID}")
+	public String processReject(@PathVariable String requestID) {
+           requestDao.updateRequestStateReject(requestID);
+           return "redirect:../list"; 
 	}
 }
