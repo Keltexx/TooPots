@@ -94,6 +94,13 @@ public class ActivityController {
 		return "activity/gallery_instructor";
 
 	}
+	
+	@RequestMapping("/gallery_admin")
+	public String galleryAdmin(Model model) {
+		model.addAttribute("activities", activityDao.getActivities());
+		return "activity/gallery_admin";
+
+	}
 
 	@RequestMapping("/list_user")
 	public String listUserActivities(Model model) {

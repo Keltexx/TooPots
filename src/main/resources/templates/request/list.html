@@ -18,7 +18,7 @@
 				<tr>
 					<th>Monitor</th>
 					<th>Estado</th>
-
+					<th>Documento</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -26,11 +26,14 @@
 					<td th:text="${request.instructorID}"></td>
 					<td th:text="${request.state}"></td>
 					<td><a
+						th:href="${request.certificateAttached}"
+						class="btn btn-info" role="button">Abrir</a></td>
+					<td><a
 						th:href="@{/request/accept/{requestID}(requestID=${request.requestID})}"
-						class="btn btn-info" role="button">Aceptar</a></td>
+						class="btn btn-warning" role="button">Aceptar</a></td>
 					<td><a
 						th:href="@{/request/reject/{requestID}(requestID=${request.requestID})}"
-						class="btn btn-info" role="button">Rechazar</a>
+						class="btn btn-danger" role="button">Rechazar</a>
 				</tr>
 			</tbody>
 		</table>
