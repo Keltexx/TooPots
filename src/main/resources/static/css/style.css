@@ -123,3 +123,38 @@ h1 {
 	margin:10px auto;
 	display:block;
 }
+.carousel-inner img {
+    width: 80%;
+
+}
+
+.carousel-inner{
+
+
+}
+.carousel{
+	max-height: 80%;
+	max-width:	80%;
+	
+}
+.indexList img{
+	width: 50px;
+	height: 50px;
+}
+.indexList ul{
+	list-style: none;
+	text-align: center;
+	 width: 250px;
+  height: 350px;
+  padding: 35px;
+  border: 1px solid grey;
+	background-color: solid grey;
+	color:#FFFFFF;
+	background-color:#356AA0;
+	
+}
+.indexList ul a{
+	color:	#FFFFFF;
+}
+
+

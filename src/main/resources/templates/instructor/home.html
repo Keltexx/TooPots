@@ -1,18 +1,105 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{fragments/base_instructor}">
+	layout:decorate="~{fragments/base}">
 <head>
 <link rel="stylesheet" type="text/css" href="/css/style.css"
 	th:href="@{/css/style.css}" />
 <title>TooPots</title>
 <meta charset="UTF-8" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 </head>
 <body>
+	
 	<div layout:fragment="content">
+		<!--HOMEPAGE INICIAL
 		<img src="/media/home_pp.png" class="img-fluid" alt="Responsive image">
+		
+		-->
+		<center>
+		<div id="miCarrusel" class="carousel slide" data-ride="carousel">
+		  <ol class="carousel-indicators">
+	           <li th:each="activity,iterstat: ${activities}" 
+	               data-target="#miCarrusel"
+	               th:attr="data-slide-to=${iterstat.index}"
+	               th:class="${iterstat.index}== 0  ? 'active':''"></li>
+	      </ol>
+		  <div class="carousel-inner">
+	           <div th:each="activity,iterstat: ${activities}" th:class=
+	            "${iterstat.index}==0 ? 'carousel-item active':'carousel-item'">
+	               	<img th:src="@{${activity.photo}}" class="d-block w-100"> 
+					<div class="carousel-caption">
+						<h1 th:text="${activity.place}"></h1>
+						<p th:text="${activity.description}"></p>
+						
+					</div>
+	           </div>
+	       </div>
+	
+		  <a class="carousel-control-prev" href="#miCarrusel" 
+		     role="button" data-slide="prev">
+		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		    <span class="sr-only">Previous</span>
+		  </a>
+		  <a class="carousel-control-next" href="#miCarrusel" 
+		     role="button" data-slide="next">
+		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		    <span class="sr-only">Next</span>
+		  </a>
+		</div>
+		<div class="index_medio">
+			<table class="indexTable">
+				<tr class="indexList">
+					<td>
+						<ul>
+							<a href="index.html">
+							<li><img src="/media/icons/biking.png"></li>
+							<li><h2>CICLISMO</h2></li>
+							<li>Si lo que deseas es disfrutar con la familia o amigos
+							de una escapada en bici junto a mas gente, sin duda, esta es tu
+							mejor opción</li>
+							
+						</ul>
+					</td>
+					<td>
+						<ul>
+							<a href="index.html">
+							<li><img src="/media/icons/canoe.png"></li>
+							<li><h2>RAFTING</h2></li>
+							<li>Si lo que deseas es disfrutar de un apasionante descenso por un rio,
+							con un equipo a tu medida y con gente de tu edad, deberías mirar la siguiente oferta</li>
+							
+						</ul>
+					</td>
+					<td>
+						<ul>
+							<a href="index.html">
+							<li><img src="/media/icons/climbing.png"></li>
+							<li><h2>ESCALADA</h2></li>
+							<li>Tenemos una amplía oferta de escalada en nuestra plataforma, pero si lo 
+							que deseas es iniciarte en este mundo, tenemos una actividad a tu medida</li>
+							
+						</ul>
+					</td>
+					<td>
+						<ul>
+							<a href="index.html">
+							<li><img src="/media/icons/running.png"></li>
+							<li><h2>RUNNING</h2></li>
+							<li>Estás cansado de salir a correr solo? Buscas gente con la que realizar
+							tu deporte favorito? ¡Ésta es tu opción!</li>
+							</a>
+						</ul>
+					</td>
+				</tr>
+			
+			</table>
+		
+		
+		</div>
+		</center>
 	</div>
 </body>
 </html>
