@@ -23,7 +23,10 @@
 			</tr>
 			<tr>
 				<td><label>Nivel</label></td>
-				<td><input type="text" th:field="*{riskLevel}" class="form-control"/></td>
+								<td><select class="form_control" th:field="*{riskLevel}" required>
+						<option value="lowRisk">Bajo riesgo</option>
+						<option value="mediumRisk">Medio riesgo</option>
+						<option value="highRisk">Alto riesgo</option></select></td>
 			</tr>
 			<tr>
 				<td><label>Descripción</label></td>

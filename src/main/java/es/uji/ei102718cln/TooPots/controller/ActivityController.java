@@ -51,6 +51,8 @@ public class ActivityController {
 		return "activity/activity";
 
 	}
+	
+
 	@RequestMapping("/list")
 	public String listActivities(HttpSession session, Model model) {
 		Login login = (Login) session.getAttribute("usuario");
@@ -255,6 +257,12 @@ public class ActivityController {
 	//MIRA ESTO A VERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
 	@RequestMapping(value = "/activity/{activityid}", method = RequestMethod.GET)
 	public String listActivity(Model model, @PathVariable String activityid) {
+		model.addAttribute("activity", activityDao.getActivity(activityid));
+		return "activity/activity";
+	}
+	
+	@RequestMapping(value = "/activity_visitor/{activityid}", method = RequestMethod.GET)
+	public String listActivityV(Model model, @PathVariable String activityid) {
 		model.addAttribute("activity", activityDao.getActivity(activityid));
 		return "activity/activity";
 	}

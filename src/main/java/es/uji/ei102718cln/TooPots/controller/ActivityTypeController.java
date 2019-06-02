@@ -1,5 +1,7 @@
 package es.uji.ei102718cln.TooPots.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller; 
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.uji.ei102718cln.TooPots.dao.ActivityTypeDao;
 import es.uji.ei102718cln.TooPots.model.ActivityType;
+import es.uji.ei102718cln.TooPots.model.Login;
 
 
 @Controller
@@ -25,7 +28,20 @@ public class ActivityTypeController {
 	   }
 
 	   @RequestMapping("/list")
-	   public String listActivityTypes(Model model) {
+	   public String listActivityTypes(HttpSession session, Model model) {
+		   Login login = (Login) session.getAttribute("usuario");
+			
+			if (login == null) {
+				model.addAttribute("usuario", new Login());
+				session.setAttribute("nextUrl", "activityType/list");
+				return "login";
+			}
+			
+			if(!login.getRol().equals("instructor")) {
+				model.addAttribute("usuario", new Login());
+				session.setAttribute("nextUrl", "activityType/list");
+				return "login";
+			}
 	      model.addAttribute("activityTypes", activityTypeDao.getActivityTypes());
 	      return "activityType/list"; 
 	   }

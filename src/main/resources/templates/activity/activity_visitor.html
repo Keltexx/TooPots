@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/base}">
+<head>
+<link rel="stylesheet" type="text/css" href="/css/style.css"
+	th:href="@{/css/style.css}" />
+<title>Listar actividades</title>
+<meta charset="UTF-8" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+</head>
+<body class="actividad">
+	<div layout:fragment="content">
+		<h3 th:text="${activity.name}"></h3>
+		<img class="actIm"th:src="${activity.photo}"/>
+		<table class="table table-striped">
+				<tr>
+					<th>Lugar: </th>
+					<td th:text="${activity.place}"></td>
+				</tr>
+				<tr>
+					<th>Horario: </th>
+					<td th:text="${activity.schedule}"></td>
+				</tr>
+				<tr>
+					<th>Duración: </th>
+					<td th:text="${activity.duration}"></td>
+				</tr>
+				<tr>
+					<th>Descripción: </th>
+					<td th:text="${activity.description}"></td>
+				</tr>
+				<tr>
+					<th>Precio por persona: </th>
+					<td th:text="${activity.priceByPerson}"></td>
+				</tr>
+				
+		</table>
+		<center><a th:href="@{/reservation/add/{activityId}(activityId=${activity.activityId})}" class="btn btn-info" role="button">Reserva</a></center>
+	</div>
+</body>
+</html>
