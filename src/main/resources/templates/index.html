@@ -29,7 +29,7 @@
 		  <div class="carousel-inner">
 	           <div th:each="activity,iterstat: ${activities}" th:class=
 	            "${iterstat.index}==0 ? 'carousel-item active':'carousel-item'">
-	               	<img th:src="@{${activity.photo}}" class="d-block w-100"> 
+	               	<img th:src="@{${activity.photo}}" class="d-block w-100"></img> 
 					<div class="carousel-caption">
 						<h1 th:text="${activity.place}"></h1>
 						<p th:text="${activity.description}"></p>

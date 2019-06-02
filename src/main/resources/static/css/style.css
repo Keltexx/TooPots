@@ -1,4 +1,4 @@
-h1 { font-family: monospace; font-size: 33px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 36.3px; } 
+h1 { font-family: monospace; font-size: 45px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 36.3px; } 
 h3 { font-family: monospace; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 15.4px; } 
 p { font-family: monospace; font-size: 17px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px; } 
 a{font-family: monospace; font-size: 17px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px;}
@@ -129,15 +129,9 @@ h1 {
 	margin:10px auto;
 	display:block;
 }
-.carousel-inner img {
-    width: 80%;
-
-}
-
-.carousel-inner{
 
 
-}
+
 .carousel{
 	height: 600px;
 	max-width:	80%;
@@ -145,6 +139,17 @@ h1 {
 }
 .carousel img{
 	height:600px
+}
+.carousel-caption h1{
+	color:#0B173B;
+	font-family: monospace; font-size: 45px; font-style: bold; font-variant: normal; font-weight: 700; line-height: 45.4px;
+	-webkit-text-stroke: 0.75px black;
+}
+.carousel-caption p{
+	color:#0B173B;
+	font-weight: bold;
+  
+	
 }
 .indexList img{
 	width: 50px;
@@ -157,18 +162,10 @@ h1 {
 	width: 250px;
 	height: 350px;
 	padding: 30px;
+color: #054C60;
 	
-	
-	color:#FFFFFF;
 	background-color:#DAEEF2;
 
 }
-.indexList ul a{
-	color:	#054C60;
-}
 
-.index_medio ul{
-	color: black;
-	
-}
 
