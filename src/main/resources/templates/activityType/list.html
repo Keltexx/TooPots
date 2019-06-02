@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{fragments/base_instructor}">
 <head>
 <link rel="stylesheet" type="text/css" href="/css/style.css"
@@ -10,11 +11,12 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
 </head>
 <body>
-		<div layout:fragment="content">
+	<div layout:fragment="content">
 		<h1>Lista de tipos de actividades</h1>
 		<table class="table table-striped">
 			<thead>
 				<tr>
+					<th>Identificador de tipo</th>
 					<th>Nombre</th>
 					<th>Nivel</th>
 					<th>Descripción</th>
@@ -22,14 +24,16 @@
 			</thead>
 			<tbody>
 				<tr th:each="activityType: ${activityTypes}">
+					<td th:text="${activityType.activityTypeId}"></td>
 					<td th:text="${activityType.nameType}"></td>
 					<td th:text="${activityType.riskLevel}"></td>
 					<td th:text="${activityType.description}"></td>
 					<td><a
-						th:href="@{/activityType/update/{activityTypeId}(activityTypeId=${activityType.activityTypeId})}" class="btn btn-info" role="button">Edita</a>
-					</td>
+						th:href="@{/activityType/update/{activityTypeId}(activityTypeId=${activityType.activityTypeId})}"
+						class="btn btn-info" role="button">Edita</a></td>
 					<td><a
-						th:href="@{/activityType/delete/{activityTypeId}(activityTypeId=${activityType.activityTypeId})}" class="btn btn-info" role="button">Borra</a>
+						th:href="@{/activityType/delete/{activityTypeId}(activityTypeId=${activityType.activityTypeId})}"
+						class="btn btn-info" role="button">Borra</a>
 				</tr>
 			</tbody>
 		</table>
