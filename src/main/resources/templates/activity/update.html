@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{fragments/base}">
+	layout:decorate="~{fragments/base_instructor}">
 <head>
 <link rel="stylesheet" type="text/css" href="/css/style.css"
 	th:href="@{/css/style.css}" />
@@ -54,7 +54,7 @@
 			</tr>
 			<tr>
 				<td><label>Seleccione imagen: </label></td>
-				<td><input type="file" id="avatar" name="file" accept="image/png, image/jpeg"></td>
+				<td><input type="file" id="avatar" th:src="*{photo}" name="file" accept="image/png, image/jpeg"></td>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit" value="Editar actividad" class="btn btn-info" role="button"/></td>

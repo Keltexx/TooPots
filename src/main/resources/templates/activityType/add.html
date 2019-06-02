@@ -19,17 +19,21 @@
 			<tr>
 				<td><label>Nombre</label></td>
 				<td><input type="text" th:field="*{nameType}" class="form-control" required/></td>
-				<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"  class="error"></td>
+
 			</tr>
 			<tr>
 				<td><label>Nivel</label></td>
 				<td><input type="text" th:field="*{riskLevel}" class="form-control" required/></td>
-				<td th:if="${#fields.hasErrors('riskLevel')}" th:errors="*{riskLevel}"  class="error"></td>
+
 			</tr>
 			<tr>
 				<td><label>Descripción</label></td>
-				<td><input type="text" th:field="*{description}" class="form-control" required/></td>
-				<td th:if="${#fields.hasErrors('description')}" th:errors="*{description}"  class="error"></td>
+				<td><select class="form_control" th:field="*{description}" required>
+						<option value="lowRisk">Bajo riesgo</option>
+						<option value="mediumRisk">Medio riesgo</option>
+						<option value="highRisk">Alto riesgo</option>
+				</select></td>
+
 			</tr>
 			
 			<tr>

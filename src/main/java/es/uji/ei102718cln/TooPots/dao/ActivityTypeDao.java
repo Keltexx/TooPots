@@ -42,8 +42,8 @@ public class ActivityTypeDao {
     /* Actualitza els atributs del activityType
     (excepte el id, que és la clau primària) */
 	 public void updateActivityType(ActivityType activityType) {
-		jdbcTemplate.update("UPDATE activityType  SET nameType=?, riskLevel=?, description=?",
-		activityType.getNameType(), activityType.getRiskLevel(),activityType.getDescription());
+		jdbcTemplate.update("UPDATE activityType  SET nameType=?, riskLevel=?, description=? where activitytypeid=?",
+		activityType.getNameType(), activityType.getRiskLevel(),activityType.getDescription(), activityType.getActivityTypeId());
 	 }
 	 
 		public ActivityType getActivityType(String activityTypeId) {

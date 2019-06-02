@@ -17,28 +17,28 @@
 		<table>
 			<tr>
 				<td><label>Nombre</label></td>
-				<td><input type="text" th:field="*{name}"  class="form-control" /></td>
+				<td><input type="text" th:field="*{name}"  class="form-control" required/></td>
 				<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"  class="error"></td>
 			</tr>
 			<tr>
 				<td><label>DNI</label></td>
-				<td><input type="text" th:field="*{nif}"  class="form-control" /></td>
+				<td><input type="text" th:field="*{nif}"  class="form-control" required/></td>
 				<td th:if="${#fields.hasErrors('nif')}" th:errors="*{nif}"  class="error"></td>
 				
 			</tr>
 			<tr>
 				<td><label>Contraseña</label></td>
-				<td><input type="password" th:field="*{password}"  class="form-control" /></td>
+				<td><input type="password" th:field="*{password}"  class="form-control" required/></td>
 								
 			</tr>
 			<tr>
 				<td><label>Correo</label></td>
-				<td><input type="text" th:field="*{email}"  class="form-control" /></td>
+				<td><input type="text" th:field="*{email}"  class="form-control" required/></td>
 				
 			</tr>
 			<tr>
 				<td><label>Género</label></td>
-				<td><select class="form_control" th:field="*{gender}" >
+				<td><select class="form_control" th:field="*{gender}" required>
 						<option value="No seleccionado"></option>
 						<option value="male">Hombre</option>
 						<option value="female">Mujer</option>
@@ -47,7 +47,7 @@
 			</tr>
 			<tr>
 				<td><label>Fecha de nacimiento</label></td>
-				<td><input type="date" th:field="*{birthDate}"  class="form-control"  /></td>
+				<td><input type="date" th:field="*{birthDate}"  class="form-control"  required/></td>
 				
 			</tr>
 			<tr>

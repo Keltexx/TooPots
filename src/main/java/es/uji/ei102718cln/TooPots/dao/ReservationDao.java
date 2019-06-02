@@ -38,11 +38,8 @@ public class ReservationDao {
 	}
 
 	public void updateReservation(Reservation reservation) {
-		jdbcTemplate.update("UPDATE Reservation SET bookingDate=?, bookingDate=?, activityDate=?, "
-				+ "priceByPerson=?, totalPrice=?, numberOfPersons=?, activityID=?,customerID=? where reservationID=?",
-				reservation.getBookingDate(), reservation.getActivityDate(), reservation.getPriceByPerson(),
-				reservation.getTotalPrice(), reservation.getNumberOfPersons(), reservation.getActivityID(),
-				reservation.getCustomerID(), reservation.getReservationID());
+		jdbcTemplate.update("UPDATE Reservation SET  totalPrice=?, numberOfPersons=? where reservationID=?",
+				 reservation.getPriceByPerson()*reservation.getNumberOfPersons(), reservation.getNumberOfPersons() ,reservation.getReservationID());
 	}
 
 	public Reservation getReservation(String id) {

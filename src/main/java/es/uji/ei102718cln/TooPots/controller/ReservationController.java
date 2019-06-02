@@ -89,7 +89,7 @@ public class ReservationController {
 		@RequestMapping(value="/delete/{reservationID}")
 		public String processDelete(@PathVariable String reservationID) {
 	           reservationDao.deleteReservation(reservationID);
-	           return "redirect:../list"; 
+	           return "redirect:../listCustomer"; 
 		}
 		
 		@RequestMapping(value="/pay/{reservationID}")

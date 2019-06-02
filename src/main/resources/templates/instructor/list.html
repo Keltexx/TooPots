@@ -34,17 +34,16 @@
 					<td th:text="${instructor.address}"></td>
 					<td th:text="${instructor.bankAccount}"></td>
 					<td th:text="${instructor.state}"></td>
+					<td ><img th:src="${instructor.photo}" style="max-width: 100px; max-height: 100px"></td>
 					<td></td>
 					
-					<td><a
-						th:href="@{/instructor/update/{nif}(nif=${instructor.nif})}"
-						class="btn btn-info" role="button">Edita</a></td>
+
 					<td><a
 						th:href="@{/instructor/delete/{nif}(nif=${instructor.nif})}"
 						class="btn btn-info" role="button">Borra</a></td>
  					<td><a
 						th:href="@{/instructor/accept/{nif}(nif=${instructor.nif})}"
-						class="btn btn-warning" role="button">Aceptar</a></td>
+						class="btn btn-success" role="button">Aceptar</a></td>
 					<td><a
 						th:href="@{/instructor/reject/{nif}(nif=${instructor.nif})}"
 						class="btn btn-danger" role="button">Rechazar</a></td>

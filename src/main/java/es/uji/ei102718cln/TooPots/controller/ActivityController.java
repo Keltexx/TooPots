@@ -216,6 +216,11 @@ public class ActivityController {
 			@RequestParam(name = "file") MultipartFile file, BindingResult bindingResult) throws IOException {
 		if (bindingResult.hasErrors())
 			return "activity/update";
+		
+		if(!file.equals(null)) {
+			
+		
+		
 		/*
 		 * Se convierte el MultipartFile a File, se escribe el archivo en su ruta
 		 * automática, se toma la ruta absoluta del archivo, se corta el nombre del
@@ -240,8 +245,9 @@ public class ActivityController {
 		 */
 		destination.createNewFile();
 		archivo.delete();
-
+		
 		activity.setPhoto("/media/" + nombre);
+		}
 		activityDao.updateActivity(activity);
 		return "redirect:../list";
 	}

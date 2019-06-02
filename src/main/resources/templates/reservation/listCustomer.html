@@ -15,35 +15,28 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>ID</th>
 					<th>Fecha de reserva</th>
 					<th>Fecha de la actividad</th>
 					<th>Precio por  persona</th>
 					<th>Precio total</th>
 					<th>Numero de personas</th>
 					<th>Actividad</th>
-					<th>NIF cliente</th>
 					<th>Estado</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="reservation: ${reservationsCustomer}">
-					<td th:text="${reservation.reservationID}"></td>
 					<td th:text="${reservation.bookingDate}"></td>
 					<td th:text="${reservation.activityDate}"></td>
 					<td th:text="${reservation.priceByPerson}"></td>
 					<td th:text="${reservation.totalPrice}"></td>
 					<td th:text="${reservation.numberOfPersons}"></td>
-					<td th:text="${reservation.activityID}"></td>
-					<td th:text="${reservation.customerID}"></td>
+					<td><a th:href="@{/activity/activity/{activityId}(activityId=${reservation.activityID})}" th:text="${reservation.activityID}">></a></td>
 					<td th:text="${reservation.state}"></td>
-					<td><a
-						th:href="@{/reservation/update/{reservationID}(reservationID=${reservation.reservationID})}" class="btn btn-info" role="button">Editar</a>
-					</td>
 					<td><a
 						th:href="@{/reservation/delete/{reservationID}(reservationID=${reservation.reservationID})}" class="btn btn-danger" role="button">Anular</a>
 					</td>
-					<td><a th:href="@{/reservation/pay/{reservationID}(reservationID=${reservation.reservationID})}" class="btn btn-warning" role="button">Pagar</a></td>
+					<td><a th:href="@{/reservation/pay/{reservationID}(reservationID=${reservation.reservationID})}" class="btn btn-success" role="button">Pagar</a></td>
 				</tr>
 			</tbody>
 		</table>

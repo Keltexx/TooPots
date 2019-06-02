@@ -7,8 +7,8 @@
 	<div class="navbar-collapse collapse">
 		<ul class="navbar-nav mr-auto">
 			
-				<li class="nav-item"><a class="nav-link" href="/"
-				th:href="@{/customer/home}">Página Principal</a></li>
+				<li class="nav-item"><a class="nav-link" href="/customer/home"
+				th:href="@{/customer/home}">Inicio</a></li>
 				<li class="nav-item"><a class="nav-link" href="/activity/gallery"
 				th:href="@{/activity/gallery}">Actividades</a></li>
 				<li class="nav-item"><a class="nav-link" href="/reservation/listCustomer"
@@ -22,7 +22,7 @@
 		/ <a href="/register/register" th:href="@{/register/register}">Registrarse</a>
 	</p>
 	<p th:unless="*{usuario == null}">
-		Autenticado como <span th:text="*{usuario.usuario}"></span> <a
+		Autenticado como <a  th:href="@{/customer/update/{nif}(nif=${session.usuario.usuario})}" th:text="*{usuario.usuario}"></a> <a
 			href="/logout" th:href="@{/logout}">Salir</a>
 	</p>
 </div>

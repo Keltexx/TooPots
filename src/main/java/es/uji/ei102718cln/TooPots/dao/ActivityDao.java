@@ -46,10 +46,10 @@ public class ActivityDao {
 	 */
 	public void updateActivity(Activity activity) {
 		jdbcTemplate.update(
-				"UPDATE activity  SET place=?, name=?, schedule=?, duration=?, description=?, priceByPerson=?, numberOfPeople=?, instructorId=?, activityTypeId=?, photo=?",
+				"UPDATE activity  SET place=?, name=?, schedule=?, duration=?, description=?, priceByPerson=?, numberOfPeople=?, instructorId=?, activityTypeId=?, photo=? where activityid=?",
 				activity.getPlace(), activity.getName(), activity.getSchedule(), activity.getDuration(),
 				activity.getDescription(), activity.getPriceByPerson(), activity.getNumberOfPeople(),
-				activity.getInstructorId(), activity.getActivityTypeId(), activity.getPhoto());
+				activity.getInstructorId(), activity.getActivityTypeId(), activity.getPhoto(),activity.getActivityId());
 	}
 
 	/* Obté l activitat amb el nom donat. Torna null si no existeix. */

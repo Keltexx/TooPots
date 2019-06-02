@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{fragments/base_customer}">
 <head>
 <link rel="stylesheet" type="text/css" href="/css/style.css"
@@ -10,48 +11,24 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
 </head>
 <body>
-<div layout:fragment="content">
-	<h2>Editar reserva</h2>
-	<form action="#" th:action="@{/reservation/update/{reservationID}(reservationID=${reservation.reservationID})}" th:object="${reservation}"
-		method="post">
-		<table>
-			<tr>
-				<td><label>ID</label></td>
-				<td><input type="text" th:field="*{reservationID}" readonly /></td>
-			</tr>
-			<tr>
-				<td><label>Fecha de reserva</label></td>
-				<td><input type="date" th:field="*{bookingDate}" class="form-control"/></td>
-			</tr>
-			<tr>
-				<td><label>Fecha de actividad</label></td>
-				<td><input type="date" th:field="*{activityDate}" class="form-control"/></td>
-			</tr>
-			<tr>
-				<td><label>Precio por persona</label></td>
-				<td><input type="number" th:field="*{priceByPerson}" class="form-control"/></td>
-			</tr>
-			<tr>
-				<td><label>Precio total</label></td>
-				<td><input type="number" th:field="*{totalPrice}" class="form-control"/></td>
-			</tr>
-			<tr>
-				<td><label>Numero de personas</label></td>
-				<td><input type="number" th:field="*{numberOfPersons}" class="form-control" /></td>
-			</tr>
-			<tr>
-				<td><label>Actividad</label></td>
-				<td><input type="number" th:field="*{activityID}" class="form-control"/></td>
-			</tr>
-			<tr>
-				<td><label>NIF cliente</label></td>
-				<td><input type="text" th:field="*{customerID}" class="form-control"/></td>
-			</tr>
-			<tr>
-				<td colspan="2"><input type="submit" value="Editar reserva" class="btn btn-info" role="button"/></td>
-			</tr>
-		</table>
-	</form>
-			</div>
+	<div layout:fragment="content">
+		<h2>Editar reserva</h2>
+		<form action="#"
+			th:action="@{/reservation/update/{reservationID}(reservationID=${reservation.reservationID})}"
+			th:object="${reservation}" method="post">
+			<table>
+
+				<tr>
+					<td><label>Numero de personas</label></td>
+					<td><input type="number" th:field="*{numberOfPersons}"
+						class="form-control" /></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" value="Editar reserva"
+						class="btn btn-info" role="button" /></td>
+				</tr>
+			</table>
+		</form>
+	</div>
 </body>
 </html>

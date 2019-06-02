@@ -68,7 +68,7 @@ public class CustomerController {
 
 		customerDao.updateCustomer(customer);
 
-		return "redirect:../list";
+		return "redirect:../home";
 	}
 
 	@RequestMapping(value = "/delete/{nif}")

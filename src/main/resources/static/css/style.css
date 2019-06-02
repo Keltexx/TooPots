@@ -1,16 +1,78 @@
-h1 { font-family: monospace; font-size: 45px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 36.3px; } 
-h3 { font-family: monospace; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 15.4px; } 
-p { font-family: monospace; font-size: 17px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px; } 
-a{font-family: monospace; font-size: 17px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px;}
-blockquote { font-family: monospace; font-size: 21px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 30px; } 
-pre { font-family: monospace; font-size: 13px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 18.5714px; }
-div.content {
-	
-	margin-left:75px;
-	margin-right: 75px;
+h1 {
+	font-family: monospace;
+	font-size: 45px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 700;
+	line-height: 36.3px;
 }
-font-family{
-	font-family:
+
+h3 {
+	font-family: monospace;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 700;
+	line-height: 15.4px;
+}
+
+p {
+	font-family: monospace;
+	font-size: 17px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+}
+
+
+
+a {
+	font-family: monospace;
+	font-size: 17px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+}
+
+.content {
+	font-family: monospace;
+	margin-left: auto;
+	margin-right: auto;
+
+}
+
+body {
+	font-family: monospace;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+td {
+	font-family: monospace;
+}
+
+blockquote {
+	font-family: monospace;
+	font-size: 21px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 30px;
+}
+
+pre {
+	font-family: monospace;
+	font-size: 13px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 18.5714px;
+}
+
+font-family {
+	font-family: monospace;
 }
 
 .error {
@@ -33,7 +95,7 @@ div.img {
 }
 
 div.img img {
-	margin: 0;
+
 	padding: 0;
 }
 
@@ -41,7 +103,7 @@ div.img span {
 	line-height: normal;
 	font-size: 11px;
 	display: table-caption;
-	margin: 0;
+	
 	background: #646464;
 	color: white;
 	font-style: italic;
@@ -49,16 +111,13 @@ div.img span {
 	text-align: center;
 }
 
-.body {
-	background: #4444;
-}
-
 h1 {
+	font-family: monospace;
 	color: #fff;
 	text-align: center;
 }
 
-.galeria .uls{
+.galeria .uls {
 	width: 90%;
 	margin: auto;
 	list-style: none;
@@ -69,103 +128,99 @@ h1 {
 	justify-content: space-around;
 }
 
-
-
 .footer {
+	font-family: monospace;
 	position: absolute;
 	left: 0;
 	bottom: 1;
 	width: 100%;
-	background-color: #b5d1e6;
+	background-color: #daeef2;
 	color: white;
 	text-align: left;
- 
 }
 
 .footer .text-muted {
-	margin-left:50px;
+	margin-left: 50px;
 }
-
-
 
 .titulo {
 	color: #fff;
 	text-align: center;
 }
 
-
 .galeria li {
-	margin: 0px;
+	margin: auto;
 }
 
-.im a img{
+.im a img {
 	width: 377px;
 	height: 320px;
-
-}
-.im a p{
-	text-align:center;
 }
 
-.galeria .titulos   {
+.im a p {
+	text-align: center;
+}
+
+.galeria .titulos {
 	color: black;
 }
 
-.table.table-borderless{
-	text-align:center;
-	
-}
-.actividad tr{
-	
-	text-align: center;
-	
-}
-.actividad h3{
+.table.table-borderless {
 	text-align: center;
 }
-.actIm{
+
+.actividad tr {
+	text-align: center;
+}
+
+.actividad h3 {
+	text-align: center;
+}
+
+.actIm {
 	width: 600px;
 	height: 450px;
-	margin:10px auto;
-	display:block;
+	margin: auto;
+	display: block;
 }
 
-
-
-.carousel{
+.carousel {
 	height: 600px;
-	max-width:	80%;
-	
+	max-width: 80%;
 }
-.carousel img{
-	height:600px
+
+.carousel img {
+	height: 600px
 }
-.carousel-caption h1{
-	color:#0B173B;
-	font-family: monospace; font-size: 45px; font-style: bold; font-variant: normal; font-weight: 700; line-height: 45.4px;
+
+.carousel-caption h1 {
+	color: #0B173B;
+	font-family: monospace;
+	font-size: 45px;
+	font-style: bold;
+	font-variant: normal;
+	font-weight: 700;
+	line-height: 45.4px;
 	-webkit-text-stroke: 0.75px black;
 }
-.carousel-caption p{
-	color:#0B173B;
+
+.carousel-caption p {
+	color: #0B173B;
 	font-weight: bold;
-  
-	
 }
-.indexList img{
+
+.indexList img {
 	width: 50px;
 	height: 50px;
 }
-.indexList ul{
+
+.indexList ul {
 	margin-top: 100px;
 	list-style: none;
 	text-align: center;
 	width: 250px;
 	height: 350px;
 	padding: 30px;
-color: #054C60;
-	
-	background-color:#DAEEF2;
-
+	color: #054C60;
+	background-color: #DAEEF2;
 }
-
-

@@ -31,7 +31,7 @@
 	            "${iterstat.index}==0 ? 'carousel-item active':'carousel-item'">
 	               	<img th:src="@{${activity.photo}}" class="d-block w-100"></img> 
 					<div class="carousel-caption">
-						<h1 th:text="${activity.place}"></h1>
+						<h1 th:text="${activity.name}"></h1>
 						<p th:text="${activity.description}"></p>
 						
 					</div>
@@ -78,7 +78,7 @@
 							
 							<li><img src="/media/icons/climbing.png"></li>
 							<li><h2>ESCALADA</h2></li>
-							<li>¿Tenemos una amplía oferta de escalada en nuestra plataforma, pero si lo 
+							<li>Tenemos una amplía oferta de escalada en nuestra plataforma, pero si lo 
 							que deseas es iniciarte en este mundo, tenemos una actividad a tu medida</li>
 							
 						</ul>

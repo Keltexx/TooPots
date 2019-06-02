@@ -1,32 +1,33 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-	<a class="navbar-brand" href="/instructor/home">
-	
-	    <img src="/logo.png" width=95 height=70 alt="">
-  </a>
-  
+	<a class="navbar-brand" href="/instructor/home"> <img
+		src="/logo.png" width=95 height=70 alt="">
+	</a>
+
 	<div class="navbar-collapse collapse">
 		<ul class="navbar-nav mr-auto">
-			
-				<li class="nav-item"><a class="nav-link" href="/instructor/home"
-				th:href="@{/instructor/home}">Página Principal</a></li>
-				<li class="nav-item"><a class="nav-link" href="/activity/gallery_instructor"
+
+			<li class="nav-item"><a class="nav-link" href="/instructor/home"
+				th:href="@{/instructor/home}">Inicio</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="/activity/gallery_instructor"
 				th:href="@{/activity/gallery_instructor}">Actividades</a></li>
-				<li class="nav-item"><a class="nav-link" href="/activity/list"
+			<li class="nav-item"><a class="nav-link" href="/activity/list"
 				th:href="@{/activity/list}">Gestión de actividades</a></li>
-				<li class="nav-item"><a class="nav-link" href="/request/requests"
-				th:href="@{/request/requests}">Peticiones</a></li>
-				
+			<li class="nav-item"><a class="nav-link"
+				href="/request/requests" th:href="@{/request/requests}">Peticiones</a></li>
+
 		</ul>
 	</div>
 	<div class="loggeduser" th:object="${session}">
-	<p th:if="*{usuario == null}">
-		No autentificado <a href="/login" th:href="@{/login}">Entrar</a>
-		
-		/ <a href="/register/register" th:href="@{/register/register}">Registrarse</a>
-	</p>
-	<p th:unless="*{usuario == null}">
-		Autenticado como <span th:text="*{usuario.usuario}"></span> <a
-			href="/logout" th:href="@{/logout}">Salir</a>
-	</p>
-</div>
+		<p th:if="*{usuario == null}">
+			No autentificado <a href="/login" th:href="@{/login}">Entrar</a> / <a
+				href="/register/register" th:href="@{/register/register}">Registrarse</a>
+		</p>
+		<p th:unless="*{usuario == null}">
+			Autenticado como <a
+				th:href="@{/instructor/update/{nif}(nif=${session.usuario.usuario})}"
+				th:text="*{usuario.usuario}"></a> <a href="/logout"
+				th:href="@{/logout}">Salir</a>
+		</p>
+	</div>
 </nav>
