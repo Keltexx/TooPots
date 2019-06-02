@@ -65,7 +65,7 @@ public class CustomerController {
 		customerDao.addCustomer(customer);
 		Login login = new Login(customer.getNif(), customer.getPassword(), "customer");
 		loginDao.addLogin(login);
-		return "redirect:../index";
+		return "redirect:../customer/home";
 
 	}
 
