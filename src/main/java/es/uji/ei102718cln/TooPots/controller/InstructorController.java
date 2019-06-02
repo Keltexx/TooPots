@@ -98,7 +98,7 @@ public class InstructorController {
 		instructorDao.addInstructor(instructor);
 		Login login = new Login(instructor.getNif(), instructor.getPassword(), "instructor");
 		loginDao.addLogin(login);
-		return "redirect:list";
+		return "redirect:home";
 
 	}
 

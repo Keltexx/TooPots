@@ -1,5 +1,7 @@
 package es.uji.ei102718cln.TooPots.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +20,7 @@ import es.uji.ei102718cln.TooPots.model.Login;
 @RequestMapping("/customer")
 public class CustomerController {
 	private CustomerDao customerDao;
-	
+
 	private LoginDao loginDao;
 
 	@Autowired
@@ -30,9 +32,22 @@ public class CustomerController {
 	public void setLoginDao(LoginDao loginDao) {
 		this.loginDao = loginDao;
 	}
-	
+
 	@RequestMapping("/list")
-	public String listCustomers(Model model) {
+	public String listCustomers(HttpSession session, Model model) {
+		Login login = (Login) session.getAttribute("usuario");
+
+		if (login == null) {
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "customer/list");
+			return "login";
+		}
+
+		if (!login.getRol().equals("admin")) {
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "customer/list");
+			return "login";
+		}
 		model.addAttribute("customers", customerDao.getCustomers());
 		return "customer/list";
 	}
@@ -50,12 +65,25 @@ public class CustomerController {
 		customerDao.addCustomer(customer);
 		Login login = new Login(customer.getNif(), customer.getPassword(), "customer");
 		loginDao.addLogin(login);
-		return "redirect:list";
+		return "redirect:../index";
 
 	}
 
 	@RequestMapping(value = "/update/{nif}", method = RequestMethod.GET)
-	public String editCustomer(Model model, @PathVariable String nif) {
+	public String editCustomer(HttpSession session, Model model, @PathVariable String nif) {
+		Login login = (Login) session.getAttribute("usuario");
+
+		if (login == null) {
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "customer/list");
+			return "login";
+		}
+
+		if (!login.getRol().equals("customer")) {
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "customer/list");
+			return "login";
+		}
 		model.addAttribute("customer", customerDao.getCustomer(nif));
 		return "customer/update";
 	}
@@ -72,9 +100,22 @@ public class CustomerController {
 	}
 
 	@RequestMapping(value = "/delete/{nif}")
-	public String processDelete(@PathVariable String nif) {
+	public String processDelete(HttpSession session, Model model, @PathVariable String nif) {
+		Login login = (Login) session.getAttribute("usuario");
+
+		if (login == null) {
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "customer/list");
+			return "login";
+		}
+
+		if (!login.getRol().equals("admin")) {
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "customer/list");
+			return "login";
+		}
 		customerDao.deleteCustomer(nif);
-		return "redirect:../list";
+		return "redirect:../index";
 	}
 
 }
