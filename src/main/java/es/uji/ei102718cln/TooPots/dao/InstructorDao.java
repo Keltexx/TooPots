@@ -26,7 +26,7 @@ public class InstructorDao {
 	public void addInstructor(Instructor instructor) {
 		jdbcTemplate.update("INSERT INTO Instructor VALUES(?, ?, ?, ?, ?, ?, ?)", instructor.getNif(),
 				instructor.getName(), instructor.getEmail(), instructor.getAddress(), instructor.getBankAccount(),
-				instructor.getPhoto(), instructor.getPassword(), instructor.getState());
+				instructor.getPhoto(), instructor.getPassword(), instructor.getState(), instructor.getPhoto());
 	}
 
 	/* Esborra el instructor de la base de dades */
