@@ -142,7 +142,7 @@ public class InstructorController {
 
 
 		instructorDao.updateInstructor(instructor);
-		return "redirect:../list";
+		return "redirect:../instructor/home";
 	}
 
 	@RequestMapping(value = "/delete/{nif}")
