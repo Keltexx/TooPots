@@ -42,7 +42,21 @@ public class InstructorController {
 	}
 
 	@RequestMapping("/list")
-	public String listInstructors(Model model) {
+	public String listInstructors(HttpSession session,Model model) {
+		Login login = (Login) session.getAttribute("usuario");
+
+		if (login == null) {
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "customer/home");
+			return "login";
+		}
+
+		if (!login.getRol().equals("admin")) {
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "instructor/list");
+			return "login";
+		}
+		
 		model.addAttribute("instructors", instructorDao.getInstructors());
 		return "instructor/list";
 
