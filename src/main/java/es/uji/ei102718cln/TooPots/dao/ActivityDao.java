@@ -70,4 +70,12 @@ public class ActivityDao {
 			return new ArrayList<Activity>();
 		}
 	}
+	
+	public List<Activity> getActivities(String activityTypeId) {
+		try {
+			return jdbcTemplate.query("SELECT * from Activity where activitytypeid=?", new ActivityRowMapper(), activityTypeId);
+		} catch (EmptyResultDataAccessException e) {
+			return new ArrayList<Activity>();
+		}
+	}
 }

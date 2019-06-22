@@ -17,14 +17,18 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>ID</th>
+					<th>Tipo de actividad</th>
+					<th>Certificado</th>
 					<th>Estado</th>
 
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="request: ${requestsInstructor}">
-					<td th:text="${request.requestID}"></td>
+					<td th:text="${request.activityTypeId}"></td>
+					<td ><a
+						th:href="${request.certificateAttached}"
+						class="btn btn-info" role="button">Abrir</a></td>
 					<td th:text="${request.state}"></td>
 				</tr>
 			</tbody>

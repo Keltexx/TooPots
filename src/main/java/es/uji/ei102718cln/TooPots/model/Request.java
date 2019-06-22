@@ -5,7 +5,14 @@ public class Request {
 	String state;
 	String certificateAttached;
 	String instructorID;
+	String activityTypeId;
 	
+	public String getActivityTypeId() {
+		return activityTypeId;
+	}
+	public void setActivityTypeId(String activityTypeId) {
+		this.activityTypeId = activityTypeId;
+	}
 	public int getRequestID() {
 		return requestID;
 	}
@@ -35,7 +42,8 @@ public class Request {
 	@Override
 	public String toString() {
 		return "Request [requestID=" + requestID + ", state=" + state + ", certificateAttached=" + certificateAttached
-				+ "]";
+				+ ", instructorID=" + instructorID + ", activityTypeId=" + activityTypeId + "]";
 	}
+
 	
 }

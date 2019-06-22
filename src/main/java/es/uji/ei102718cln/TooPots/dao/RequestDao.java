@@ -23,8 +23,8 @@ public class RequestDao {
 	}
 	
 	public void addRequest(Request request) {
-		jdbcTemplate.update("INSERT INTO Request(state,certificateatached,instructorid) VALUES(?, ?,?)",
-                request.getState(),request.getCertificateAttached(), request.getInstructorID());
+		jdbcTemplate.update("INSERT INTO Request(state,certificateatached,instructorid, activitytypeid) VALUES(?, ?,?,?)",
+                request.getState(),request.getCertificateAttached(), request.getInstructorID(), request.getActivityTypeId());
 	}
 	 public void deleteRequest(Request request) {
 	        jdbcTemplate.update("DELETE from Request where name=?", request.getRequestID());
@@ -45,7 +45,7 @@ public class RequestDao {
 	    public Request getRequest(String requestName) {
 	        try {
 	            return jdbcTemplate.queryForObject("SELECT * from Request WHERE requestID=?",
-	                    new RequestRowMapper(), requestName);
+	                    new RequestRowMapper(), Integer.parseInt(requestName));
 	        }
 	        catch(EmptyResultDataAccessException e) {
 	            return null;

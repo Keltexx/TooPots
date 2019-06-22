@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/base_admin}">
+<head>
+<link rel="stylesheet" type="text/css" href="/css/style.css"
+	th:href="@{/css/style.css}" />
+<title>Inserta nuevo tipo de actividad</title>
+<meta charset="UTF-8" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+</head>
+<body>
+	<div layout:fragment="content">
+		<h2>Nuevo tipo de actividad</h2>
+		<form action="#" th:action="@{/canOffer/add}" th:object="${canOffer}"
+			method="post">
+			<table>
+				<tr>
+					<td><label>NIF</label></td>
+					<td><input type="text" th:field="*{instructorId}"
+						class="form-control" required readonly /></td>
+				</tr>
+				<tr>
+					<td><label>Tipo de actividad</label></td>
+					<td><select class="form-control" th:field="*{activityTypeId}" required>
+							<option th:each="activityType : ${activityTypes}"
+								th:value="${activityType.nameType}"
+								th:text="${activityType.nameType}"
+								 />
+					</select></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit"
+						value="Añadir tipo de actividad" class="btn btn-info"
+						role="button" /></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

@@ -17,7 +17,7 @@ public class Activity {
 	float priceByPerson;
 	int numberOfPeople;
 	String instructorId;
-	int activityTypeId;
+	String activityTypeId;
 	String photo;
 	
 	
@@ -98,11 +98,11 @@ public class Activity {
 		this.instructorId = instructorId;
 	}
 
-	public int getActivityTypeId() {
+	public String getActivityTypeId() {
 		return activityTypeId;
 	}
 
-	public void setActivityTypeId(int activityTypeId) {
+	public void setActivityTypeId(String activityTypeId) {
 		this.activityTypeId = activityTypeId;
 	}
 	public String getPhoto() {

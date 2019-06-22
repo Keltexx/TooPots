@@ -34,8 +34,6 @@ public class ActivityValidator implements Validator{
 
 		 if(activity.getPriceByPerson()<=0)
 			 errors.rejectValue("priceByPerson", "menor o igual que 0", "Es necesario introducir un valor mayor que 0");
-		 if(activity.getActivityTypeId()<=0)
-			 errors.rejectValue("activityTypeId", "menor o igual que 0", "Es necesario introducir un valor mayor que 0");
 		 if(activity.getNumberOfPeople()<=0)
 			 errors.rejectValue("numberOfPeople", "menor o igual que 0", "Es necesario introducir un valor mayor que 0");
 		 

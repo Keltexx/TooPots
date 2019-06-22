@@ -1,14 +1,16 @@
 
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{fragments/base_instructor}">
 <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" >
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/css/style.css"
 	th:href="@{/css/style.css}" />
 <title>Inserta actividad</title>
 <meta charset="UTF-8" />
-<link rel="stylesheet" 
+<link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
 </head>
 
@@ -16,19 +18,29 @@
 <body>
 	<h2>Nueva petición</h2>
 	<div layout:fragment="content">
-	<form action="#" th:action="@{/request/add}" th:object="${request}" enctype="multipart/form-data"
-		method="post">
-		<h3>Envíe su certificado</h3>
-		<table >
-			<tr>
-				<td><label>Seleccione documento: </label></td>
-				<td><input type="file" id="avatar" name="file" accept=".pdf" required></td>
-			</tr>
-			<tr>
-				<td colspan="2"><input type="submit" value="Añadir certificado"  class="btn btn-info" role="button" /></td>
-
-		</table>
-	</form>
+		<form action="#" th:action="@{/request/add}" th:object="${request}"
+			enctype="multipart/form-data" method="post">
+			<h3>Envíe su certificado</h3>
+			<table>
+				<tr>
+					<td><label>Tipo de actividad</label></td>
+					<td><select class="form-control" th:field="*{activityTypeId}"
+						required>
+							<option th:each="activityType : ${activityTypes}"
+								th:value="${activityType.nameType}"
+								th:text="${activityType.nameType}" />
+					</select></td>
+				</tr>
+				<tr>
+					<td><label>Seleccione documento: </label></td>
+					<td><input type="file" id="avatar" name="file" accept=".pdf"
+						required></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit"
+						value="Añadir certificado" class="btn btn-info" role="button" /></td>
+			</table>
+		</form>
 	</div>
 </body>
 

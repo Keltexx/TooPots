@@ -16,6 +16,7 @@ public final class RequestRowMapper implements RowMapper<Request> {
         request.setCertificateAttached(rs.getString("certificateAtached"));
         request.setState(rs.getString("state"));
         request.setInstructorID(rs.getString("instructorID"));
+        request.setActivityTypeId(rs.getString("activityTypeId"));
         return request;
     }
 }

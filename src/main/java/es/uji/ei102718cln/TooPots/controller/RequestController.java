@@ -18,8 +18,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import es.uji.ei102718cln.TooPots.dao.ActivityTypeDao;
+import es.uji.ei102718cln.TooPots.dao.CanOfferDao;
 import es.uji.ei102718cln.TooPots.dao.RequestDao;
 import es.uji.ei102718cln.TooPots.model.Activity;
+import es.uji.ei102718cln.TooPots.model.CanOffer;
 import es.uji.ei102718cln.TooPots.model.Login;
 import es.uji.ei102718cln.TooPots.model.Request;
 
@@ -28,7 +31,19 @@ import es.uji.ei102718cln.TooPots.model.Request;
 public class RequestController {
 
 	private RequestDao requestDao;
-	
+	private ActivityTypeDao activityTypeDao;
+	private CanOfferDao canOfferDao;
+
+	@Autowired
+	public void setCanOfferDao(CanOfferDao canOfferDao) {
+		this.canOfferDao = canOfferDao;
+	}
+
+	@Autowired
+	public void setActivityTypeDao(ActivityTypeDao activityTypeDao) {
+		this.activityTypeDao = activityTypeDao;
+	}
+
 	@Autowired
 	public void setRequestDao(RequestDao requestDao) {
 		this.requestDao = requestDao;
@@ -40,7 +55,7 @@ public class RequestController {
 		return "request/list";
 
 	}
-	
+
 	@RequestMapping("/requests")
 	public String listRequestsInstructor(HttpSession session, Model model) {
 		Login login = (Login) session.getAttribute("usuario");
@@ -49,8 +64,8 @@ public class RequestController {
 			session.setAttribute("nextUrl", "request/requests");
 			return "login";
 		}
-		
-		if(!login.getRol().equals("instructor")) {
+
+		if (!login.getRol().equals("instructor")) {
 			model.addAttribute("usuario", new Login());
 			session.setAttribute("nextUrl", "request/requests");
 			return "login";
@@ -59,23 +74,24 @@ public class RequestController {
 		return "request/requests";
 
 	}
-	
+
 	@RequestMapping(value = "/add")
-	public String addRequest(HttpSession session, Model model) {
+	public String addRequest(HttpSession session, Model model, Model model2) {
 		Login login = (Login) session.getAttribute("usuario");
-		
+
 		if (login == null) {
 			model.addAttribute("usuario", new Login());
 			session.setAttribute("nextUrl", "request/requests");
 			return "login";
 		}
-		
-		if(!login.getRol().equals("instructor")) {
+
+		if (!login.getRol().equals("instructor")) {
 			model.addAttribute("usuario", new Login());
 			session.setAttribute("nextUrl", "request/requests");
 			return "login";
 		}
 		model.addAttribute("request", new Request());
+		model2.addAttribute("activityTypes", activityTypeDao.getActivityTypes());
 		return "request/add";
 	}
 
@@ -91,21 +107,20 @@ public class RequestController {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String processAddSubmit(HttpSession session, Model model, @ModelAttribute("request") Request request,
 			@RequestParam(name = "file") MultipartFile file, BindingResult bindingResult) throws IOException {
-		
+
 		Login login = (Login) session.getAttribute("usuario");
-		
+
 		if (login == null) {
 			model.addAttribute("usuario", new Login());
 			session.setAttribute("nextUrl", "request/requests");
 			return "login";
 		}
-		
-		if(!login.getRol().equals("instructor")) {
+
+		if (!login.getRol().equals("instructor")) {
 			model.addAttribute("usuario", new Login());
 			session.setAttribute("nextUrl", "request/requests");
 			return "login";
 		}
-		
 
 		/*
 		 * Se convierte el MultipartFile a File, se escribe el archivo en su ruta
@@ -135,7 +150,7 @@ public class RequestController {
 		request.setCertificateAttached("/media/" + nombre);
 		if (bindingResult.hasErrors())
 			return "request/add";
-		
+
 		request.setInstructorID(login.getUsuario());
 		request.setState("pending");
 
@@ -143,16 +158,26 @@ public class RequestController {
 		return "redirect:requests";
 
 	}
-	
-	@RequestMapping(value="/accept/{requestID}")
+
+	@RequestMapping(value = "/accept/{requestID}")
 	public String processAccept(@PathVariable String requestID) {
 		requestDao.updateRequestStateAccept(requestID);
-		return "redirect:../list"; 
+		Request request = requestDao.getRequest(requestID);
+		CanOffer canOffer = new CanOffer();
+		canOffer.setInstructorId(request.getInstructorID());
+		canOffer.setActivityTypeId(request.getActivityTypeId());
+		canOfferDao.addCanOffer(canOffer);
+		System.out.println("Se ha aceptado su petición señor/a "+request.getInstructorID()+" ya puede impartir actividades de "+request.getActivityTypeId());
+		return "redirect:../list";
 	}
-	
-	@RequestMapping(value="/reject/{requestID}")
+
+	@RequestMapping(value = "/reject/{requestID}")
 	public String processReject(@PathVariable String requestID) {
-           requestDao.updateRequestStateReject(requestID);
-           return "redirect:../list"; 
+		requestDao.updateRequestStateReject(requestID);
+		Request request = requestDao.getRequest(requestID);
+		canOfferDao.deleteCanOffer2(request.getInstructorID(), request.getActivityTypeId());
+		System.out.println("Se ha rechazado su petición señor/a "+request.getInstructorID()+" no puede impartir actividades de "+request.getActivityTypeId());
+
+		return "redirect:../list";
 	}
 }

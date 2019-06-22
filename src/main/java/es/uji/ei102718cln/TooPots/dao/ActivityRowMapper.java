@@ -20,7 +20,7 @@ public final class ActivityRowMapper implements RowMapper<Activity> {
         activity.setPriceByPerson(rs.getInt("priceByPerson"));
         activity.setNumberOfPeople(rs.getInt("numberOfPeople"));
         activity.setInstructorId(rs.getString("instructorId"));
-        activity.setActivityTypeId(rs.getInt("activityTypeId"));
+        activity.setActivityTypeId(rs.getString("activityTypeId"));
         activity.setPhoto(rs.getString("photo"));
         return activity;
 	}
