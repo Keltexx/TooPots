@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import es.uji.ei102718cln.TooPots.dao.ActivityDao;
 import es.uji.ei102718cln.TooPots.dao.InstructorDao;
+import es.uji.ei102718cln.TooPots.dao.PhotosDao;
 import es.uji.ei102718cln.TooPots.model.Activity;
 import es.uji.ei102718cln.TooPots.model.Login;
 
@@ -32,6 +33,7 @@ import es.uji.ei102718cln.TooPots.model.Login;
 public class ActivityController {
 
 	private ActivityDao activityDao;
+	private PhotosDao photosDao;
 	
 	private InstructorDao instructorDao;
 
@@ -258,6 +260,7 @@ public class ActivityController {
 	@RequestMapping(value = "/activity/{activityid}", method = RequestMethod.GET)
 	public String listActivity(Model model, @PathVariable String activityid) {
 		model.addAttribute("activity", activityDao.getActivity(activityid));
+		model.addAttribute("photos", photosDao.getPhotos(activityDao.getActivity(activityid)));
 		return "activity/activity";
 	}
 	
