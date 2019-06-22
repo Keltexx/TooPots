@@ -57,9 +57,10 @@ public class Activity {
 	public void setSchedule(LocalDate date) {
 		this.schedule = date;
 	}
-
-	public Time getDuration() {
-		return duration;
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	@SuppressWarnings("deprecation")
+	public int getDuration() {
+		return duration.getHours();
 	}
 
 	public void setDuration(Time time) {
