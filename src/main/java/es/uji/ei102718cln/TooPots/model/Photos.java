@@ -6,6 +6,10 @@ public class Photos {
 	public String getPhoto() {
 		return photo;
 	}
+	public Photos(int id) {
+		this.activityId=id;
+		
+	}
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}

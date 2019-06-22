@@ -27,6 +27,7 @@ import es.uji.ei102718cln.TooPots.dao.InstructorDao;
 import es.uji.ei102718cln.TooPots.dao.PhotosDao;
 import es.uji.ei102718cln.TooPots.model.Activity;
 import es.uji.ei102718cln.TooPots.model.Login;
+import es.uji.ei102718cln.TooPots.model.Photos;
 
 @Controller
 @RequestMapping("/activity")
@@ -46,7 +47,11 @@ public class ActivityController {
 	public void setInstructorDao(InstructorDao instructorDao) {
 		this.instructorDao = instructorDao;
 	}
-	
+	@Autowired
+	public void setPhotosDao(PhotosDao photosDao) {
+		this.photosDao = photosDao;
+	}
+
 	@RequestMapping("/activity")
 	public String listActivity(Model model) {
 		model.addAttribute("activities", activityDao.getActivities());
@@ -263,7 +268,66 @@ public class ActivityController {
 		model.addAttribute("photos", photosDao.getPhotos(activityDao.getActivity(activityid)));
 		return "activity/activity";
 	}
-	
+	@RequestMapping(value = "/activity/photo/{activityid}", method = RequestMethod.POST)
+	public String addPhoto(HttpSession session, Model model, @PathVariable String activityid) {
+		Login login = (Login) session.getAttribute("usuario");
+		if (login == null) {
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "activity/gallery");
+			return "login";
+		}
+		
+		if(!login.getRol().equals("instructor")) {
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "activity/gallery");
+			return "login";
+		}
+		Photos photo= new Photos(Integer.parseInt(activityid));
+		model.addAttribute("photo", photo);
+		
+		return "activity/update";
+		
+	}
+	@RequestMapping(value = "/activity/photo/{activityid}", method = RequestMethod.POST)
+	public String processUpdateSubmit(@PathVariable String activityid, @ModelAttribute("photos") Photos photos,
+			@RequestParam(name = "file") MultipartFile file, BindingResult bindingResult) throws IOException {
+		if (bindingResult.hasErrors())
+			return "activity/update";
+		
+		if(!file.equals(null)) {
+			
+		
+		
+		/*
+		 * Se convierte el MultipartFile a File, se escribe el archivo en su ruta
+		 * automática, se toma la ruta absoluta del archivo, se corta el nombre del
+		 * archivo para conseguir la ruta absoluta del directorio, se crea un File en el
+		 * directorio media
+		 */
+		File archivo = transform(file);
+		archivo.createNewFile();
+		String directorio = archivo.getAbsolutePath();
+		directorio = directorio.substring(0, directorio.length() - archivo.getPath().length() - 1);
+		String nombre = archivo.getName();
+
+		File destination = new File(directorio + "/src/main/resources/static/media/" + nombre);
+
+		/* Copiar fichero a directorio destino */
+
+		FileUtils.copyFile(archivo, destination);
+
+		/*
+		 * Se escribe el fichero en el directorio media se borra el archivo del
+		 * directorio por defecto
+		 */
+		destination.createNewFile();
+		archivo.delete();
+		
+		photos.setPhoto("/media/" + nombre);
+		}
+		photosDao.addPhoto(photos);
+		return "redirect:../list";
+	}
 	@RequestMapping(value = "/activity_visitor/{activityid}", method = RequestMethod.GET)
 	public String listActivityV(Model model, @PathVariable String activityid) {
 		model.addAttribute("activity", activityDao.getActivity(activityid));

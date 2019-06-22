@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/base_instructor}">
+<head>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/css/style.css"
+	th:href="@{/css/style.css}" />
+<title>Añadir imagenes</title>
+<meta charset="UTF-8" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+</head>
+
+
+<body>
+	<h2>Añadir imagenes </h2>
+	<div layout:fragment="content">
+		<form action="#" th:action="@{/activity/photo}" th:object="${activity}"
+			enctype="multipart/form-data" method="post">
+			<table>
+				
+					<td><label>Seleccione imagen: </label></td>
+					<td><input type="file" id="avatar" name="file"
+						 multiple accept="image/png, image/jpeg"></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" value="Añadir imagenes"
+						class="btn btn-info" role="button" /></td>
+			</table>
+		</form>
+	</div>
+</body>
+
+</html>
