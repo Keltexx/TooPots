@@ -3,13 +3,15 @@ package es.uji.ei102718cln.TooPots.model;
 public class Photos {
 	String photo;
 	int activityId;
+	
+	public Photos() {
+		super();
+	}
+	
 	public String getPhoto() {
 		return photo;
 	}
-	public Photos(int id) {
-		this.activityId=id;
-		
-	}
+
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}

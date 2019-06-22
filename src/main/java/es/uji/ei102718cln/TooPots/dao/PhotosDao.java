@@ -8,10 +8,12 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import es.uji.ei102718cln.TooPots.model.Activity;
 import es.uji.ei102718cln.TooPots.model.Photos;
 
+@Repository
 public class PhotosDao {
 	private JdbcTemplate jdbcTemplate;
 
@@ -35,7 +37,7 @@ public class PhotosDao {
 	}
 
 	public void deleteActivity(String photoid) {
-		jdbcTemplate.update("DELETE from Photos where photoid=?", Integer.valueOf(photoid));
+		jdbcTemplate.update("DELETE from Photos where photoid=?", photoid);
 	}
 
 	/*
@@ -53,7 +55,7 @@ public class PhotosDao {
 	public Photos getPhoto(String photoId) {
 		try {
 			return jdbcTemplate.queryForObject("SELECT * from Photos WHERE photosid=?", new PhotosRowMapper(),
-					Integer.valueOf(photoId));
+					photoId);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}

@@ -39,12 +39,12 @@ import es.uji.ei102718cln.TooPots.model.Photos;
 public class ActivityController {
 
 	private ActivityDao activityDao;
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
-=======
+//=======
 	private PhotosDao photosDao;
 	
->>>>>>> e0c9626fa0d2611ed5159489cc3066961d9d6946
+//>>>>>>> e0c9626fa0d2611ed5159489cc3066961d9d6946
 	private InstructorDao instructorDao;
 	private CanOfferDao canOfferDao;
 	private ActivityTypeDao activityTypeDao;
@@ -68,13 +68,13 @@ public class ActivityController {
 	public void setInstructorDao(InstructorDao instructorDao) {
 		this.instructorDao = instructorDao;
 	}
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
 	@Autowired
 	public void setPhotosDao(PhotosDao photosDao) {
 		this.photosDao = photosDao;
 	}
->>>>>>> e0c9626fa0d2611ed5159489cc3066961d9d6946
+//>>>>>>> e0c9626fa0d2611ed5159489cc3066961d9d6946
 
 	@RequestMapping("/activity")
 	public String listActivity(Model model) {
@@ -323,10 +323,10 @@ public class ActivityController {
 		model.addAttribute("photos", photosDao.getPhotos(activityDao.getActivity(activityid)));
 		return "activity/activity";
 	}
-<<<<<<< HEAD
-
-=======
-	@RequestMapping(value = "/activity/photo/{activityid}", method = RequestMethod.POST)
+//<<<<<<< HEAD
+//
+//=======
+	@RequestMapping(value = "/photo/{activityid}", method = RequestMethod.POST)
 	public String addPhoto(HttpSession session, Model model, @PathVariable String activityid) {
 		Login login = (Login) session.getAttribute("usuario");
 		if (login == null) {
@@ -340,13 +340,13 @@ public class ActivityController {
 			session.setAttribute("nextUrl", "activity/gallery");
 			return "login";
 		}
-		Photos photo= new Photos(Integer.parseInt(activityid));
+		Photos photo= new Photos();
 		model.addAttribute("photo", photo);
 		
 		return "activity/update";
 		
 	}
-	@RequestMapping(value = "/activity/photo/{activityid}", method = RequestMethod.POST)
+	@RequestMapping(value = "/photo/{activityid}", method = RequestMethod.POST)
 	public String processUpdateSubmit(@PathVariable String activityid, @ModelAttribute("photos") Photos photos,
 			@RequestParam(name = "file") MultipartFile file, BindingResult bindingResult) throws IOException {
 		if (bindingResult.hasErrors())
@@ -386,7 +386,7 @@ public class ActivityController {
 		photosDao.addPhoto(photos);
 		return "redirect:../list";
 	}
->>>>>>> e0c9626fa0d2611ed5159489cc3066961d9d6946
+//>>>>>>> e0c9626fa0d2611ed5159489cc3066961d9d6946
 	@RequestMapping(value = "/activity_visitor/{activityid}", method = RequestMethod.GET)
 	public String listActivityV(Model model, @PathVariable String activityid) {
 		model.addAttribute("activity", activityDao.getActivity(activityid));
