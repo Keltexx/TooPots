@@ -1,8 +1,11 @@
 package es.uji.ei102718cln.TooPots.model;
 
-import java.sql.Date;
+
 import java.sql.Time;
 import java.time.LocalDate;
+
+
+
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -58,10 +61,11 @@ public class Activity {
 		this.schedule = date;
 	}
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	@SuppressWarnings("deprecation")
-	public int getDuration() {
-		return duration.getHours();
-	}
+
+	public Time getDuration() {
+
+		return duration;
+	} 
 
 	public void setDuration(Time time) {
 		this.duration = time;
