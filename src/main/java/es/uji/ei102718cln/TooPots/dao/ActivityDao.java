@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import es.uji.ei102718cln.TooPots.model.Activity;
+import es.uji.ei102718cln.TooPots.model.Photos;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
@@ -29,6 +30,12 @@ public class ActivityDao {
 				activity.getPlace(), activity.getName(), activity.getSchedule(), activity.getDuration(),
 				activity.getDescription(), activity.getPriceByPerson(), activity.getNumberOfPeople(),
 				activity.getInstructorId(), activity.getActivityTypeId(), activity.getPhoto());
+
+	}
+	public void addPhoto(Photos photo) {
+		jdbcTemplate.update(
+				"INSERT INTO Photos(photo) VALUES(?)",
+				photo.getPhoto());
 
 	}
 
