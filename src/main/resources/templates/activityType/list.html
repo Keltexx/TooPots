@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{fragments/base_instructor}">
+	layout:decorate="~{fragments/base_admin}">
 <head>
 <link rel="stylesheet" type="text/css" href="/css/style.css"
 	th:href="@{/css/style.css}" />
@@ -16,7 +16,6 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>Identificador de tipo</th>
 					<th>Nombre</th>
 					<th>Nivel</th>
 					<th>Descripción</th>
@@ -24,15 +23,14 @@
 			</thead>
 			<tbody>
 				<tr th:each="activityType: ${activityTypes}">
-					<td th:text="${activityType.activityTypeId}"></td>
 					<td th:text="${activityType.nameType}"></td>
 					<td th:text="${activityType.riskLevel}"></td>
 					<td th:text="${activityType.description}"></td>
 					<td><a
-						th:href="@{/activityType/update/{activityTypeId}(activityTypeId=${activityType.activityTypeId})}"
+						th:href="@{/activityType/update/{nameType}(nameType=${activityType.nameType})}"
 						class="btn btn-info" role="button">Edita</a></td>
 					<td><a
-						th:href="@{/activityType/delete/{activityTypeId}(activityTypeId=${activityType.activityTypeId})}"
+						th:href="@{/activityType/delete/{nameType}(nameType=${activityType.nameType})}"
 						class="btn btn-info" role="button">Borra</a>
 				</tr>
 			</tbody>

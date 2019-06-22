@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{fragments/base_instructor}">
+	layout:decorate="~{fragments/base_admin}">
 <head>
 <link rel="stylesheet" type="text/css" href="/css/style.css"
 	th:href="@{/css/style.css}" />
@@ -14,12 +14,12 @@
 	<div layout:fragment="content">
 	<h2>Nuevo tipo de actividad</h2>
 	<form action="#"
-		th:action="@{/activityType/update/{activityTypeId}(activityTypeId=${activityType.activityTypeId})}"
+		th:action="@{/activityType/update/{nameType}(nameType=${activityType.nameType})}"
 		th:object="${activityType}" method="post">
 		<table>
 			<tr>
 				<td><label>Nombre</label></td>
-				<td><input type="text" th:field="*{nameType}" class="form-control"/></td>
+				<td><input type="text" th:field="*{nameType}" readonly class="form-control"/></td>
 			</tr>
 			<tr>
 				<td><label>Nivel</label></td>

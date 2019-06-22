@@ -37,7 +37,7 @@ public class ActivityTypeController {
 				return "login";
 			}
 			
-			if(!login.getRol().equals("instructor")) {
+			if(!login.getRol().equals("admin")) {
 				model.addAttribute("usuario", new Login());
 				session.setAttribute("nextUrl", "activityType/list");
 				return "login";
@@ -61,14 +61,15 @@ public class ActivityTypeController {
 		     return "redirect:list"; 
 		     
 		 }
-		@RequestMapping(value="/update/{activityTypeId}", method = RequestMethod.GET) 
-		public String editActivityType(Model model, @PathVariable String activityTypeId) { 
-			model.addAttribute("activityType", activityTypeDao.getActivityType(activityTypeId));
+		
+		@RequestMapping(value="/update/{nameType}", method = RequestMethod.GET) 
+		public String editActivityType(Model model, @PathVariable String nameType) { 
+			model.addAttribute("activityType", activityTypeDao.getActivityType(nameType));
 			return "activityType/update"; 
 		}
 		
-		@RequestMapping(value="/update/{activityTypeId}", method = RequestMethod.POST) 
-		public String processUpdateSubmit(@PathVariable String activityTypeId, 
+		@RequestMapping(value="/update/{nameType}", method = RequestMethod.POST) 
+		public String processUpdateSubmit(@PathVariable String nameType, 
 	                            @ModelAttribute("activityType") ActivityType activityType, 
 	                            BindingResult bindingResult) {
 			 if (bindingResult.hasErrors()) 
@@ -77,9 +78,9 @@ public class ActivityTypeController {
 			 activityTypeDao.updateActivityType(activityType);
 			 return "redirect:../list"; 
 		}
-		@RequestMapping(value="/delete/{activityTypeId}")
-		public String processDelete(@PathVariable String activityTypeId) {
-	           activityTypeDao.deleteActivityType(activityTypeId);
+		@RequestMapping(value="/delete/{nameType}")
+		public String processDelete(@PathVariable String nameType) {
+	           activityTypeDao.deleteActivityType(nameType);
 	           return "redirect:../list"; 
 		}
 		

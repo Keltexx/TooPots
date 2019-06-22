@@ -1,17 +1,10 @@
 package es.uji.ei102718cln.TooPots.model;
 
 public class ActivityType {
-	int activityTypeId;
 	String nameType;
 	String riskLevel;
 	String description;
 	
-	public int getActivityTypeId() {
-		return  activityTypeId;
-	}
-	public void setActivityTypeId(int activityTypeId) {
-		this.activityTypeId = activityTypeId;
-	}
 	public String getNameType() {
 		return nameType;
 	}
@@ -32,7 +25,7 @@ public class ActivityType {
 	}
 	@Override
 	public String toString() {
-		return "ActivityType [activityTypeId=" + activityTypeId +  ", nameType=" + nameType + ", riskLevel=" + riskLevel + ", description="
+		return "ActivityType [nameType=" + nameType + ", riskLevel=" + riskLevel + ", description="
 				+ description + "]";
 	}
 }
