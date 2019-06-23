@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,127 +22,140 @@ import es.uji.ei102718cln.TooPots.model.Activity;
 import es.uji.ei102718cln.TooPots.model.Login;
 import es.uji.ei102718cln.TooPots.model.Reservation;
 
-
-
-@Controller    
+@Controller
 @RequestMapping("/reservation")
 public class ReservationController {
-	
-	   private ReservationDao reservationDao;
-	   private ActivityDao activityDao;
-	   
-	   @Autowired
-	   public void setReservationDao(ReservationDao reservationDao) { 
-	       this.reservationDao=reservationDao;
-	   }
 
-		@Autowired
-		public void setActividadDao(ActivityDao activityDao) {
-			this.activityDao = activityDao;
-		}
-		
-	   @RequestMapping("/list")
-	   public String listReservation(Model model) {
-	      model.addAttribute("reservations", reservationDao.getReservations());
-	      return "reservation/list";
-	   
-	   }
-	   
-	   @RequestMapping("/listCustomer")
-	   public String listReservationCustomer(HttpSession session, Model model) {
-		   Login login = (Login)session.getAttribute("usuario");
-		   
-		   if (login == null) {
-				model.addAttribute("usuario", new Login());
-				session.setAttribute("nextUrl", "activity/gallery_instructor");
-				return "login";
-			}
-			
-			if(!login.getRol().equals("customer")) {
-				model.addAttribute("usuario", new Login());
-				session.setAttribute("nextUrl", "activity/gallery_instructor");
-				return "login";
-			}
-			
-	      model.addAttribute("reservationsCustomer", reservationDao.getReservationsCustomer(login.getUsuario()));
-	      return "reservation/listCustomer";
-	   
-	   }
-	   
-		
-		@RequestMapping(value="/update/{reservationID}", method = RequestMethod.GET) 
-		public String editReservation(Model model, @PathVariable String reservationID) { 
-			model.addAttribute("reservation", reservationDao.getReservation(reservationID));
-			return "reservation/update"; 
-		}
-		
-		@RequestMapping(value="/update/{reservationID}", method = RequestMethod.POST) 
-		public String processUpdateSubmit(@PathVariable String reservationID, 
-	                            @ModelAttribute("reservation") Reservation reservation, 
-	                            BindingResult bindingResult) {
-			 if (bindingResult.hasErrors()) 
-				 return "reservation/update";
-			
-			 reservationDao.updateReservation(reservation);
-			 return "redirect:../list"; 
-		}
-		
-		@RequestMapping(value="/delete/{reservationID}")
-		public String processDelete(@PathVariable String reservationID) {
-	           reservationDao.deleteReservation(reservationID);
-	           return "redirect:../listCustomer"; 
-		}
-		
-		@RequestMapping(value="/pay/{reservationID}")
-		public String processPay(@PathVariable String reservationID) {
-	           reservationDao.updateState(reservationID);
-	           return "redirect:../listCustomer"; 
-		}
-		
+	private ReservationDao reservationDao;
+	private ActivityDao activityDao;
 
-		@RequestMapping(value = "/add/{activityId}" )
-		public String addReservationActivity(HttpSession session,Model model, @PathVariable String activityId) {
-			Login login = (Login) session.getAttribute("usuario");
-			
-			if (login == null) {
-				model.addAttribute("usuario", new Login());
-				session.setAttribute("nextUrl", "activity/gallery_instructor");
-				return "login";
-			}
-			
-			if(!login.getRol().equals("customer")) {
-				model.addAttribute("usuario", new Login());
-				session.setAttribute("nextUrl", "activity/gallery_instructor");
-				return "login";
-			}
-			
-			Activity activity = activityDao.getActivity(activityId);
-			model.addAttribute("reservation", new Reservation(activity.getSchedule(),activity.getPriceByPerson(), activity.getActivityId()));
-			return "/reservation/add";
+	@Autowired
+	public void setReservationDao(ReservationDao reservationDao) {
+		this.reservationDao = reservationDao;
+	}
+
+	@Autowired
+	public void setActividadDao(ActivityDao activityDao) {
+		this.activityDao = activityDao;
+	}
+
+	@RequestMapping("/list")
+	public String listReservation(Model model) {
+		model.addAttribute("reservations", reservationDao.getReservations());
+		return "reservation/list";
+
+	}
+
+	@RequestMapping("/listCustomer")
+	public String listReservationCustomer(HttpSession session, Model model) {
+		Login login = (Login) session.getAttribute("usuario");
+
+		if (login == null) {
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "activity/gallery_instructor");
+			return "login";
 		}
-		
-		@RequestMapping(value = "/add", method = RequestMethod.POST)
-		public String processAddReservationActivitySubmit(Model model,HttpSession session, @ModelAttribute("reservation") Reservation reservation, @RequestParam(name = "numberOfPersons") int numberOfPersons,
-				BindingResult bindingResult) {
-			if (session.getAttribute("usuario") == null) {
-				model.addAttribute("usuario", new Login());
-				session.setAttribute("nextUrl", "activity/gallery");
-				return "login";
-			}
-			if (bindingResult.hasErrors())
-				return "reservation/add";
-			
-			reservation.setBookingDate(LocalDate.now());
-			reservation.setNumberOfPersons(numberOfPersons);
-			reservation.setTotalPrice(numberOfPersons * reservation.getPriceByPerson());
-			Login usuario = (Login) session.getAttribute("usuario");
-			reservation.setCustomerID(usuario.getUsuario());
-			reservation.setState("pending");
-			reservationDao.addReservation(reservation);
-			return "redirect:../reservation/listCustomer";
+
+		if (!login.getRol().equals("customer")) {
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "activity/gallery_instructor");
+			return "login";
 		}
-		
-		
-		
+
+		model.addAttribute("reservationsCustomer", reservationDao.getReservationsCustomer(login.getUsuario()));
+		return "reservation/listCustomer";
+
+	}
+
+	@RequestMapping(value = "/update/{reservationID}", method = RequestMethod.GET)
+	public String editReservation(Model model, @PathVariable String reservationID) {
+		model.addAttribute("reservation", reservationDao.getReservation(reservationID));
+		return "reservation/update";
+	}
+
+	@RequestMapping(value = "/update/{reservationID}", method = RequestMethod.POST)
+	public String processUpdateSubmit(@PathVariable String reservationID,
+			@ModelAttribute("reservation") Reservation reservation, BindingResult bindingResult) {
+		if (bindingResult.hasErrors())
+			return "reservation/update";
+
+		reservationDao.updateReservation(reservation);
+		return "redirect:../list";
+	}
+
+	@RequestMapping(value = "/delete/{reservationID}")
+	public String processDelete(@PathVariable String reservationID) {
+		Activity activity = activityDao.getActivity(""+reservationDao.getReservation(reservationID).getActivityID());
+		LocalDate date = activity.getSchedule();
+		if((date.equals(LocalDate.now().plusDays(9))))
+			return "redirect:/reservation/listCustomer";
+		reservationDao.deleteReservation(reservationID);
+		return "redirect:../listCustomer";
+	}
+
+	@RequestMapping(value = "/pay/{reservationID}")
+	public String processPay(@PathVariable String reservationID) {
+
+		Reservation reservation = reservationDao.getReservation(reservationID);
+
+		if (!reservation.getState().equals("accepted")) {
+			return "redirect:/reservation/listCustomer";
+		}
+		reservationDao.updateStatePay(reservationID);
+		return "redirect:../listCustomer";
+	}
+
+	@RequestMapping(value = "/add/{activityId}")
+	public String addReservationActivity(HttpSession session, Model model, @PathVariable String activityId) {
+		Login login = (Login) session.getAttribute("usuario");
+
+		if (login == null) {
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "activity/gallery_instructor");
+			return "login";
+		}
+
+		if (!login.getRol().equals("customer")) {
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "activity/gallery_instructor");
+			return "login";
+		}
+
+		Activity activity = activityDao.getActivity(activityId);
+		int max = activity.getNumberOfPeople();
+		int reservas = reservationDao.getPeople("" + activity.getActivityId());
+		int maxValue = max - reservas;
+		model.addAttribute("reservation",
+				new Reservation(activity.getSchedule(), activity.getPriceByPerson(), activity.getActivityId()));
+		model.addAttribute("maxValue", maxValue);
+		return "/reservation/add";
+	}
+
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	public String processAddReservationActivitySubmit(Model model, HttpSession session,
+			@ModelAttribute("reservation") Reservation reservation,
+			@RequestParam(name = "numberOfPersons") int numberOfPersons, BindingResult bindingResult) {
+		if (session.getAttribute("usuario") == null) {
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "activity/gallery");
+			return "login";
+		}
+
+		reservation.setBookingDate(LocalDate.now());
+		reservation.setNumberOfPersons(numberOfPersons);
+		reservation.setTotalPrice(numberOfPersons * reservation.getPriceByPerson());
+		Login usuario = (Login) session.getAttribute("usuario");
+		reservation.setCustomerID(usuario.getUsuario());
+		reservation.setState("pending");
+
+//			ReservationValidator reservationValidator = new ReservationValidator();
+//			reservationValidator.validate(reservation, bindingResult);
+
+		if (bindingResult.hasErrors())
+			return "reservation/add";
+
+		reservationDao.addReservation(reservation);
+		return "redirect:../reservation/listCustomer";
+	}
 
 }

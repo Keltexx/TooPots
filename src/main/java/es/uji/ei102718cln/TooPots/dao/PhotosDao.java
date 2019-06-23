@@ -70,9 +70,9 @@ public class PhotosDao {
 		}
 	}
 	
-	public List<Photos> getPhotos(String activityId) {
+	public List<Photos> getPhotos(String activityid) {
 		try {
-			return jdbcTemplate.query("Select photoid from Photos where activityid=?",  new PhotosRowMapper(), activityId);
+			return jdbcTemplate.query("Select photosid from Photos where activityid=?",  new PhotosRowMapper(), Integer.parseInt(activityid));
 		} catch (EmptyResultDataAccessException e) {
 			return new ArrayList<Photos>();
 		}

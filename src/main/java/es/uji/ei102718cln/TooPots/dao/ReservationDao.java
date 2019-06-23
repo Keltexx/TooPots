@@ -39,7 +39,8 @@ public class ReservationDao {
 
 	public void updateReservation(Reservation reservation) {
 		jdbcTemplate.update("UPDATE Reservation SET  totalPrice=?, numberOfPersons=? where reservationID=?",
-				 reservation.getPriceByPerson()*reservation.getNumberOfPersons(), reservation.getNumberOfPersons() ,reservation.getReservationID());
+				reservation.getPriceByPerson() * reservation.getNumberOfPersons(), reservation.getNumberOfPersons(),
+				reservation.getReservationID());
 	}
 
 	public Reservation getReservation(String id) {
@@ -58,17 +59,48 @@ public class ReservationDao {
 			return new ArrayList<Reservation>();
 		}
 	}
-	
+
 	public List<Reservation> getReservationsCustomer(String customerid) {
 		try {
-			return jdbcTemplate.query("SELECT * from Reservation where customerid=?", new ReservationRowMapper(), customerid);
+			return jdbcTemplate.query("SELECT * from Reservation where customerid=?", new ReservationRowMapper(),
+					customerid);
 		} catch (EmptyResultDataAccessException e) {
 			return new ArrayList<Reservation>();
 		}
 	}
-	
-	public void updateState(String reservationID) {
-		jdbcTemplate.update("UPDATE Reservation SET state=? where reservationID=?",
-				"payed", Integer.valueOf(reservationID));
+
+	public void updateStatePay(String reservationID) {
+		jdbcTemplate.update("UPDATE Reservation SET state=? where reservationID=?", "payed",
+				Integer.valueOf(reservationID));
 	}
+
+	public void updateStateConfirmed(String reservationID) {
+		jdbcTemplate.update("UPDATE Reservation SET state=? where reservationID=?", "confirmed",
+				Integer.valueOf(reservationID));
+	}
+
+	public void updateStateAccepted(String reservationID) {
+		jdbcTemplate.update("UPDATE Reservation SET state=? where reservationID=?", "accepted",
+				Integer.valueOf(reservationID));
+	}
+
+	public int getPeople(String activityid) {
+		List<Reservation> list = jdbcTemplate.query("SELECT * from Reservation where activityid=?", new ReservationRowMapper(),
+				Integer.parseInt(activityid));
+		int people = 0;
+		for (int i = 0; i < list.size(); i++) {
+			people += list.get(i).getNumberOfPersons();
+		}
+		return people;
+	}
+
+	public List<Reservation> getReservationsActivity(String activityid) {
+		try {
+			return jdbcTemplate.query("SELECT * from Reservation where activityid=?", new ReservationRowMapper(),
+					Integer.parseInt(activityid));
+		} catch (EmptyResultDataAccessException e) {
+			return new ArrayList<Reservation>();
+		}
+	}
+
 }

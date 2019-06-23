@@ -53,17 +53,17 @@ public class ActivityDao {
 	 */
 	public void updateActivity(Activity activity) {
 		jdbcTemplate.update(
-				"UPDATE activity  SET place=?, name=?, schedule=?, duration=?, description=?, priceByPerson=?, numberOfPeople=?, instructorId=?, activityTypeId=?, photo=? where activityid=?",
+				"UPDATE activity  SET place=?, name=?, schedule=?, duration=?, description=?, priceByPerson=?, numberOfPeople=?, instructorId=?, activityTypeId=? where activityid=?",
 				activity.getPlace(), activity.getName(), activity.getSchedule(), activity.getDuration(),
 				activity.getDescription(), activity.getPriceByPerson(), activity.getNumberOfPeople(),
-				activity.getInstructorId(), activity.getActivityTypeId(), activity.getPhoto(),activity.getActivityId());
+				activity.getInstructorId(), activity.getActivityTypeId(),activity.getActivityId());
 	}
 
 	/* Obté l activitat amb el nom donat. Torna null si no existeix. */
-	public Activity getActivity(String activityid) {
+	public Activity getActivity(String activityId) {
 		try {
 			return jdbcTemplate.queryForObject("SELECT * from Activity WHERE activityId=?", new ActivityRowMapper(),
-					Integer.valueOf(activityid));
+					Integer.valueOf(activityId));
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}

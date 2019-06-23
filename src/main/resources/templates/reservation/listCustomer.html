@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{fragments/base_customer}">
 <head>
 <link rel="stylesheet" type="text/css" href="/css/style.css"
@@ -17,7 +18,7 @@
 				<tr>
 					<th>Fecha de reserva</th>
 					<th>Fecha de la actividad</th>
-					<th>Precio por  persona</th>
+					<th>Precio por persona</th>
 					<th>Precio total</th>
 					<th>Numero de personas</th>
 					<th>Actividad</th>
@@ -31,12 +32,19 @@
 					<td th:text="${reservation.priceByPerson}"></td>
 					<td th:text="${reservation.totalPrice}"></td>
 					<td th:text="${reservation.numberOfPersons}"></td>
-					<td><a th:href="@{/activity/activity/{activityId}(activityId=${reservation.activityID})}" th:text="${reservation.activityID}">></a></td>
+					<td><a
+						th:href="@{/activity/activity/{activityId}(activityId=${reservation.activityID})}"
+						class="btn btn-info" role="button">Más Info</a></td>
 					<td th:text="${reservation.state}"></td>
 					<td><a
-						th:href="@{/reservation/delete/{reservationID}(reservationID=${reservation.reservationID})}" class="btn btn-danger" role="button">Anular</a>
-					</td>
-					<td><a th:href="@{/reservation/pay/{reservationID}(reservationID=${reservation.reservationID})}" class="btn btn-success" role="button">Pagar</a></td>
+						th:href="@{/reservation/delete/{reservationID}(reservationID=${reservation.reservationID})}"
+						class="btn btn-danger" role="button">Anular</a></td>
+					<td><a
+						th:href="@{/payment/add/{reservationId}(reservationId=${reservation.reservationID})}"
+						class="btn btn-info" role="button">Confirmar</a></td>
+					<td><a
+						th:href="@{/reservation/pay/{reservationID}(reservationID=${reservation.reservationID})}"
+						class="btn btn-success" role="button">Pagar</a></td>
 				</tr>
 			</tbody>
 		</table>

@@ -15,8 +15,13 @@
 	<div layout:fragment="content">
 		<form action="#"
 			th:action="@{/activity/update/{activityId}(activityId=${activity.activityId})}"
-			enctype="multipart/form-data" th:object="${photo}" method="post">
+			enctype="multipart/form-data" th:object="${activity}" method="post">
 			<table>
+				<tr>
+					
+					<td><input type="hidden" th:field="*{activityId}" 
+						class="form-control" /></td>
+				</tr>
 				<tr>
 					<td><label>Nombre</label></td>
 					<td><input type="text" th:field="*{name}" class="form-control" /></td>
@@ -52,23 +57,18 @@
 						class="form-control" /></td>
 				</tr>
 				<tr>
-					<td><label>Monitor</label></td>
+
 					<td><input type="text" th:field="*{instructorId}"
-						class="form-control" /></td>
+						class="form-control" hidden /></td>
 				</tr>
 				<tr>
-					<td><label>Tipo de actividad</label></td>
+
 					<td><select class="form-control" th:field="*{activityTypeId}"
-						required>
+						required hidden>
 							<option th:each="activityType : ${activityTypes}"
 								th:value="${activityType.nameType}"
 								th:text="${activityType.nameType}" />
 					</select></td>
-				</tr>
-				<tr>
-					<td><label>Seleccione imagen: </label></td>
-					<td><input type="file" id="avatar" th:src="*{photo}"
-						name="file" accept="image/png, image/jpeg"></td>
 				</tr>
 				<tr>
 					<td colspan="2"><input type="submit" value="Editar actividad"

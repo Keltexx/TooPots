@@ -67,21 +67,12 @@
 						th:errors="*{numberOfPeople}" class="error"></td>
 				</tr>
 				<tr>
-					<td><label>Monitor</label></td>
-					<td><input type="text" th:field="*{instructorId}"
-						class="form-control" required /></td>
-					<td th:if="${#fields.hasErrors('instructorId')}"
-						th:errors="*{instructorId}" class="error"></td>
-				</tr>
-
-
-				<tr>
 					<td><label>Tipo de actividad</label></td>
 					<td><select class="form-control" th:field="*{activityTypeId}"
 						required>
 							<option th:each="activityType : ${activityTypes}"
-								th:value="${activityType.nameType}"
-								th:text="${activityType.nameType}" />
+								th:value="${activityType.activityTypeId}"
+								th:text="${activityType.activityTypeId}" />
 					</select></td>
 				</tr>
 
