@@ -320,14 +320,14 @@ public class ActivityController {
 	@RequestMapping(value = "/activity/{activityid}", method = RequestMethod.GET)
 	public String listActivity(Model model, @PathVariable String activityid) {
 		model.addAttribute("activity", activityDao.getActivity(activityid));
-		model.addAttribute("photos", photosDao.getPhotos(activityDao.getActivity(activityid)));
+		model.addAttribute("photos", photosDao.getPhotos(activityid));
 		return "activity/activity";
 	}
 //<<<<<<< HEAD
 //
 //=======
-	@RequestMapping(value = "/photo/{activityid}", method = RequestMethod.POST)
-	public String addPhoto(HttpSession session, Model model, @PathVariable String activityid) {
+	@RequestMapping(value = "/photo/{activityId}")
+	public String addPhoto(HttpSession session, Model model, @PathVariable int activityId) {
 		Login login = (Login) session.getAttribute("usuario");
 		if (login == null) {
 			model.addAttribute("usuario", new Login());
@@ -340,17 +340,18 @@ public class ActivityController {
 			session.setAttribute("nextUrl", "activity/gallery");
 			return "login";
 		}
-		Photos photo= new Photos();
-		model.addAttribute("photo", photo);
+		Photos photos= new Photos();
+		photos.setActivityId(activityId);
+		model.addAttribute("photos", photos);
 		
-		return "activity/update";
+		return "activity/photo";
 		
 	}
-	@RequestMapping(value = "/photo/{activityid}", method = RequestMethod.POST)
-	public String processUpdateSubmit(@PathVariable String activityid, @ModelAttribute("photos") Photos photos,
+	@RequestMapping(value = "/photo/{activityId}", method = RequestMethod.POST)
+	public String processPhotoSubmit(@PathVariable String activityId, @ModelAttribute("photos") Photos photos,
 			@RequestParam(name = "file") MultipartFile file, BindingResult bindingResult) throws IOException {
 		if (bindingResult.hasErrors())
-			return "activity/update";
+			return "activity/photo/{activityId}";
 		
 		if(!file.equals(null)) {
 			
@@ -383,6 +384,8 @@ public class ActivityController {
 		
 		photos.setPhoto("/media/" + nombre);
 		}
+		//photos.setActivityId(activityid);
+		
 		photosDao.addPhoto(photos);
 		return "redirect:../list";
 	}

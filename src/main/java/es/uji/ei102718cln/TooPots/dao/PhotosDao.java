@@ -26,7 +26,7 @@ public class PhotosDao {
 	/* Afegeix la foto a la base de dades */
 	public void addPhoto(Photos photos) {
 		jdbcTemplate.update(
-				"INSERT INTO Activity(photosid,activityid) VALUES(?, ?)",
+				"INSERT INTO Photos(photosid,activityid) VALUES(?, ?)",
 				photos.getPhoto(),photos.getActivityId());
 
 	}
@@ -62,9 +62,17 @@ public class PhotosDao {
 	}
 
 	/* Obté tots les fotos. Torna una llista buida si no n'hi ha cap. */
-	public List<Photos> getPhotos(Activity activity) {
+	public List<Photos> getPhotos() {
 		try {
-			return jdbcTemplate.query("Select * from Request where instructorid=?",  new PhotosRowMapper(),activity);
+			return jdbcTemplate.query("Select * from Photos",  new PhotosRowMapper());
+		} catch (EmptyResultDataAccessException e) {
+			return new ArrayList<Photos>();
+		}
+	}
+	
+	public List<Photos> getPhotos(String activityId) {
+		try {
+			return jdbcTemplate.query("Select photoid from Photos where activityid=?",  new PhotosRowMapper(), activityId);
 		} catch (EmptyResultDataAccessException e) {
 			return new ArrayList<Photos>();
 		}

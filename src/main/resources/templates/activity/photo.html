@@ -17,10 +17,10 @@
 <body>
 	<h2>Añadir imagenes </h2>
 	<div layout:fragment="content">
-		<form action="#" th:action="@{/activity/photo}" th:object="${activity}"
+		<form action="#" 
 			enctype="multipart/form-data" method="post">
 			<table>
-				
+				<tr>
 					<td><label>Seleccione imagen: </label></td>
 					<td><input type="file" id="avatar" name="file"
 						 multiple accept="image/png, image/jpeg"></td>
@@ -28,6 +28,7 @@
 				<tr>
 					<td colspan="2"><input type="submit" value="Añadir imagenes"
 						class="btn btn-info" role="button" /></td>
+				</tr>
 			</table>
 		</form>
 	</div>

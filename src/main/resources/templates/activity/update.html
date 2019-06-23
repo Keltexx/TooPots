@@ -15,7 +15,7 @@
 	<div layout:fragment="content">
 		<form action="#"
 			th:action="@{/activity/update/{activityId}(activityId=${activity.activityId})}"
-			enctype="multipart/form-data" th:object="${activity}" method="post">
+			enctype="multipart/form-data" th:object="${photo}" method="post">
 			<table>
 				<tr>
 					<td><label>Nombre</label></td>
