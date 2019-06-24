@@ -17,18 +17,17 @@
 		
 		<div id="miCarrusel" class="carousel slide" data-ride="carousel">
 		  <ol class="carousel-indicators">
-	           <li th:each="photos,iterstat: ${photos}" 
+	           <li th:each="photo,iterstat: ${photos}" 
 	               data-target="#miCarrusel"
 	               th:attr="data-slide-to=${iterstat.index}"
 	               th:class="${iterstat.index}== 0  ? 'active':''"></li>
 	      </ol>
 		  <div class="carousel-inner">
-	           <div th:each="photos,iterstat: ${photos}" th:class=
+	           <div th:each="photo,iterstat: ${photos}" th:class=
 	            "${iterstat.index}==0 ? 'carousel-item active':'carousel-item'">
-	               	<img th:src="@{${photos.photoid}}" class="d-block w-100"></img> 
+	               	<img th:src="@{${photo}}" class="d-block w-100"></img> 
 					<div class="carousel-caption">
-						<h1 th:text="${activity.name}"></h1>
-						<p th:text="${activity.description}"></p>
+
 						
 					</div>
 	           </div>
@@ -68,10 +67,10 @@
 				</tr>
 				<tr>
 					<th>Horario: </th>
-					<td th:text="${activity.schedule}"></td>
+					<td th:text="${#temporals.format(activity.schedule,'dd MMMM yyyy')}"></td>
 				</tr>
 				<tr>
-					<th>Duración: </th>
+					<th>Duración(hh:mm:ss): </th>
 					<td th:text="${activity.duration}"></td>
 				</tr>
 				<tr>

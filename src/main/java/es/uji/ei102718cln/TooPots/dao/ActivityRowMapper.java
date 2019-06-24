@@ -15,6 +15,7 @@ public final class ActivityRowMapper implements RowMapper<Activity> {
         activity.setPlace(rs.getString("place"));
         activity.setName(rs.getString("name"));
         activity.setSchedule(rs.getObject("schedule", LocalDate.class));
+        activity.setHour(rs.getTime("hour"));
         activity.setDuration(rs.getTime("duration"));
         activity.setDescription(rs.getString("description"));
         activity.setPriceByPerson(rs.getInt("priceByPerson"));

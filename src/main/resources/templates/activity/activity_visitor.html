@@ -20,10 +20,14 @@
 				</tr>
 				<tr>
 					<th>Horario: </th>
-					<td th:text="${activity.schedule}"></td>
+					<td th:text="${#temporals.format(activity.schedule,'dd MMMM yyyy')}"></td>
 				</tr>
 				<tr>
-					<th>Duración: </th>
+					<th>Hora </th>
+					<td th:text="${activity.hour}"></td>
+				</tr>
+				<tr>
+					<th>Duración:(hh:mm:ss) </th>
 					<td th:text="${activity.duration}"></td>
 				</tr>
 				<tr>

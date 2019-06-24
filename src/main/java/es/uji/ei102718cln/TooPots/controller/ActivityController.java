@@ -403,7 +403,7 @@ public class ActivityController {
 		// photos.setActivityId(activityid);
 
 		photosDao.addPhoto(photos);
-		return "redirect:../list";
+		return "instructor/home";
 	}
 
 //>>>>>>> e0c9626fa0d2611ed5159489cc3066961d9d6946

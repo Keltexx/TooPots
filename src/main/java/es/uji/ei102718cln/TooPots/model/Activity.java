@@ -13,8 +13,11 @@ public class Activity {
 	int activityId;
 	String place;
 	String name;
-	@DateTimeFormat(iso=DateTimeFormat.ISO.DATE) 
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	LocalDate schedule;
+	Time hour;
+	
+
 	Time duration;
 	String description;
 	float priceByPerson;
@@ -59,6 +62,13 @@ public class Activity {
 
 	public void setSchedule(LocalDate date) {
 		this.schedule = date;
+	}
+	public Time getHour() {
+		return hour;
+	}
+
+	public void setHour(Time hour) {
+		this.hour = hour;
 	}
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -121,10 +131,12 @@ public class Activity {
 	@Override
 	public String toString() {
 		return "Activity [activityId=" + activityId + ", place=" + place + ", name=" + name + ", schedule=" + schedule
-				+ ", duration=" + duration + ", description=" + description + ", priceByPerson=" + priceByPerson
-				+ ", numberOfPeople=" + numberOfPeople + ", instructorId=" + instructorId + ", activityTypeId="
-				+ activityTypeId + ", photo=" + photo + "]";
+				+ ", hour=" + hour + ", duration=" + duration + ", description=" + description + ", priceByPerson="
+				+ priceByPerson + ", numberOfPeople=" + numberOfPeople + ", instructorId=" + instructorId
+				+ ", activityTypeId=" + activityTypeId + ", photo=" + photo + "]";
 	}
+
+
 	
 	
 	
