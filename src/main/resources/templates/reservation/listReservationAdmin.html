@@ -35,7 +35,7 @@
 					<td th:text="${reservation.totalPrice}"></td>
 					<td th:text="${reservation.numberOfPersons}"></td>
 					<td><a
-						th:href="@{/activity/activity/{activityId}(activityId=${reservation.activityID})}"
+						th:href="@{/activity/activity_admin/{activityId}(activityId=${reservation.activityID})}"
 						class="btn btn-info" role="button">Más Info</a></td>
 					<td th:text="${reservation.state}"></td>
 					

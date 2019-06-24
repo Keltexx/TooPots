@@ -22,7 +22,6 @@
 					<th>Precio por persona</th>
 					<th>Precio total</th>
 					<th>Numero de personas</th>
-					<th>Actividad</th>
 					<th>Estado</th>
 				</tr>
 			</thead>
@@ -34,9 +33,6 @@
 					<td th:text="${reservation.priceByPerson}"></td>
 					<td th:text="${reservation.totalPrice}"></td>
 					<td th:text="${reservation.numberOfPersons}"></td>
-					<td><a
-						th:href="@{/activity/activity/{activityId}(activityId=${reservation.activityID})}"
-						class="btn btn-info" role="button">Más Info</a></td>
 					<td th:text="${reservation.state}"></td>
 					<td><a
 						th:href="@{/reservation/enviaMsg/{reservationID}(reservationID=${reservation.reservationID})}"
