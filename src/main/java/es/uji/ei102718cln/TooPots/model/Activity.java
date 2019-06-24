@@ -13,7 +13,7 @@ public class Activity {
 	int activityId;
 	String place;
 	String name;
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	@DateTimeFormat(iso=DateTimeFormat.ISO.DATE) 
 	LocalDate schedule;
 	Time hour;
 	
