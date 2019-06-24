@@ -47,7 +47,7 @@ public class InstructorController {
 
 		if (login == null) {
 			model.addAttribute("usuario", new Login());
-			session.setAttribute("nextUrl", "customer/home");
+			session.setAttribute("nextUrl", "instructor/list");
 			return "login";
 		}
 

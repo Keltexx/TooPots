@@ -111,7 +111,20 @@ public class ReservationController {
 	}
 
 	@RequestMapping(value = "/update/{reservationID}", method = RequestMethod.GET)
-	public String editReservation(Model model, @PathVariable String reservationID) {
+	public String editReservation(Model model, @PathVariable String reservationID, HttpSession session) {
+		Login login = (Login) session.getAttribute("usuario");
+
+		if (login == null) {
+			model.addAttribute("usuario", new Login());
+			return "login";
+		}
+
+		if (!login.getRol().equals("customer")) {
+			session.invalidate();
+			model.addAttribute("usuario", new Login());
+
+			return "login";
+		}
 		model.addAttribute("reservation", reservationDao.getReservation(reservationID));
 		return "reservation/update";
 	}
@@ -249,28 +262,31 @@ public class ReservationController {
 
 	@RequestMapping(value = "/enviaMsg/{reservationID}", method = RequestMethod.GET)
 	public String enviaMsg(Model model, @PathVariable String reservationID) {
-//		Reservation reservation = reservationDao.getReservation(reservationID);
-//		if (!reservation.getState().equals("confirmed")) {
-//			model.addAttribute("reservationsInstructor", reservationDao.getReservationsActivity(""+reservation.getActivityID()));
-//			return "/activity/listActivity";
-//
-//		}
+		Reservation reservation = reservationDao.getReservation(reservationID);
+		if (!reservation.getState().equals("confirmed")) {
+			model.addAttribute("activityId", reservationDao.getReservation(reservationID).getActivityID());
+			int activityId = reservationDao.getReservation(reservationID).getActivityID();
+			return "redirect:/reservation/listReservation/" + activityId;
+
+		}
+
 		model.addAttribute("reservation", reservationDao.getReservation(reservationID));
 		return "reservation/enviaMsg";
 	}
 
 	@RequestMapping(value = "/enviaMsg/{reservationID}", method = RequestMethod.POST)
-	public String processEnviaMsg(@PathVariable String reservationID,
+	public String processEnviaMsg(Model model, HttpSession session, @PathVariable String reservationID,
 			@ModelAttribute("reservation") Reservation reservation, BindingResult bindingResult) {
 		if (bindingResult.hasErrors())
 			return "reservation/enviaMsg";
 
-
-
 		reservationDao.enviaMsg(reservation);
-		// reservationDao.updateStateAccepted(reservationID);
+		reservationDao.updateStateAccepted(reservationID);
 		System.out.println(reservation.getMsg());
-		return "reservation/listReservation";
+		model.addAttribute("activityId", reservationDao.getReservation(reservationID).getActivityID());
+		int activityId = reservationDao.getReservation(reservationID).getActivityID();
+		System.out.println("Se procederá al pago cuando falten 10 días para la actividad, puede anularla antes de esa fecha. Se simula ese pago a los 10 días con un boton pagar que tienen las reservas");
+		return "redirect:/reservation/listReservation/" + activityId;
 	}
 
 }
