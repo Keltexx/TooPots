@@ -102,6 +102,10 @@ public class ActivityController {
 		}
 
 		if (!login.getRol().equals("admin")) {
+			if (login.getRol().equals("customer"))
+				return "redirect:/customer/home";
+			if (login.getRol().equals("instructor"))
+				return "redirect:/instructor/home";
 			model.addAttribute("usuario", new Login());
 			session.setAttribute("nextUrl", "activity/gallery");
 			return "login";
@@ -123,6 +127,10 @@ public class ActivityController {
 		}
 
 		if (!login.getRol().equals("instructor")) {
+			if (login.getRol().equals("customer"))
+				return "redirect:/customer/home";
+			if (login.getRol().equals("admin"))
+				return "redirect:/admin/home";
 			model.addAttribute("usuario", new Login());
 			session.setAttribute("nextUrl", "activity/listActivity");
 			return "login";
@@ -144,14 +152,50 @@ public class ActivityController {
 	}
 
 	@RequestMapping("/gallery")
-	public String gallery(Model model) {
+	public String gallery(Model model, HttpSession session) {
+		Login login = (Login) session.getAttribute("usuario");
+
+		if (login == null) {
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "activity/gallery");
+			return "login";
+		}
+
+		if (!login.getRol().equals("customer")) {
+			if (login.getRol().equals("admin"))
+				return "redirect:/admin/home";
+			if (login.getRol().equals("instructor"))
+				return "redirect:/instructor/home";
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "activity/gallery");
+			return "login";
+		}
 		model.addAttribute("activities", activityDao.getActivities());
 		return "activity/gallery";
 
 	}
 
 	@RequestMapping("/gallery_global")
-	public String galleryGlobal(Model model) {
+	public String galleryGlobal(Model model, HttpSession session) {
+		Login login = (Login) session.getAttribute("usuario");
+
+		if (login != null) {
+			if (!login.getRol().equals(null)) {
+				if (login.getRol().equals("customer"))
+					return "redirect:/customer/home";
+				if (login.getRol().equals("admin"))
+					return "redirect:/admin/home";
+				if (login.getRol().equals("instructor"))
+					return "redirect:/instructor/home";
+				model.addAttribute("usuario", new Login());
+				session.setAttribute("nextUrl", "activity/gallery_instructor");
+				return "login";
+			}
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "activity/gallery_global");
+			return "login";
+		}
+
 		model.addAttribute("activities", activityDao.getActivities());
 		return "activity/gallery_global";
 
@@ -168,6 +212,10 @@ public class ActivityController {
 		}
 
 		if (!login.getRol().equals("instructor")) {
+			if (login.getRol().equals("customer"))
+				return "redirect:/customer/home";
+			if (login.getRol().equals("admin"))
+				return "redirect:/admin/home";
 			model.addAttribute("usuario", new Login());
 			session.setAttribute("nextUrl", "activity/gallery_instructor");
 			return "login";
@@ -188,6 +236,10 @@ public class ActivityController {
 		}
 
 		if (!login.getRol().equals("admin")) {
+			if (login.getRol().equals("customer"))
+				return "redirect:/customer/home";
+			if (login.getRol().equals("instructor"))
+				return "redirect:/instructor/home";
 			model.addAttribute("usuario", new Login());
 			session.setAttribute("nextUrl", "activity/gallery_admin");
 			return "login";
@@ -215,6 +267,10 @@ public class ActivityController {
 		}
 
 		if (!login.getRol().equals("instructor")) {
+			if (login.getRol().equals("customer"))
+				return "redirect:/customer/home";
+			if (login.getRol().equals("admin"))
+				return "redirect:/admin/home";
 			model.addAttribute("usuario", new Login());
 			session.setAttribute("nextUrl", "activity/add");
 			return "login";
@@ -247,6 +303,10 @@ public class ActivityController {
 		}
 
 		if (!login.getRol().equals("instructor")) {
+			if (login.getRol().equals("customer"))
+				return "redirect:/customer/home";
+			if (login.getRol().equals("admin"))
+				return "redirect:/admin/home";
 			model.addAttribute("usuario", new Login());
 			session.setAttribute("nextUrl", "activity/add");
 			return "login";
@@ -298,6 +358,10 @@ public class ActivityController {
 		}
 
 		if (!login.getRol().equals("instructor")) {
+			if (login.getRol().equals("customer"))
+				return "redirect:/customer/home";
+			if (login.getRol().equals("admin"))
+				return "redirect:/admin/home";
 			session.invalidate();
 			model.addAttribute("usuario", new Login());
 
@@ -329,13 +393,16 @@ public class ActivityController {
 		}
 
 		if (!login.getRol().equals("customer")) {
+			if (login.getRol().equals("instructor"))
+				return "redirect:/instructor/home";
+			if (login.getRol().equals("admin"))
+				return "redirect:/admin/home";
 			session.invalidate();
 			model.addAttribute("usuario", new Login());
 
 			return "login";
 		}
 		model.addAttribute("activity", activityDao.getActivity(activityId));
-		model.addAttribute("photos", photosDao.getPhotos(activityId));
 		return "activity/activity";
 	}
 
@@ -352,9 +419,13 @@ public class ActivityController {
 		}
 
 		if (!login.getRol().equals("instructor")) {
+			if (login.getRol().equals("customer"))
+				return "redirect:/customer/home";
+			if (login.getRol().equals("admin"))
+				return "redirect:/admin/home";
 			session.invalidate();
 			model.addAttribute("usuario", new Login());
-			
+
 			return "login";
 		}
 		Photos photos = new Photos();
@@ -398,7 +469,7 @@ public class ActivityController {
 			destination.createNewFile();
 			archivo.delete();
 
-			photos.setPhoto("/media/" + nombre);
+			photos.setPhotoId("/media/" + nombre);
 		}
 		// photos.setActivityId(activityid);
 
@@ -408,13 +479,28 @@ public class ActivityController {
 
 //>>>>>>> e0c9626fa0d2611ed5159489cc3066961d9d6946
 	@RequestMapping(value = "/activity_visitor/{activityid}", method = RequestMethod.GET)
-	public String listActivityV(Model model, @PathVariable String activityid) {
+	public String listActivityV(Model model, @PathVariable String activityid, HttpSession session) {
+		Login login = (Login) session.getAttribute("usuario");
+
+		if (login != null) {
+			if (!login.getRol().equals(null)) {
+				if (login.getRol().equals("customer"))
+					return "redirect:/customer/home";
+				if (login.getRol().equals("admin"))
+					return "redirect:/admin/home";
+				if (login.getRol().equals("instructor"))
+					return "redirect:/instructor/home";
+				model.addAttribute("usuario", new Login());
+				session.setAttribute("nextUrl", "activity/gallery_instructor");
+				return "login";
+			}
+		}
 		model.addAttribute("activity", activityDao.getActivity(activityid));
 		return "activity/activity_visitor";
 	}
 
 	@RequestMapping(value = "/activity_admin/{activityid}", method = RequestMethod.GET)
-	public String listActivityA(HttpSession session,Model model, @PathVariable String activityid) {
+	public String listActivityA(HttpSession session, Model model, @PathVariable String activityid) {
 		Login login = (Login) session.getAttribute("usuario");
 		if (login == null) {
 			model.addAttribute("usuario", new Login());
@@ -423,9 +509,13 @@ public class ActivityController {
 		}
 
 		if (!login.getRol().equals("admin")) {
+			if (login.getRol().equals("customer"))
+				return "redirect:/customer/home";
+			if (login.getRol().equals("instructor"))
+				return "redirect:/instructor/home";
 			session.invalidate();
 			model.addAttribute("usuario", new Login());
-			
+
 			return "login";
 		}
 		model.addAttribute("activity", activityDao.getActivity(activityid));
@@ -433,7 +523,7 @@ public class ActivityController {
 	}
 
 	@RequestMapping(value = "/delete/{activityid}")
-	public String processDelete(Model model,HttpSession session ,@PathVariable String activityid) {
+	public String processDelete(Model model, HttpSession session, @PathVariable String activityid) {
 		Login login = (Login) session.getAttribute("usuario");
 		if (login == null) {
 			model.addAttribute("usuario", new Login());
@@ -442,9 +532,13 @@ public class ActivityController {
 		}
 
 		if (!login.getRol().equals("instructor")) {
+			if (login.getRol().equals("customer"))
+				return "redirect:/customer/home";
+			if (login.getRol().equals("admin"))
+				return "redirect:/admin/home";
 			session.invalidate();
 			model.addAttribute("usuario", new Login());
-			
+
 			return "login";
 		}
 		activityDao.deleteActivity(activityid);
@@ -455,7 +549,7 @@ public class ActivityController {
 	}
 
 	@RequestMapping(value = "/close/{activityId}")
-	public String processClose(Model model, HttpSession session,@PathVariable String activityId) {
+	public String processClose(Model model, HttpSession session, @PathVariable String activityId) {
 		Login login = (Login) session.getAttribute("usuario");
 		if (login == null) {
 			model.addAttribute("usuario", new Login());
@@ -464,9 +558,13 @@ public class ActivityController {
 		}
 
 		if (!login.getRol().equals("instructor")) {
+			if (login.getRol().equals("customer"))
+				return "redirect:/customer/home";
+			if (login.getRol().equals("admin"))
+				return "redirect:/admin/home";
 			session.invalidate();
 			model.addAttribute("usuario", new Login());
-			
+
 			return "login";
 		}
 		int reservas = reservationDao.getPeople(activityId);

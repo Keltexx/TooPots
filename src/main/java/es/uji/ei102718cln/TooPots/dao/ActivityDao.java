@@ -34,8 +34,8 @@ public class ActivityDao {
 	}
 	public void addPhoto(Photos photo) {
 		jdbcTemplate.update(
-				"INSERT INTO Photos(photo) VALUES(?)",
-				photo.getPhoto());
+				"INSERT INTO Photos(photosid) VALUES(?)",
+				photo.getPhotosId());
 
 	}
 

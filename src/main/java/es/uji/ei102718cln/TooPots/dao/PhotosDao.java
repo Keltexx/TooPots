@@ -27,35 +27,24 @@ public class PhotosDao {
 	public void addPhoto(Photos photos) {
 		jdbcTemplate.update(
 				"INSERT INTO Photos(photosid,activityid) VALUES(?, ?)",
-				photos.getPhoto(),photos.getActivityId());
+				photos.getPhotosId(),photos.getActivityId());
 
 	}
 
 	/* Esborra la foto de la base de dades */
 	public void deleteActivity(Photos photos) {
-		jdbcTemplate.update("DELETE from Photos where photosid=?", photos.getPhoto());
+		jdbcTemplate.update("DELETE from Photos where photosid=?", photos.getPhotosId());
 	}
 
-	public void deleteActivity(String photoid) {
-		jdbcTemplate.update("DELETE from Photos where photoid=?", photoid);
+	public void deleteActivity(String photosId) {
+		jdbcTemplate.update("DELETE from Photos where photosid=?", photosId);
 	}
 
-	/*
-	 * Actualitza els atributs del activity (excepte la clau primària)
-	 */
-	public void updateActivity(Activity activity) {
-		jdbcTemplate.update(
-				"UPDATE activity  SET place=?, name=?, schedule=?, duration=?, description=?, priceByPerson=?, numberOfPeople=?, instructorId=?, activityTypeId=?, photo=? where activityid=?",
-				activity.getPlace(), activity.getName(), activity.getSchedule(), activity.getDuration(),
-				activity.getDescription(), activity.getPriceByPerson(), activity.getNumberOfPeople(),
-				activity.getInstructorId(), activity.getActivityTypeId(), activity.getPhoto(),activity.getActivityId());
-	}
-
-	/* Obté l activitat amb el nom donat. Torna null si no existeix. */
-	public Photos getPhoto(String photoId) {
+	
+	public Photos getPhoto(String photosId) {
 		try {
 			return jdbcTemplate.queryForObject("SELECT * from Photos WHERE photosid=?", new PhotosRowMapper(),
-					photoId);
+					photosId);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
@@ -70,9 +59,9 @@ public class PhotosDao {
 		}
 	}
 	
-	public List<Photos> getPhotos(String activityid) {
+	public List<Photos> getPhotos(String activityId) {
 		try {
-			return jdbcTemplate.query("Select photosid from Photos where activityid=?",  new PhotosRowMapper(), Integer.parseInt(activityid));
+			return jdbcTemplate.query("Select photosid from Photos where activityid=?",  new PhotosRowMapper(), Integer.valueOf(activityId));
 		} catch (EmptyResultDataAccessException e) {
 			return new ArrayList<Photos>();
 		}

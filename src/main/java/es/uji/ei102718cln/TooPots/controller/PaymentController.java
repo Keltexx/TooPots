@@ -47,6 +47,10 @@ public class PaymentController {
 		}
 
 		if (!login.getRol().equals("customer")) {
+			if(login.getRol().equals("admin"))
+				return "redirect:/admin/home";
+			if(login.getRol().equals("instructor"))
+				return "redirect:/instructor/home";
 			model.addAttribute("usuario", new Login());
 			session.setAttribute("nextUrl", "payment/list");
 			return "login";
@@ -84,6 +88,10 @@ public class PaymentController {
 		}
 
 		if (!login.getRol().equals("customer")) {
+			if(login.getRol().equals("admin"))
+				return "redirect:/admin/home";
+			if(login.getRol().equals("instructor"))
+				return "redirect:/instructor/home";
 			model.addAttribute("usuario", new Login());
 			session.setAttribute("nextUrl", "payment/add");
 			return "login";

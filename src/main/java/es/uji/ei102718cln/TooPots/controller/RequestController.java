@@ -67,6 +67,10 @@ public class RequestController {
 		}
 
 		if (!login.getRol().equals("admin")) {
+			if(login.getRol().equals("customer"))
+				return "redirect:/customer/home";
+			if(login.getRol().equals("instructor"))
+				return "redirect:/instructor/home";
 			model.addAttribute("usuario", new Login());
 			session.setAttribute("nextUrl", "request/list");
 			return "login";
@@ -86,6 +90,10 @@ public class RequestController {
 		}
 
 		if (!login.getRol().equals("instructor")) {
+			if(login.getRol().equals("customer"))
+				return "redirect:/customer/home";
+			if(login.getRol().equals("admin"))
+				return "redirect:/admin/home";
 			model.addAttribute("usuario", new Login());
 			session.setAttribute("nextUrl", "request/requests");
 			return "login";
@@ -106,6 +114,10 @@ public class RequestController {
 		}
 
 		if (!login.getRol().equals("instructor")) {
+			if(login.getRol().equals("customer"))
+				return "redirect:/customer/home";
+			if(login.getRol().equals("admin"))
+				return "redirect:/admin/home";
 			model.addAttribute("usuario", new Login());
 			session.setAttribute("nextUrl", "request/add");
 			return "login";
@@ -137,6 +149,10 @@ public class RequestController {
 		}
 
 		if (!login.getRol().equals("instructor")) {
+			if(login.getRol().equals("customer"))
+				return "redirect:/customer/home";
+			if(login.getRol().equals("admin"))
+				return "redirect:/admin/home";
 			model.addAttribute("usuario", new Login());
 			session.setAttribute("nextUrl", "request/add");
 			return "login";
@@ -189,6 +205,10 @@ public class RequestController {
 		}
 
 		if (!login.getRol().equals("admin")) {
+			if(login.getRol().equals("customer"))
+				return "redirect:/customer/home";
+			if(login.getRol().equals("instructor"))
+				return "redirect:/instructor/home";
 			session.invalidate();
 			model.addAttribute("usuario", new Login());
 
@@ -219,6 +239,10 @@ public class RequestController {
 		}
 
 		if (!login.getRol().equals("admin")) {
+			if(login.getRol().equals("customer"))
+				return "redirect:/customer/home";
+			if(login.getRol().equals("instructor"))
+				return "redirect:/instructor/home";
 			session.invalidate();
 			model.addAttribute("usuario", new Login());
 

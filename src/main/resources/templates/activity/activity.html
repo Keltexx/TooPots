@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{fragments/base_customer}">
 <head>
 <link rel="stylesheet" type="text/css" href="/css/style.css"
@@ -12,78 +13,52 @@
 <body class="actividad">
 	<div layout:fragment="content">
 		<h3 th:text="${activity.name}"></h3>
-		<!--<img class="actIm"th:src="${activity.photo}"/>-->
-		
-		
-		<div id="miCarrusel" class="carousel slide" data-ride="carousel">
-		  <ol class="carousel-indicators">
-	           <li th:each="photo,iterstat: ${photos}" 
-	               data-target="#miCarrusel"
-	               th:attr="data-slide-to=${iterstat.index}"
-	               th:class="${iterstat.index}== 0  ? 'active':''"></li>
-	      </ol>
-		  <div class="carousel-inner">
-	           <div th:each="photo,iterstat: ${photos}" th:class=
-	            "${iterstat.index}==0 ? 'carousel-item active':'carousel-item'">
-	               	<img th:src="@{${photo}}" class="d-block w-100"></img> 
-					<div class="carousel-caption">
+		-<img class="actIm" th:src="${activity.photo}" />
 
-						
-					</div>
-	           </div>
-	       </div>
-	
-		  <a class="carousel-control-prev" href="#miCarrusel" 
-		     role="button" data-slide="prev">
-		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-		    <span class="sr-only">Previous</span>
-		  </a>
-		  <a class="carousel-control-next" href="#miCarrusel" 
-		     role="button" data-slide="next">
-		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-		    <span class="sr-only">Next</span>
-		  </a>
-		</div>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
+
+
+
+
+
+
 		<table class="table table-striped">
-				<tr>
-					<th>Lugar: </th>
-					<td th:text="${activity.place}"></td>
-				</tr>
-				<tr>
-					<th>Horario: </th>
-					<td th:text="${#temporals.format(activity.schedule,'dd MMMM yyyy')}"></td>
-				</tr>
-				<tr>
-					<th>Duración(hh:mm:ss): </th>
-					<td th:text="${activity.duration}"></td>
-				</tr>
-				<tr>
-					<th>Descripción: </th>
-					<td th:text="${activity.description}"></td>
-				</tr>
-				<tr>
-					<th>Precio por persona: </th>
-					<td th:text="${activity.priceByPerson}"></td>
-				</tr>
-				
+			<tr>
+				<th>Lugar:</th>
+				<td th:text="${activity.place}"></td>
+			</tr>
+			<tr>
+				<th>Horario:</th>
+				<td th:text="${#temporals.format(activity.schedule,'dd MMMM yyyy')}"></td>
+			</tr>
+			<tr>
+				<th>Hora</th>
+				<td th:text="${activity.hour}"></td>
+			</tr>
+			<tr>
+				<th>Duración(hh:mm:ss):</th>
+				<td th:text="${activity.duration}"></td>
+			</tr>
+			<tr>
+				<th>Descripción:</th>
+				<td th:text="${activity.description}"></td>
+			</tr>
+			<tr>
+				<th>Precio por persona:</th>
+				<td th:text="${activity.priceByPerson}"></td>
+			</tr>
+
 		</table>
-		<center><a th:href="@{/reservation/add/{activityId}(activityId=${activity.activityId})}" class="btn btn-info" role="button">Reserva</a></center>
+		<center>
+			<a
+				th:href="@{/reservation/add/{activityId}(activityId=${activity.activityId})}"
+				class="btn btn-info" role="button">Reserva</a>
+		</center>
 	</div>
 </body>
 </html>

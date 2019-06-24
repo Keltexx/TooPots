@@ -44,6 +44,10 @@ public class CustomerController {
 		}
 
 		if (!login.getRol().equals("admin")) {
+			if(login.getRol().equals("instructor"))
+				return "redirect:/instructor/home";
+			if(login.getRol().equals("customer"))
+				return "redirect:/customer/home";
 			session.invalidate();
 			model.addAttribute("usuario", new Login());
 			session.setAttribute("nextUrl", "customer/list");
@@ -80,6 +84,10 @@ public class CustomerController {
 		}
 
 		if (!login.getRol().equals("customer")) {
+			if(login.getRol().equals("admin"))
+				return "redirect:/admin/home";
+			if(login.getRol().equals("customer"))
+				return "redirect:/customer/home";
 			session.invalidate();
 			model.addAttribute("usuario", new Login());
 
@@ -110,6 +118,10 @@ public class CustomerController {
 		}
 
 		if (!login.getRol().equals("admin")) {
+			if(login.getRol().equals("instructor"))
+				return "redirect:/instructor/home";
+			if(login.getRol().equals("customer"))
+				return "redirect:/customer/home";
 			session.invalidate();
 			model.addAttribute("usuario", new Login());
 			return "login";

@@ -36,6 +36,10 @@ public class IndexController {
 		}
 
 		if (!login.getRol().equals("customer")) {
+			if(login.getRol().equals("admin"))
+				return "redirect:/admin/home";
+			if(login.getRol().equals("instructor"))
+				return "redirect:/instructor/home";
 			model.addAttribute("usuario", new Login());
 			session.setAttribute("nextUrl", "customer/home");
 			return "login";
@@ -55,6 +59,10 @@ public class IndexController {
 		}
 
 		if (!login.getRol().equals("instructor")) {
+			if(login.getRol().equals("admin"))
+				return "redirect:/admin/home";
+			if(login.getRol().equals("customer"))
+				return "redirect:/customer/home";
 			model.addAttribute("usuario", new Login());
 			session.setAttribute("nextUrl", "instructor/home");
 			return "login";
@@ -74,6 +82,10 @@ public class IndexController {
 		}
 
 		if (!login.getRol().equals("admin")) {
+			if(login.getRol().equals("customer"))
+				return "redirect:/customer/home";
+			if(login.getRol().equals("instructor"))
+				return "redirect:/instructor/home";
 			model.addAttribute("usuario", new Login());
 			session.setAttribute("nextUrl", "admin/home");
 			return "login";

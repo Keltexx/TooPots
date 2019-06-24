@@ -58,6 +58,10 @@ public class ReservationController {
 		}
 
 		if (!login.getRol().equals("instructor")) {
+			if(login.getRol().equals("customer"))
+				return "redirect:/customer/home";
+			if(login.getRol().equals("admin"))
+				return "redirect:/admin/home";
 			session.invalidate();
 			model.addAttribute("usuario", new Login());
 
@@ -79,6 +83,10 @@ public class ReservationController {
 		}
 
 		if (!login.getRol().equals("customer")) {
+			if(login.getRol().equals("admin"))
+				return "redirect:/admin/home";
+			if(login.getRol().equals("instructor"))
+				return "redirect:/instructor/home";
 			model.addAttribute("usuario", new Login());
 			session.setAttribute("nextUrl", "reservation/listCustomer");
 			return "login";
@@ -99,6 +107,10 @@ public class ReservationController {
 		}
 
 		if (!login.getRol().equals("admin")) {
+			if(login.getRol().equals("customer"))
+				return "redirect:/customer/home";
+			if(login.getRol().equals("instructor"))
+				return "redirect:/instructor/home";
 			session.invalidate();
 			model.addAttribute("usuario", new Login());
 
@@ -120,6 +132,10 @@ public class ReservationController {
 		}
 
 		if (!login.getRol().equals("customer")) {
+			if(login.getRol().equals("admin"))
+				return "redirect:/admin/home";
+			if(login.getRol().equals("instructor"))
+				return "redirect:/instructor/home";
 			session.invalidate();
 			model.addAttribute("usuario", new Login());
 
@@ -149,6 +165,10 @@ public class ReservationController {
 		}
 
 		if (!login.getRol().equals("customer")) {
+			if(login.getRol().equals("admin"))
+				return "redirect:/admin/home";
+			if(login.getRol().equals("instructor"))
+				return "redirect:/instructor/home";
 			session.invalidate();
 			model.addAttribute("usuario", new Login());
 
@@ -172,6 +192,10 @@ public class ReservationController {
 		}
 
 		if (!login.getRol().equals("instructor")) {
+			if(login.getRol().equals("customer"))
+				return "redirect:/customer/home";
+			if(login.getRol().equals("admin"))
+				return "redirect:/admin/home";
 			session.invalidate();
 			model.addAttribute("usuario", new Login());
 
@@ -218,6 +242,10 @@ public class ReservationController {
 		}
 
 		if (!login.getRol().equals("customer")) {
+			if(login.getRol().equals("admin"))
+				return "redirect:/admin/home";
+			if(login.getRol().equals("instructor"))
+				return "redirect:/instructor/home";
 			session.invalidate();
 			model.addAttribute("usuario", new Login());
 

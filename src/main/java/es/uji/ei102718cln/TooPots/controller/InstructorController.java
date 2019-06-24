@@ -52,6 +52,10 @@ public class InstructorController {
 		}
 
 		if (!login.getRol().equals("admin")) {
+			if(login.getRol().equals("customer"))
+				return "redirect:/customer/home";
+			if(login.getRol().equals("instructor"))
+				return "redirect:/instructor/home";
 			model.addAttribute("usuario", new Login());
 			session.setAttribute("nextUrl", "instructor/list");
 			return "login";
@@ -127,6 +131,10 @@ public class InstructorController {
 		}
 
 		if (!login.getRol().equals("instructor")) {
+			if(login.getRol().equals("admin"))
+				return "redirect:/admin/home";
+			if(login.getRol().equals("customer"))
+				return "redirect:/customer/home";
 			session.invalidate();
 			model.addAttribute("usuario", new Login());
 
@@ -185,6 +193,10 @@ public class InstructorController {
 		}
 
 		if (!login.getRol().equals("admin")) {
+			if(login.getRol().equals("customer"))
+				return "redirect:/customer/home";
+			if(login.getRol().equals("instructor"))
+				return "redirect:/instructor/home";
 			session.invalidate();
 			model.addAttribute("usuario", new Login());
 
@@ -206,6 +218,10 @@ public class InstructorController {
 		}
 
 		if (!login.getRol().equals("admin")) {
+			if(login.getRol().equals("customer"))
+				return "redirect:/customer/home";
+			if(login.getRol().equals("instructor"))
+				return "redirect:/instructor/home";
 			session.invalidate();
 			model.addAttribute("usuario", new Login());
 
@@ -226,6 +242,10 @@ public class InstructorController {
 		}
 
 		if (!login.getRol().equals("admin")) {
+			if(login.getRol().equals("customer"))
+				return "redirect:/customer/home";
+			if(login.getRol().equals("instructor"))
+				return "redirect:/instructor/home";
 			session.invalidate();
 			model.addAttribute("usuario", new Login());
 

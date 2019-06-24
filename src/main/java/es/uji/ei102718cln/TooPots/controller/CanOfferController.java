@@ -44,6 +44,10 @@ public class CanOfferController {
 		}
 
 		if (!login.getRol().equals("admin")) {
+			if(login.getRol().equals("instructor"))
+				return "redirect:/instructor/home";
+			if(login.getRol().equals("customer"))
+				return "redirect:/customer/home";
 			model.addAttribute("usuario", new Login());
 			session.setAttribute("nextUrl", "canOffer/list");
 			return "login";

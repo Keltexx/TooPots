@@ -10,8 +10,8 @@ import es.uji.ei102718cln.TooPots.model.Photos;
 public final class PhotosRowMapper implements RowMapper<Photos> {
 	public Photos mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Photos photos = new Photos();
+		photos.setPhotoId(rs.getString("photosId"));
 		photos.setActivityId(rs.getInt("activityId"));
-		photos.setPhoto(rs.getString("photo"));
 
 		return photos;
 	}

@@ -1,19 +1,19 @@
 package es.uji.ei102718cln.TooPots.model;
 
 public class Photos {
-	String photo;
+	String photosId;
 	int activityId;
 	
 	public Photos() {
 		super();
 	}
 	
-	public String getPhoto() {
-		return photo;
+	public String getPhotosId() {
+		return photosId;
 	}
 
-	public void setPhoto(String photo) {
-		this.photo = photo;
+	public void setPhotoId(String photosId) {
+		this.photosId = photosId;
 	}
 	public int getActivityId() {
 		return activityId;
@@ -23,7 +23,7 @@ public class Photos {
 	}
 	@Override
 	public String toString() {
-		return "Photos [photo=" + photo + ", activityId=" + activityId + "]";
+		return "Photos [photosId=" + photosId + ", activityId=" + activityId + "]";
 	}
 	
 
