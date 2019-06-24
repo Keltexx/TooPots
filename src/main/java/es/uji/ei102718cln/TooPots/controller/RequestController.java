@@ -57,7 +57,20 @@ public class RequestController {
 	}
 
 	@RequestMapping("/list")
-	public String listRequests(Model model) {
+	public String listRequests(Model model, HttpSession session) {
+		Login login = (Login) session.getAttribute("usuario");
+
+		if (login == null) {
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "request/list");
+			return "login";
+		}
+
+		if (!login.getRol().equals("admin")) {
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "request/list");
+			return "login";
+		}
 		model.addAttribute("requests", requestDao.getRequests());
 		return "request/list";
 
@@ -167,7 +180,20 @@ public class RequestController {
 	}
 
 	@RequestMapping(value = "/accept/{requestID}")
-	public String processAccept(@PathVariable String requestID) {
+	public String processAccept(@PathVariable String requestID, Model model, HttpSession session) {
+		Login login = (Login) session.getAttribute("usuario");
+
+		if (login == null) {
+			model.addAttribute("usuario", new Login());
+			return "login";
+		}
+
+		if (!login.getRol().equals("admin")) {
+			session.invalidate();
+			model.addAttribute("usuario", new Login());
+
+			return "login";
+		}
 		requestDao.updateRequestStateAccept(requestID);
 		Request request = requestDao.getRequest(requestID);
 
@@ -184,7 +210,20 @@ public class RequestController {
 	}
 
 	@RequestMapping(value = "/reject/{requestID}")
-	public String processReject(@PathVariable String requestID) {
+	public String processReject(@PathVariable String requestID, HttpSession session, Model model) {
+		Login login = (Login) session.getAttribute("usuario");
+
+		if (login == null) {
+			model.addAttribute("usuario", new Login());
+			return "login";
+		}
+
+		if (!login.getRol().equals("admin")) {
+			session.invalidate();
+			model.addAttribute("usuario", new Login());
+
+			return "login";
+		}
 		requestDao.updateRequestStateReject(requestID);
 
 		Request request = requestDao.getRequest(requestID);

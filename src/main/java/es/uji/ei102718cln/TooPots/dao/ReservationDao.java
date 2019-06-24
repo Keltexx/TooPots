@@ -103,4 +103,9 @@ public class ReservationDao {
 		}
 	}
 
+	public void enviaMsg(Reservation reservation) {
+		jdbcTemplate.update("UPDATE Reservation SET  msg=? where reservationID=?",
+				reservation.getMsg(),reservation.getReservationID());
+	}
+	
 }

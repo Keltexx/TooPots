@@ -44,6 +44,7 @@ public class CustomerController {
 		}
 
 		if (!login.getRol().equals("admin")) {
+			session.invalidate();
 			model.addAttribute("usuario", new Login());
 			session.setAttribute("nextUrl", "customer/list");
 			return "login";
@@ -75,13 +76,13 @@ public class CustomerController {
 
 		if (login == null) {
 			model.addAttribute("usuario", new Login());
-			session.setAttribute("nextUrl", "customer/list");
 			return "login";
 		}
 
 		if (!login.getRol().equals("customer")) {
+			session.invalidate();
 			model.addAttribute("usuario", new Login());
-			session.setAttribute("nextUrl", "customer/list");
+
 			return "login";
 		}
 		model.addAttribute("customer", customerDao.getCustomer(nif));
@@ -105,17 +106,16 @@ public class CustomerController {
 
 		if (login == null) {
 			model.addAttribute("usuario", new Login());
-			session.setAttribute("nextUrl", "customer/list");
 			return "login";
 		}
 
 		if (!login.getRol().equals("admin")) {
+			session.invalidate();
 			model.addAttribute("usuario", new Login());
-			session.setAttribute("nextUrl", "customer/list");
 			return "login";
 		}
 		customerDao.deleteCustomer(nif);
-		return "redirect:../index";
+		return "customer/list";
 	}
 
 }

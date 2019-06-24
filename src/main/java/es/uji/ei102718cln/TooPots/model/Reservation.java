@@ -16,6 +16,7 @@ public class Reservation {
 	int activityID;
 	String customerID;
 	String state;
+	String msg;
 	
 	public Reservation() {
 		
@@ -83,12 +84,23 @@ public class Reservation {
 		this.state = state;
 	}
 
+	
+	
+	public String getMsg() {
+		return msg;
+	}
+
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+
 	@Override
 	public String toString() {
 		return "Reservation [reservationID=" + reservationID + ", bookingDate=" + bookingDate + ", activityDate="
 				+ activityDate + ", priceByPerson=" + priceByPerson + ", totalPrice=" + totalPrice
 				+ ", numberOfPersons=" + numberOfPersons + ", activityID=" + activityID + ", customerID=" + customerID
-				+ ", state=" + state + "]";
+				+ ", state=" + state + ", msg=" + msg + "]";
 	}
-	
+
+
 }

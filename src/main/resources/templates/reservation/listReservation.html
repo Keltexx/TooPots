@@ -39,7 +39,7 @@
 						class="btn btn-info" role="button">Más Info</a></td>
 					<td th:text="${reservation.state}"></td>
 					<td><a
-						th:href="@{/reservation/accept/{reservationID}(reservationID=${reservation.reservationID})}"
+						th:href="@{/reservation/enviaMsg/{reservationID}(reservationID=${reservation.reservationID})}"
 						class="btn btn-success" role="button">Aceptar</a></td>
 				</tr>
 			</tbody>

@@ -118,7 +118,21 @@ public class InstructorController {
 	}
 
 	@RequestMapping(value = "/update/{nif}", method = RequestMethod.GET)
-	public String editInstructor(Model model, @PathVariable String nif) {
+	public String editInstructor(HttpSession session, Model model, @PathVariable String nif) {
+		Login login = (Login) session.getAttribute("usuario");
+
+		if (login == null) {
+			model.addAttribute("usuario", new Login());
+			return "login";
+		}
+
+		if (!login.getRol().equals("instructor")) {
+			session.invalidate();
+			model.addAttribute("usuario", new Login());
+
+			return "login";
+		}
+		
 		model.addAttribute("instructor", instructorDao.getInstructor(nif));
 		return "instructor/update";
 	}
@@ -161,19 +175,62 @@ public class InstructorController {
 	}
 
 	@RequestMapping(value = "/delete/{nif}")
-	public String processDelete(@PathVariable String nif) {
+	public String processDelete(HttpSession session, Model model,@PathVariable String nif) {
+		Login login = (Login) session.getAttribute("usuario");
+
+		if (login == null) {
+			model.addAttribute("usuario", new Login());
+
+			return "login";
+		}
+
+		if (!login.getRol().equals("admin")) {
+			session.invalidate();
+			model.addAttribute("usuario", new Login());
+
+			return "login";
+		}
+		
 		instructorDao.deleteInstructor(nif);
 		return "redirect:../list";
 	}
 
 	@RequestMapping(value = "/accept/{nif}")
-	public String processAccept(@PathVariable String nif) {
+	public String processAccept(Model model, HttpSession session,@PathVariable String nif) {
+		Login login = (Login) session.getAttribute("usuario");
+
+		if (login == null) {
+			model.addAttribute("usuario", new Login());
+
+			return "login";
+		}
+
+		if (!login.getRol().equals("admin")) {
+			session.invalidate();
+			model.addAttribute("usuario", new Login());
+
+			return "login";
+		}
 		instructorDao.updateInstructorStateAccept(nif);
 		return "redirect:../list";
 	}
 
 	@RequestMapping(value = "/reject/{nif}")
-	public String processReject(@PathVariable String nif) {
+	public String processReject(HttpSession session, Model model,@PathVariable String nif) {
+		Login login = (Login) session.getAttribute("usuario");
+
+		if (login == null) {
+			model.addAttribute("usuario", new Login());
+
+			return "login";
+		}
+
+		if (!login.getRol().equals("admin")) {
+			session.invalidate();
+			model.addAttribute("usuario", new Login());
+
+			return "login";
+		}
 		instructorDao.updateInstructorStateReject(nif);
 		return "redirect:../list";
 	}

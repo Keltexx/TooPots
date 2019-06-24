@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/base_customer}">
+<head>
+<link rel="stylesheet" type="text/css" href="/css/style.css"
+	th:href="@{/css/style.css}" />
+<title>Acepta reserva</title>
+<meta charset="UTF-8" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+</head>
+<body>
+	<div layout:fragment="content">
+		<h2>Aceptar reserva</h2>
+		<form action="#"
+			th:action="@{/reservation/enviaMsg/{reservationID}(reservationID=${reservation.reservationID})}"
+			th:object="${reservation}" method="post">
+			<table>
+
+				<tr>
+					<td><label>Mensaje</label></td>
+					<td><input type="text" th:field="*{msg}" class="form-control" /></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" value="Aceptar"
+						class="btn btn-info" role="button"
+						th:href="@{/reservation/listReservation/{activityId}(activityId=${reservation.activityID})}" /></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>
