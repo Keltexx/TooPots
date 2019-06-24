@@ -29,8 +29,8 @@
 			<tbody>
 				<tr th:each="reservation: ${reservationsCustomerAdmin}">
 					<td th:text="${reservation.customerID}"></td>
-					<td th:text="${reservation.bookingDate}"></td>
-					<td th:text="${reservation.activityDate}"></td>
+					<td th:text="${#temporals.format(reservation.bookingDate,'dd MMMM yyyy')}"></td>
+					<td th:text="${#temporals.format(reservation.activityDate,'dd MMMM yyyy')}"></td>
 					<td th:text="${reservation.priceByPerson}"></td>
 					<td th:text="${reservation.totalPrice}"></td>
 					<td th:text="${reservation.numberOfPersons}"></td>

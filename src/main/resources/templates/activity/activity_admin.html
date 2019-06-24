@@ -33,7 +33,7 @@
 				</tr>
 				<tr>
 					<th>Horario: </th>
-					<td th:text="${activity.schedule}"></td>
+					<td th:text="${#temporals.format(activity.schedule,'dd MMMM yyyy')}"></td>
 				</tr>
 				<tr>
 					<th>Hora </th>

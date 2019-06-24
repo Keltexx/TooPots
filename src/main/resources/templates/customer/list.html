@@ -29,7 +29,7 @@
 					<td th:text="${customer.nif}"></td>
 					<td th:text="${customer.email}"></td>
 					<td th:text="${customer.gender}"></td>
-					<td th:text="${customer.birthDate}"></td>
+					<td th:text="${#temporals.format(customer.birthDate,'dd MMMM yyyy')}"></td>
 					<td><a
 						th:href="@{/reservation/listReservationAdmin/{nif}(nif=${customer.nif})}"
 						class="btn btn-info" role="button">Ver reservas</a></td>
