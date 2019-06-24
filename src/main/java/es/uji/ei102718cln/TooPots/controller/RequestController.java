@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import es.uji.ei102718cln.TooPots.dao.ActivityTypeDao;
 import es.uji.ei102718cln.TooPots.dao.CanOfferDao;
+import es.uji.ei102718cln.TooPots.dao.InstructorDao;
 import es.uji.ei102718cln.TooPots.dao.RequestDao;
 import es.uji.ei102718cln.TooPots.model.Activity;
 import es.uji.ei102718cln.TooPots.model.CanOffer;
@@ -33,6 +34,12 @@ public class RequestController {
 	private RequestDao requestDao;
 	private ActivityTypeDao activityTypeDao;
 	private CanOfferDao canOfferDao;
+	private InstructorDao instructorDao;
+
+	@Autowired
+	public void setInstructorDao(InstructorDao instructorDao) {
+		this.instructorDao = instructorDao;
+	}
 
 	@Autowired
 	public void setCanOfferDao(CanOfferDao canOfferDao) {
@@ -81,13 +88,13 @@ public class RequestController {
 
 		if (login == null) {
 			model.addAttribute("usuario", new Login());
-			session.setAttribute("nextUrl", "request/requests");
+			session.setAttribute("nextUrl", "request/add");
 			return "login";
 		}
 
 		if (!login.getRol().equals("instructor")) {
 			model.addAttribute("usuario", new Login());
-			session.setAttribute("nextUrl", "request/requests");
+			session.setAttribute("nextUrl", "request/add");
 			return "login";
 		}
 		model.addAttribute("request", new Request());
@@ -112,13 +119,13 @@ public class RequestController {
 
 		if (login == null) {
 			model.addAttribute("usuario", new Login());
-			session.setAttribute("nextUrl", "request/requests");
+			session.setAttribute("nextUrl", "request/add");
 			return "login";
 		}
 
 		if (!login.getRol().equals("instructor")) {
 			model.addAttribute("usuario", new Login());
-			session.setAttribute("nextUrl", "request/requests");
+			session.setAttribute("nextUrl", "request/add");
 			return "login";
 		}
 
@@ -163,20 +170,28 @@ public class RequestController {
 	public String processAccept(@PathVariable String requestID) {
 		requestDao.updateRequestStateAccept(requestID);
 		Request request = requestDao.getRequest(requestID);
-		CanOffer canOffer = new CanOffer();
-		canOffer.setInstructorId(request.getInstructorID());
-		canOffer.setActivityTypeId(request.getActivityTypeId());
-		canOfferDao.addCanOffer(canOffer);
-		System.out.println("Se ha aceptado su petición señor/a "+request.getInstructorID()+" ya puede impartir actividades de "+request.getActivityTypeId());
+
+		if (canOfferDao.getCanOfferExist(request.getInstructorID(), request.getActivityTypeId())==null) {
+			CanOffer canOffer = new CanOffer();
+			canOffer.setInstructorId(request.getInstructorID());
+			canOffer.setActivityTypeId(request.getActivityTypeId());
+			canOfferDao.addCanOffer(canOffer);
+		}
+		instructorDao.updateInstructorStateAccept(request.getInstructorID());
+		System.out.println("Se ha aceptado su petición señor/a " + request.getInstructorID()
+				+ " ya puede impartir actividades de " + request.getActivityTypeId());
 		return "redirect:../list";
 	}
 
 	@RequestMapping(value = "/reject/{requestID}")
 	public String processReject(@PathVariable String requestID) {
 		requestDao.updateRequestStateReject(requestID);
+
 		Request request = requestDao.getRequest(requestID);
+
 		canOfferDao.deleteCanOffer2(request.getInstructorID(), request.getActivityTypeId());
-		System.out.println("Se ha rechazado su petición señor/a "+request.getInstructorID()+" no puede impartir actividades de "+request.getActivityTypeId());
+		System.out.println("Se ha rechazado su petición señor/a " + request.getInstructorID()
+				+ " no puede impartir actividades de " + request.getActivityTypeId());
 
 		return "redirect:../list";
 	}

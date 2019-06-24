@@ -67,13 +67,14 @@ public class LoginController {
 		// Autenticats correctament. 
 		// Guardem les dades de l'usuari autenticat a la sessió
 		session.setAttribute("usuario", usuario); 
+		Object url = session.getAttribute("nextUrl");
+		if(url!=null) {
+			session.removeAttribute("nextUrl");
+			return "redirect:"+url;
+			
+		}
 		
-//		if(!session.getAttribute("nextUrl").equals(null)) {
-//			String url = (String) session.getAttribute("nextUrl");
-//			session.removeAttribute("nextUrl");
-//			return "redirect:"+url;
-//			
-//		}
+		
 		
 		switch (usuario.getRol()) {
 		case "customer":

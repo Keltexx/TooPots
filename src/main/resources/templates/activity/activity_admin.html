@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/base_admin}">
+<head>
+<link rel="stylesheet" type="text/css" href="/css/style.css"
+	th:href="@{/css/style.css}" />
+<title>Listar actividades</title>
+<meta charset="UTF-8" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+</head>
+<body class="actividad">
+	<div layout:fragment="content">
+		<h3 th:text="${activity.name}"></h3>
+		<!--<img class="actIm"th:src="${activity.photo}"/>-->
+		
+		
+		<div id="miCarrusel" class="carousel slide" data-ride="carousel">
+		  <ol class="carousel-indicators">
+	           <li th:each="photos,iterstat: ${photos}" 
+	               data-target="#miCarrusel"
+	               th:attr="data-slide-to=${iterstat.index}"
+	               th:class="${iterstat.index}== 0  ? 'active':''"></li>
+	      </ol>
+		  <div class="carousel-inner">
+	           <div th:each="photos,iterstat: ${photos}" th:class=
+	            "${iterstat.index}==0 ? 'carousel-item active':'carousel-item'">
+	               	<img th:src="@{${photos.photoid}}" class="d-block w-100"></img> 
+					<div class="carousel-caption">
+						<h1 th:text="${activity.name}"></h1>
+						<p th:text="${activity.description}"></p>
+						
+					</div>
+	           </div>
+	       </div>
+	
+		  <a class="carousel-control-prev" href="#miCarrusel" 
+		     role="button" data-slide="prev">
+		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		    <span class="sr-only">Previous</span>
+		  </a>
+		  <a class="carousel-control-next" href="#miCarrusel" 
+		     role="button" data-slide="next">
+		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		    <span class="sr-only">Next</span>
+		  </a>
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<table class="table table-striped">
+				<tr>
+					<th>Lugar: </th>
+					<td th:text="${activity.place}"></td>
+				</tr>
+				<tr>
+					<th>Horario: </th>
+					<td th:text="${activity.schedule}"></td>
+				</tr>
+				<tr>
+					<th>Duración: </th>
+					<td th:text="${activity.duration}"></td>
+				</tr>
+				<tr>
+					<th>Descripción: </th>
+					<td th:text="${activity.description}"></td>
+				</tr>
+				<tr>
+					<th>Precio por persona: </th>
+					<td th:text="${activity.priceByPerson}"></td>
+				</tr>
+				
+		</table>
+		
+	</div>
+</body>
+</html>

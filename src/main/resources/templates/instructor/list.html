@@ -21,7 +21,7 @@
 					<th>Correo</th>
 					<th>Dirección</th>
 					<th>Cuenta Bancaria</th>
-					
+
 					<th>Estado</th>
 					<th>Foto</th>
 				</tr>
@@ -34,23 +34,20 @@
 					<td th:text="${instructor.address}"></td>
 					<td th:text="${instructor.bankAccount}"></td>
 					<td th:text="${instructor.state}"></td>
-					<td ><img th:src="${instructor.photo}" style="max-width: 100px; max-height: 100px"></td>
+					<td><img th:src="${instructor.photo}"
+						style="max-width: 100px; max-height: 100px"></td>
 					<td></td>
-					
+
 
 					<td><a
 						th:href="@{/instructor/delete/{nif}(nif=${instructor.nif})}"
 						class="btn btn-info" role="button">Borrar</a></td>
- 					<td><a
-						th:href="@{/instructor/accept/{nif}(nif=${instructor.nif})}"
-						class="btn btn-success" role="button">Aceptar</a></td>
 					<td><a
 						th:href="@{/instructor/reject/{nif}(nif=${instructor.nif})}"
-						class="btn btn-danger" role="button">Rechazar</a></td>
+						class="btn btn-danger" role="button">Denegar Acceso</a></td>
 				</tr>
 			</tbody>
 		</table>
-		<a href="add" class="btn btn-info" role="button">Añadir Monitor</a>
 	</div>
 </body>
 </html>

@@ -1,6 +1,8 @@
 package es.uji.ei102718cln.TooPots.controller;
 
 import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
 
 import javax.servlet.http.HttpSession;
 
@@ -45,6 +47,13 @@ public class ReservationController {
 		return "reservation/list";
 
 	}
+	
+	@RequestMapping(value="/listReservation/{activityId}")
+	public String listReservationActivity(Model model, @PathVariable String activityId) {
+		model.addAttribute("reservationsInstructor", reservationDao.getReservationsActivity(activityId));
+		return "reservation/listReservation";
+
+	}
 
 	@RequestMapping("/listCustomer")
 	public String listReservationCustomer(HttpSession session, Model model) {
@@ -66,6 +75,27 @@ public class ReservationController {
 		return "reservation/listCustomer";
 
 	}
+	
+	@RequestMapping("/listReservationAdmin/{nif}")
+	public String listReservationAdmin(HttpSession session, Model model, @PathVariable String nif) {
+		Login login = (Login) session.getAttribute("usuario");
+
+		if (login == null) {
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "activity/listReservationAdmin");
+			return "login";
+		}
+
+		if (!login.getRol().equals("admin")) {
+			model.addAttribute("usuario", new Login());
+			session.setAttribute("nextUrl", "activity/listReservationAdmin");
+			return "login";
+		}
+
+		model.addAttribute("reservationsCustomerAdmin", reservationDao.getReservationsCustomer(nif));
+		return "reservation/listReservationAdmin";
+
+	}
 
 	@RequestMapping(value = "/update/{reservationID}", method = RequestMethod.GET)
 	public String editReservation(Model model, @PathVariable String reservationID) {
@@ -85,23 +115,42 @@ public class ReservationController {
 
 	@RequestMapping(value = "/delete/{reservationID}")
 	public String processDelete(@PathVariable String reservationID) {
-		Activity activity = activityDao.getActivity(""+reservationDao.getReservation(reservationID).getActivityID());
-		LocalDate date = activity.getSchedule();
-		if((date.equals(LocalDate.now().plusDays(9))))
-			return "redirect:/reservation/listCustomer";
+		Reservation reservation = reservationDao.getReservation(reservationID);
+		if(reservation.getState().equals("payed"))
+			return "redirect:../listCustomer"; 
 		reservationDao.deleteReservation(reservationID);
+		System.out.println("Reserva anulada");
 		return "redirect:../listCustomer";
 	}
+	
+	@RequestMapping("/accept/{reservationID}")
+	public String processAccept(Model model,@PathVariable String reservationID) {
+		Reservation reservation = reservationDao.getReservation(reservationID);
+		model.addAttribute("reservationsInstructor", reservationDao.getReservationsActivity(""+reservation.getActivityID()));
+
+		if (!reservation.getState().equals("confirmed")) {
+			return "reservation/listReservation";
+
+		}
+		reservationDao.updateStateAccepted(reservationID);
+		System.out.println("Reserva aceptada, debe pagarla antes de la realización de la actividad");
+		return "reservation/listReservation";
+	}
+
 
 	@RequestMapping(value = "/pay/{reservationID}")
 	public String processPay(@PathVariable String reservationID) {
 
 		Reservation reservation = reservationDao.getReservation(reservationID);
-
+		long totalDias = ChronoUnit.DAYS.between(LocalDate.now(), reservation.getActivityDate());
+		System.out.println(totalDias);
+		if(totalDias>10)
+			return "redirect:/reservation/listCustomer";
 		if (!reservation.getState().equals("accepted")) {
 			return "redirect:/reservation/listCustomer";
 		}
 		reservationDao.updateStatePay(reservationID);
+		System.out.println("Simulación de que la PPS ha efectuado el pago cuando faltan 10 días para la actividad");;
 		return "redirect:../listCustomer";
 	}
 

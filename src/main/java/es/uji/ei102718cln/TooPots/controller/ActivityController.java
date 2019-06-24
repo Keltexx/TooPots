@@ -29,6 +29,7 @@ import es.uji.ei102718cln.TooPots.dao.ActivityTypeDao;
 import es.uji.ei102718cln.TooPots.dao.CanOfferDao;
 import es.uji.ei102718cln.TooPots.dao.InstructorDao;
 import es.uji.ei102718cln.TooPots.dao.PhotosDao;
+import es.uji.ei102718cln.TooPots.dao.ReservationDao;
 import es.uji.ei102718cln.TooPots.model.Activity;
 import es.uji.ei102718cln.TooPots.model.CanOffer;
 import es.uji.ei102718cln.TooPots.model.Login;
@@ -48,7 +49,13 @@ public class ActivityController {
 	private InstructorDao instructorDao;
 	private CanOfferDao canOfferDao;
 	private ActivityTypeDao activityTypeDao;
+	private ReservationDao reservationDao;
+	
 
+	@Autowired
+	public void setReservationDao(ReservationDao reservationDao) {
+		this.reservationDao = reservationDao;
+	}
 	@Autowired
 	public void setActivityTypeDao(ActivityTypeDao activityTypeDao) {
 		this.activityTypeDao = activityTypeDao;
@@ -178,13 +185,13 @@ public class ActivityController {
 
 		if (login == null) {
 			model.addAttribute("usuario", new Login());
-			session.setAttribute("nextUrl", "activity/gallery");
+			session.setAttribute("nextUrl", "activity/add");
 			return "login";
 		}
 
 		if (!login.getRol().equals("instructor")) {
 			model.addAttribute("usuario", new Login());
-			session.setAttribute("nextUrl", "activity/gallery");
+			session.setAttribute("nextUrl", "activity/add");
 			return "login";
 		}
 		
@@ -210,18 +217,16 @@ public class ActivityController {
 
 		if (login == null) {
 			model.addAttribute("usuario", new Login());
-			session.setAttribute("nextUrl", "activity/gallery");
+			session.setAttribute("nextUrl", "activity/add");
 			return "login";
 		}
 
 		if (!login.getRol().equals("instructor")) {
 			model.addAttribute("usuario", new Login());
-			session.setAttribute("nextUrl", "activity/gallery");
+			session.setAttribute("nextUrl", "activity/add");
 			return "login";
 		}
 
-		ActivityValidator activityValidator = new ActivityValidator();
-		activityValidator.validate(activity, bindingResult);
 
 		/*
 		 * Se convierte el MultipartFile a File, se escribe el archivo en su ruta
@@ -253,7 +258,7 @@ public class ActivityController {
 			return "activity/add";
 		activity.setInstructorId(login.getUsuario());;
 		activityDao.addActivity(activity);
-		return "redirect:list";
+		return "redirect:listActivity";
 
 	}
 
@@ -366,13 +371,29 @@ public class ActivityController {
 	@RequestMapping(value = "/activity_visitor/{activityid}", method = RequestMethod.GET)
 	public String listActivityV(Model model, @PathVariable String activityid) {
 		model.addAttribute("activity", activityDao.getActivity(activityid));
-		return "activity/activity";
+		return "activity/activity_visitor";
+	}
+	
+	@RequestMapping(value = "/activity_admin/{activityid}", method = RequestMethod.GET)
+	public String listActivityA(Model model, @PathVariable String activityid) {
+		model.addAttribute("activity", activityDao.getActivity(activityid));
+		return "activity/activity_admin";
 	}
 
 	@RequestMapping(value = "/delete/{activityid}")
 	public String processDelete(@PathVariable String activityid) {
 		activityDao.deleteActivity(activityid);
-		return "redirect:../list";
+		
+		System.out.println("Actividad "+ activityDao.getActivity(activityid).getName()+" cancelada, se devolverá el dinero íntegro en caso de pago efectuado");
+		return "redirect:../listActivity";
+	}
+	
+	@RequestMapping(value = "/close/{activityId}")
+	public String processClose(@PathVariable String activityId) {
+		int reservas = reservationDao.getPeople(activityId);
+		activityDao.updatePeople(reservas, Integer.parseInt(activityId));
+		return "redirect:../listActivity";
 	}
 
+	
 }

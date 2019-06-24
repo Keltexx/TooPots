@@ -90,7 +90,7 @@ public class PaymentController {
 		}
 		
 		Reservation reservation = reservationDao.getReservation(""+reservationId);
-		if(reservation.getState().equals("confirmed")) {
+		if(reservation.getState().equals("confirmed") || reservation.getState().equals("payed")) {
 			return "redirect:/reservation/listCustomer";
 		}
 		

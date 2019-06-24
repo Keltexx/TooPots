@@ -109,10 +109,11 @@ public class InstructorController {
 		archivo.delete();
 		instructor.setPhoto("/media/" + nombre);
 		instructor.setState("pending");
-		instructorDao.addInstructor(instructor);
 		Login login = new Login(instructor.getNif(), instructor.getPassword(), "instructor");
 		loginDao.addLogin(login);
-		return "redirect:home";
+		instructorDao.addInstructor(instructor);
+
+		return "redirect:/request/add";
 
 	}
 

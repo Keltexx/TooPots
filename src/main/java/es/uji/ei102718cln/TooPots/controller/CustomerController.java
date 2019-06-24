@@ -62,9 +62,9 @@ public class CustomerController {
 	public String processAddSubmit(@ModelAttribute("customer") Customer customer, BindingResult bindingResult) {
 		if (bindingResult.hasErrors())
 			return "customer/add";
-		customerDao.addCustomer(customer);
 		Login login = new Login(customer.getNif(), customer.getPassword(), "customer");
 		loginDao.addLogin(login);
+		customerDao.addCustomer(customer);
 		return "redirect:../customer/home";
 
 	}

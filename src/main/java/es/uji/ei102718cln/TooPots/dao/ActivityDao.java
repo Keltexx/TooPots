@@ -85,4 +85,11 @@ public class ActivityDao {
 			return new ArrayList<Activity>();
 		}
 	}
+	
+	public void updatePeople(int people, int activityId) {
+		jdbcTemplate.update(
+				"UPDATE activity  SET numberOfPeople=? where activityid=?",
+				people,activityId);
+	}
+	
 }

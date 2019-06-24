@@ -70,4 +70,13 @@ public class CanOfferDao {
 			return new ArrayList<CanOffer>();
 		}
 	}
+	
+	public CanOffer getCanOfferExist(String instructorId, String activityTypeId) {
+		try {
+			return jdbcTemplate.queryForObject("SELECT * from CanOffer WHERE instructorid=? and activitytypeid=?", new CanOfferRowMapper(),
+					instructorId,activityTypeId);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
 }

@@ -16,7 +16,7 @@
 		<ul class="uls">
 			<li class="im" th:each="activity: ${activities}">
                 
-                <a >
+                <a th:href="@{/activity/activity_admin/{activityId}(activityId=${activity.activityId})}">
                     <p class="titulos" th:text="${activity.name}"></p>
                     <img th:src="${activity.photo}" />
                     
