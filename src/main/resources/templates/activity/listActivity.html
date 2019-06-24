@@ -21,8 +21,8 @@
 					<th>Lugar</th>
 					<th>Fecha</th>
 					<th>Hora</th>
-					<th>Duración</th>
-					<th>Descripción</th>
+<!-- 					<th>Duración</th>
+ -->					<th>Descripción</th>
 					<th>Precio por persona</th>
 				</tr>
 			</thead>
@@ -33,20 +33,20 @@
 					<td th:text="${activity.place}"></td>
 					<td th:text="${#temporals.format(activity.schedule,'dd MMMM yyyy')}"></td>
 					<td th:text="${activity.hour}"></td>
-					<td th:text="${activity.duration}"></td>
+<!-- 					<td th:text="${activity.duration}"></td> -->
 					<td th:text="${activity.description}"></td>
 					<td th:text="${activity.priceByPerson}"></td>
 					<td><img th:src="${activity.photo}"
-						style="max-width: 180px; max-height: 180px" /></td>
+						style="max-width: 160px; max-height: 160px" /></td>
 					<td><a
 						th:href="@{/activity/photo/{activityId}(activityId=${activity.activityId})}"
-						class="btn btn-info" role="button">Añadir imágenes</a></td>
+						class="btn btn-info" role="button">Subir imágenes</a></td>
 					<td><a
 						th:href="@{/activity/update/{activityId}(activityId=${activity.activityId})}"
 						class="btn btn-info" role="button">Edita</a></td>
 					<td><a
 						th:href="@{/activity/delete/{activityId}(activityId=${activity.activityId})}"
-						class="btn btn-danger" role="button">Cancelar</a></td>
+						class="btn btn-danger" role="button">Cancela</a></td>
 
 					<td><a
 						th:href="@{/reservation/listReservation/{activityId}(activityId=${activity.activityId})}"
