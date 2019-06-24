@@ -541,10 +541,13 @@ public class ActivityController {
 
 			return "login";
 		}
-		activityDao.deleteActivity(activityid);
-
+		
 		System.out.println("Actividad " + activityDao.getActivity(activityid).getName()
 				+ " cancelada, se devolverá el dinero íntegro en caso de pago efectuado");
+		
+		activityDao.deleteActivity(activityid);
+
+
 		return "redirect:../listActivity";
 	}
 
